@@ -14,10 +14,8 @@ def signup(request):
     #validate the form
     form = SignupForm();
     if request.method == 'POST':
-        print('>>>>>>>>>>>>>>>>>> HERE')
         form = SignupForm(request.POST)
         if form.is_valid():
-            print('>>>>>>>>>>>>>>>>>> 2')
             u = User()
             u.username = form.cleaned_data.get('username')
             u.email = form.cleaned_data.get('email')
@@ -29,7 +27,6 @@ def signup(request):
             user = authenticate(username=form.cleaned_data.get('username'), password=form.cleaned_data.get('password'))
 
             login(request, user)
-            print('>>>>>>>>>>>>>>>>>> 2')
             return HttpResponseRedirect('/')
 
     template_vars = {
@@ -39,12 +36,12 @@ def signup(request):
     return render(request, 'account/signup.html', template_vars)
 
 class SignupForm(forms.Form):
-    username = forms.CharField(label='Username', required=True, max_length=100)
-    email = forms.CharField(label='Email', required=True, max_length=100)
-    first_name = forms.CharField(label='First Name:', required=True, max_length=100)
-    last_name = forms.CharField(label='Last Name:', required=True, max_length=100)
-    password = forms.CharField(label='Password:', required=True, max_length=100, widget=forms.PasswordInput())
-    password2 = forms.CharField(label='Confirm Password:', required=True, max_length=100, widget=forms.PasswordInput())
+    username = forms.CharField(label='Username', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Username'}))
+    email = forms.CharField(label='Email', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Email'}))
+    first_name = forms.CharField(label='First Name:', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'First Name'}))
+    last_name = forms.CharField(label='Last Name:', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Last Name'}))
+    password = forms.CharField(label='Password:', required=True, max_length=100, widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password2 = forms.CharField(label='Confirm Password:', required=True, max_length=100, widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
     def clean(self):
         if self.cleaned_data.get('password') != self.cleaned_data.get('password2'):
@@ -79,7 +76,7 @@ def login_user(request):
     return render(request, 'account/login.html', template_vars)
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label='Username', required=True, max_length=100)
+    username = forms.CharField(label='Username', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Username'}))
     password = forms.CharField(label='Password', required=True, max_length=100, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     def clean(self):

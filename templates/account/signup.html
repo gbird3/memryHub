@@ -3,9 +3,13 @@
 {% block title %}User Signup{% endblock %}
 
 {% block content %}
-<form method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
-</form>
+<div class="container">
+  <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form }}
+      </div>
+      <input class="btn btn-primary" type="submit" value="Submit" />
+  </form>
+</div>
 {% endblock %}
