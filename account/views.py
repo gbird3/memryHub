@@ -9,6 +9,12 @@ from django import forms
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 
+from apiclient import discovery
+import httplib2
+from oauth2client import client
+
+from memryHub import settings
+
 # Create your views here.
 def signup(request):
     #validate the form
@@ -59,7 +65,6 @@ def login_user(request):
     form = LoginForm()
     if request.method == 'POST':
         form = LoginForm(request.POST)
-        print(request.POST)
         if form.is_valid():
             login(request, form.user)
             # url = request.urlparams[0]
@@ -90,3 +95,30 @@ def logout_user(request):
     logout(request)
 
     return HttpResponseRedirect('/')
+
+def google_login(request):
+    if request.method == 'POST':
+        print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', request.POST['authcode'])
+        auth_code = request.POST['authcode']
+        # Set path to the Web application client_secret_*.json file you downloaded from the
+        # Google API Console: https://console.developers.google.com/apis/credentials
+        CLIENT_SECRET_FILE = settings.GOOGLE_OAUTH2_CLIENT_SECRETS_JSON
+
+        # Exchange auth code for access token, refresh token, and ID token
+        credentials = client.credentials_from_clientsecrets_and_code(
+            CLIENT_SECRET_FILE,
+            ['https://www.googleapis.com/auth/drive.appdata', 'profile', 'email'],
+            auth_code)
+
+        # # Call Google API
+        # http_auth = credentials.authorize(httplib2.Http())
+        # drive_service = discovery.build('drive', 'v3', http=http_auth)
+        # appfolder = drive_service.files().get(fileId='appfolder').execute()
+
+        # Get profile info from ID token
+        userid = credentials.id_token['sub']
+        email = credentials.id_token['email']
+
+        print(userid, email)
+        return HttpResponse('Success')
+    return render(request, 'account/google_login.html')
