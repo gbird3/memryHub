@@ -98,7 +98,7 @@ def logout_user(request):
 
 def google_login(request):
     if request.method == 'POST':
-        print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', request.POST['authcode'])
+
         auth_code = request.POST['authcode']
         # Set path to the Web application client_secret_*.json file you downloaded from the
         # Google API Console: https://console.developers.google.com/apis/credentials
@@ -115,6 +115,7 @@ def google_login(request):
         # drive_service = discovery.build('drive', 'v3', http=http_auth)
         # appfolder = drive_service.files().get(fileId='appfolder').execute()
 
+        print(credentials)
         # Get profile info from ID token
         userid = credentials.id_token['sub']
         email = credentials.id_token['email']

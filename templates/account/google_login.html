@@ -13,7 +13,7 @@
         auth2 = gapi.auth2.init({
           client_id: '416104053530-7lar744p4o8b7jqstahqiuovabi6qd4a.apps.googleusercontent.com',
           // Scopes to request in addition to 'profile' and 'email'
-          //scope: 'additional_scope'
+          scope: 'https://www.googleapis.com/auth/drive'
         });
       });
     }
@@ -51,7 +51,6 @@
           // Handle or verify the server response.
           console.log('success')
         },
-        // processData: false,
       });
     } else {
       // There was an error.
