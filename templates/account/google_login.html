@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}User Login{% endblock %}
+
+{% block head %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+</script>
+<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer>
+</script>
+<script>
+    function start() {
+      gapi.load('auth2', function() {
+        auth2 = gapi.auth2.init({
+          client_id: '416104053530-7lar744p4o8b7jqstahqiuovabi6qd4a.apps.googleusercontent.com',
+          // Scopes to request in addition to 'profile' and 'email'
+          //scope: 'additional_scope'
+        });
+      });
+    }
+  </script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  {% csrf_token %}
+  <button id="signinButton">Sign in with Google</button>
+</div>
+
+<script>
+  $('#signinButton').click(function() {
+    auth2.grantOfflineAccess().then(signInCallback);
+  });
+
+  function signInCallback(authResult) {
+    if (authResult['code']) {
+      console.log(authResult)
+      // Hide the sign-in button now that the user is authorized, for example:
+      $('#signinButton').attr('style', 'display: none');
+
+      const csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+      // Send the code to the server
+      $.ajax({
+        type: 'POST',
+        url: '/account/glogin/',
+        data: {'authcode': authResult['code']},
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        // contentType: 'application/octet-stream; charset=utf-8',
+        success: function(result) {
+          // Handle or verify the server response.
+          console.log('success')
+        },
+        // processData: false,
+      });
+    } else {
+      // There was an error.
+      console.log('fail')
+    }
+  }
+</script>
+
+
+{% endblock %}
