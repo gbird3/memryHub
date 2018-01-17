@@ -1,33 +1,38 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}MemryHub{% endblock %}
 
 {% block content %}
 <div>
-	<div class="container">
-  <div class="row">
+	<div class="container-fluid">
+  <div class="row top-buffer">
     <div class="col-lg-4">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor..</p>
-      <p>Ut enim ad..</p>
+			<div class="embed-responsive ">
+				<img src= {% static "/home\grandparent_photo.jpg" %} alt="">
+			</div>
     </div>
-    <div class="col-lg-4">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor..</p>
-      <p>Ut enim ad..</p>
-    </div>
-    <div class="col-lg-4">
-      <h3>Column 3</h3>
-      <p>Lorem ipsum dolor..</p>
-      <p>Ut enim ad..</p>
-    </div>
+		<div class="col-lg-4">
+			<h3>Column 1</h3>
+			<p>Lorem ipsum dolor..</p>
+			<p>Ut enim ad..</p>
+		</div>
+		<div class="col-lg-4 embed-responsive" >
+			<img src= {% static "/home\timeline.png" %} width = "200" alt="">
+		</div>
   </div>
 
-	<div class ="row background-blue">
-		<div class = "col-lg-12 center-block">
-			<div class="embed-responsive embed-responsive-16by9">
-				<iframe frameborder="0" width="560" height="315" src="https://biteable.com/watch/embed/memryhub-1675378" allowfullscreen="true"></iframe><p><a href="https://biteable.com/watch/memryhub-1675378"></a></p>
+	<!--Video row-->
+	<div class ="row bg-light top-buffer">
+		<div class="col-lg-2">
+
+		</div>
+		<div class = "col-lg-8 center-block">
+			<div class="embed-responsive embed-responsive-16by9 top-buffer">
+				<iframe src="https://biteable.com/watch/embed/memryhub-1675378" allowfullscreen="true"></iframe><p><a href="https://biteable.com/watch/memryhub-1675378"></a></p>
 			</div>
+		</div>
+		<div class="col-lg-2">
+
 		</div>
 	</div>
 </div>
