@@ -33,3 +33,14 @@ body {
 .google-login {
   margin: 14em;
 }
+
+/* CSS For the view timeline pages - Move over once we have the CSS layout figured out */
+
+.timeline-card {
+  margin: 5px;
+  margin-bottom: 10px;
+}
+
+.create-timeline-btn {
+  margin-bottom: 1em;
+}

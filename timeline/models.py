@@ -8,7 +8,8 @@ class Timeline(models.Model):
     dateCreated = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
     public = models.BooleanField(default=False)
-    name = models.CharField(max_length=40)
+    name = models.CharField(null=True, blank=True, max_length=40)
+    description = models.TextField(null=True, blank=True)
 
 
 class Person(models.Model):
