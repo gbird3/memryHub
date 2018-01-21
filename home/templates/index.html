@@ -3,38 +3,104 @@
 {% block title %}MemryHub{% endblock %}
 
 {% block content %}
+
 <div>
+	<div class="jumbotron jumbotron-billboard p-3 p-md-5 text-white rounded bg-dark">
+		<div class = "jumbotron-img">
+			<div class = "container">
+				<div class = "row">
+					<div class="col-md-12 px-0">
+						<h1 class="display-4 font-italic">Everyone has a story. Let's help them share it.</h1>
+						<p class="lead my-3">Little bit of information about what they can do here. </p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="container-fluid">
-  <div class="row top-buffer">
-    <div class="col-lg-4">
-			<div class="embed-responsive ">
-				<img src= {% static "/home\grandparent_photo.jpg" %} alt="">
+		<div class ="row bg-light top-buffer">
+			<div class="col-lg-2">
+
 			</div>
-    </div>
-		<div class="col-lg-4">
-			<h3>Column 1</h3>
-			<p>Lorem ipsum dolor..</p>
-			<p>Ut enim ad..</p>
-		</div>
-		<div class="col-lg-4 embed-responsive" >
-			<img src= {% static "/home\timeline.png" %} width = "200" alt="">
-		</div>
-  </div>
+			<div class = "col-lg-8 center-block">
+				<div class="embed-responsive embed-responsive-16by9 top-buffer bottom-buffer">
+					<iframe src="https://biteable.com/watch/embed/memryhub-1675378" allowfullscreen="true"></iframe><p><a href="https://biteable.com/watch/memryhub-1675378"></a></p>
+				</div>
+			</div>
+			<div class="col-lg-2">
 
-	<!--Video row-->
-	<div class ="row bg-light top-buffer">
-		<div class="col-lg-2">
-
-		</div>
-		<div class = "col-lg-8 center-block">
-			<div class="embed-responsive embed-responsive-16by9 top-buffer">
-				<iframe src="https://biteable.com/watch/embed/memryhub-1675378" allowfullscreen="true"></iframe><p><a href="https://biteable.com/watch/memryhub-1675378"></a></p>
 			</div>
 		</div>
-		<div class="col-lg-2">
 
+		<div class = "row top-buffer">
+			<div class="col-lg-12">
+
+			</div>
 		</div>
 	</div>
 </div>
+
+
+
+<!-- timeline page
+
+<div>
+	<div class="container-fluid">
+		<div class = "row top-buffer text-center">
+			<div class = "col-lg 12">
+				<h1>Your Timelines</h1>
+				<a href="#"><button type="button" class="btn btn-success">Create New Timeline</button></a>
+			</div>
+		</div>
+		<div class="row top-buffer bottom-buffer">
+			<div class = "col-lg-3 center-block btn-block">
+				<div class="card top-buffer card-outline-info text-center" style="width: 20rem;">
+  				<img class="card-img-top" src= {% static "/home\grandpa.jpg" %} alt="Timeline card image">
+  				<div class="card-block">
+    				<h4 class="card-title">Sterling Colton</h4>
+    				<h6 class="card-subtitle mb-2 text-muted">Grandfather</h6>
+    				<p class="card-text">This is where we'll put some info about the person or have parts of the meta-data.</p>
+    				<a href="#" class="btn btn-info bottom-buffer">View Timeline</a>
+  				</div>
+				</div>
+			</div>
+			<div class = "col-lg-3 center-block btn-block">
+				<div class="card top-buffer card-outline-info text-center" style="width: 20rem;">
+  				<img class="card-img-top" src= {% static "/home\grandpa.jpg" %} alt="Timeline card image">
+  				<div class="card-block">
+    				<h4 class="card-title">Sterling Colton</h4>
+    				<h6 class="card-subtitle mb-2 text-muted">Grandfather</h6>
+    				<p class="card-text">This is where we'll put some info about the person or have parts of the meta-data.</p>
+    				<a href="#" class="btn btn-info bottom-buffer">View Timeline</a>
+  				</div>
+				</div>
+			</div>
+			<div class = "col-lg-3 center-block btn-block">
+				<div class="card top-buffer card-outline-info text-center" style="width: 20rem;">
+  				<img class="card-img-top" src= {% static "/home\grandpa.jpg" %} alt="Timeline card image">
+  				<div class="card-block">
+    				<h4 class="card-title">Sterling Colton</h4>
+    				<h6 class="card-subtitle mb-2 text-muted">Grandfather</h6>
+    				<p class="card-text">This is where we'll put some info about the person or have parts of the meta-data.</p>
+    				<a href="#" class="btn btn-info bottom-buffer">View Timeline</a>
+  				</div>
+				</div>
+			</div>
+			<div class = "col-lg-3 center-block btn-block">
+				<div class="card top-buffer card-outline-info text-center" style="width: 20rem;">
+  				<img class="card-img-top" src= {% static "/home\grandpa.jpg" %} alt="Timeline card image">
+  				<div class="card-block">
+    				<h4 class="card-title">Sterling Colton</h4>
+    				<h6 class="card-subtitle mb-2 text-muted">Grandfather</h6>
+    				<p class="card-text">This is where we'll put some info about the person or have parts of the meta-data.</p>
+    				<a href="#" class="btn btn-info bottom-buffer">View Timeline</a>
+  				</div>
+				</div>
+			</div>
+  	</div>
+	</div>
 </div>
+
+-->
+
 {% endblock %}
