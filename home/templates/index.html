@@ -1,9 +1,48 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}MemryHub{% endblock %}
 
+{% block css %}
+
+{% endblock %}
+	<link rel="stylesheet" type="text/css" href={% static "/admin/css/index.css" %}>
 {% block content %}
+
 <div>
-	<h1>Homepage</h1>
+	<div class="jumbotron jumbotron-billboard p-3 p-md-5 text-white rounded bg-dark">
+		<div class = "jumbotron-img">
+			<div class = "container">
+				<div class = "row">
+					<div class="col-md-12 px-0">
+						<h1 class="display-4 font-italic">Everyone has a story. Let's help them share it.</h1>
+						<p class="lead my-3">Little bit of information about what they can do here. </p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class ="row bg-light top-buffer">
+			<div class="col-lg-2">
+
+			</div>
+			<div class = "col-lg-8 center-block">
+				<div class="embed-responsive embed-responsive-16by9 top-buffer bottom-buffer">
+					<iframe src="https://biteable.com/watch/embed/memryhub-1675378" allowfullscreen="true"></iframe><p><a href="https://biteable.com/watch/memryhub-1675378"></a></p>
+				</div>
+			</div>
+			<div class="col-lg-2">
+
+			</div>
+		</div>
+
+		<div class = "row top-buffer">
+			<div class="col-lg-12">
+
+			</div>
+		</div>
+	</div>
 </div>
+
+
 {% endblock %}
