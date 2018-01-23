@@ -8,5 +8,20 @@
 {% endblock %}
 
 {% block content %}
-  <h1> Create a Timeline</h1>
+<br>
+  <div class="container col-sm-4 col-sm-offset-4">
+    <h1> Create a Timeline</h1>
+    <div class="row">
+      <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <div class="row">
+          <div class="create-timeline">
+            <button class="btn btn-primary" type="submit" name="action">Create Timeline</button>
+          </div>
+        </div>
+    </form>
+    </div>
+  </div>
 {% endblock %}
