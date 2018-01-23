@@ -1,9 +1,17 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}MemryHub{% endblock %}
+
+{% block content %}
+
 <div>
 	<div class="container-fluid">
 		<div class = "row top-buffer text-center">
 			<div class = "col-lg 12">
 				<h1>Your Timelines</h1>
-				<a href="#"><button type="button" class="btn btn-success">Create New Timeline</button></a>
+				<a href="/timeline/create"><button type="button" class="btn btn-success">Create New Timeline</button></a>
 			</div>
 		</div>
 		<div class="row top-buffer bottom-buffer">
@@ -14,7 +22,7 @@
     				<h4 class="card-title">Sterling Colton</h4>
     				<h6 class="card-subtitle mb-2 text-muted">Grandfather</h6>
     				<p class="card-text">This is where we'll put some info about the person or have parts of the meta-data.</p>
-    				<a href="#" class="btn btn-info bottom-buffer">View Timeline</a>
+    				<a href="/timeline/view" class="btn btn-info bottom-buffer">View Timeline</a>
   				</div>
 				</div>
 			</div>
@@ -54,3 +62,5 @@
   	</div>
 	</div>
 </div>
+
+{% endblock %}

@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}MemryHub{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href={% static "/home/css/login.css" %}>
+{% endblock %}
 
 {% block content %}
 <!-- <div class="container">
@@ -11,7 +17,7 @@
 
 <div class="flex-container">
     <div class="row">
-        <a class="btn btn-outline-danger btn-large google-login" role="button" href="{% url "social:begin" "google-oauth2" %}?next=/">Login with Google</a>
+        <a class="btn btn-outline-danger btn-large google-login" role="button" href="{% url "social:begin" "google-oauth2" %}?next=/timeline">Login with Google</a>
     </div>
 </div>
 {% endblock %}

@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'social_django',
-    'home'
+    'home',
+    'timeline'
 ]
 
 MIDDLEWARE = [
