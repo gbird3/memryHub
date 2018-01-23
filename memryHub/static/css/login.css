@@ -41,6 +41,15 @@ body {
   margin-bottom: 10px;
 }
 
+a:link.card-link {
+  text-decoration: none;
+  color: black;
+}
+
+p.card-text {
+  color: black;
+}
+
 .create-timeline-btn {
   margin-bottom: 1em;
 }

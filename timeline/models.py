@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Timeline(models.Model):
     '''A timeline of memories created by the user'''
-    owner_id = models.ForeignKey(User, unique=True, on_delete=models.CASCADE)
+    owner_id = models.ForeignKey(User, on_delete=models.CASCADE)
     dateCreated = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
     public = models.BooleanField(default=False)
