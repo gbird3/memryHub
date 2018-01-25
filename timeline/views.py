@@ -2,8 +2,9 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django import forms
+from django.forms import ModelForm
 
-from .models import Timeline
+from .models import Timeline, Card
 # Create your views here.
 
 @login_required(login_url='/login')
@@ -15,7 +16,7 @@ def timelines(request):
 
 @login_required(login_url='/login')
 def create(request):
-    form = CreateTimelineForm();
+    form = CreateTimelineForm()
 
     if request.method == 'POST':
         form = CreateTimelineForm(request.POST)
@@ -69,3 +70,16 @@ def view(request, timeline_id):
     timeline = get_object_or_404(Timeline, pk=timeline_id)
 
     return render(request, 'view.html', {'timeline': timeline})
+
+
+@login_required(login_url='/login')
+def create_card(request):
+    form = CardForm()
+
+    return render(request, 'create_card.html', {'form': form})
+
+
+class CardForm(ModelForm):
+    class Meta:
+        model = Card
+        fields = ['start_day', 'start_month', 'start_year', 'card_name', 'description']
