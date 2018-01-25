@@ -6,6 +6,7 @@
 
 {% block css %}
   <link rel="stylesheet" type="text/css" href={% static "timeline/css/view.css" %}>
+  <link rel="stylesheet" type="text/css" href={% static "home/css/font-awesome/css/font-awesome.min.css" %}>
 {% endblock %}
 
 {% block content %}
@@ -22,13 +23,27 @@
     <!--Audio Card-->
     <div class = "row">
       <div class = "col-lg 12">
-        <div class="card card-audio text-center">
-  				<div class="card-block">
-    				<h4 class="card-title">Memory Name</h4>
-            <h5 class ="card-subtitle">11/16/1938</h5>
-            <p class="card-text">This is where we'll put the memory description.</p>
-            <h6>Created by Brandon Colton</h6>
+        <div class="card text-center center-block" style = "width: 50%">
+  				<div class="card-block header-block">
+            <h4 class="card-title">Outdoor Day with Grandpa</h4>
+            <h5 class ="card-subtitle">11/16/1999</h5>
+            <p class="card-description">Grandpa and I spent all weekend hiking and skiing together. We had so much fun. Grandpa is great.</p>
+          </div>
+          <div class = "card-block picture-block">
+            <h5>Skiing with Grandpa</h5>
+            <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
+          </div>
+          <div class = "card-block audio-block">
+            <h5>Singing Happy Birthday</h5>
+            <iframe frameborder="0" src="https://drive.google.com/file/d/1zv6-1-Uz1uOypmaKwYBlUXjAqZOBtSro/preview?usp=sharing"></iframe>
   				</div>
+          <div class = "card-block video-block">
+            <h5>Random Video</h5>
+            <iframe frameborder="0" src="https://drive.google.com/file/d/1oGhksGHndta2el9iGwvMOI8E5w4x8_Pn/preview?usp=sharing"></iframe>
+  				</div>
+          <div class = "card-block footer-block">
+            <h6>Created by Brandon Colton</h6>
+          </div>
 				</div>
       </div>
 

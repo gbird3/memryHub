@@ -1,7 +1,48 @@
-.card h6{
-  font-size:
+.timeline-divider{
+  
 }
 
-.card-audio{
+.card{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
 
+.card-description{
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.header-block{
+
+}
+
+.picture-block{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.audio-block{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.audio-block iframe{
+  width: auto;
+  border:none;
+
+}
+
+.video-block{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.footer-block{
+
+}
+
+.center-block{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
