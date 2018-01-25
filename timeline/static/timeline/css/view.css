@@ -1,5 +1,9 @@
+.main-title {
+  text-align: center;
+}
+
 .timeline-divider{
-  
+
 }
 
 .card{
@@ -21,6 +25,15 @@
   margin-top: 20px;
 }
 
+.card-columns-photo{
+
+}
+
+.photo-card{
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
 .audio-block{
   margin-bottom: 20px;
   margin-top: 20px;
@@ -33,6 +46,11 @@
 }
 
 .video-block{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.text-block{
   margin-bottom: 20px;
   margin-top: 20px;
 }
