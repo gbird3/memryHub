@@ -108,6 +108,53 @@ class CardForm(ModelForm):
     class Meta:
         model = Card
         fields = ['start_day', 'start_month', 'start_year', 'card_name', 'description']
+        widgets = {
+            'card_name': forms.TextInput(attrs={'class':'form-control','placeholder':'Memory Name'}),
+            'description': forms.Textarea(attrs={'class':'form-control','placeholder':'Description of the Memory.'}),
+            'start_day': forms.Select(attrs={'class': 'form-control'}),
+            'start_month': forms.Select(attrs={'class': 'form-control'}),
+            'start_year': forms.Select(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'card_name': 'Memory Name',
+            'start_day': 'Day',
+            'start_month': 'Month',
+            'start_year': 'Year'
+        }
+
+
+def edit_card(request, card_id):
+    card = get_object_or_404(Card, pk=card_id)
+
+    data = {
+        'card_name': card.card_name,
+        'start_day': card.start_day,
+        'start_month': card.start_month,
+        'start_year': card.start_year,
+        'description': card.description
+    }
+
+    form = CardForm(initial=data)
+
+    if request.method == 'POST':
+        form = CardForm(request.POST)
+
+        if form.has_changed():
+            if form.is_valid():
+                c = Card.objects.get(pk=card_id)
+                c.start_day = form.cleaned_data.get('start_day')
+                c.start_month = form.cleaned_data.get('start_month')
+                c.start_year = form.cleaned_data.get('start_year')
+                c.card_name = form.cleaned_data.get('card_name')
+                c.description = form.cleaned_data.get('description')
+                c.owner = request.user
+                c.save()
+
+                timeline = c.timeline_id
+
+        return HttpResponseRedirect('/timeline/view/{}'.format(timeline.id))
+
+    return render(request, 'edit_card.html', {'form': form})
 
 def add_memory(request, timeline_id, card_id):
     print(timeline_id, card_id)
