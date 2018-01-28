@@ -9,4 +9,5 @@ urlpatterns = [
     path('edit/<int:timeline_id>/', views.edit, name='edit'),
     path('create-card/<int:timeline_id>/', views.create_card, name='create_card'),
     path('memory/<int:timeline_id>/<int:card_id>/', views.add_memory, name='add_memory'),
+    path('card/edit/<int:card_id>/', views.edit_card, name='edit_card'),
 ]
