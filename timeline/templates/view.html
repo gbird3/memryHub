@@ -16,6 +16,7 @@
     <!--Timeline Divider-->
     <div class = "row">
       <div class = "col-lg-12">
+        <a href="{% url 'create_card' timeline.id %}" class="btn btn-info bottom-buffer">Add Memory</a>
         <div class = "main-title">
           <h1>Sterling Colton</h1>
         </div>
@@ -35,11 +36,12 @@
     <!--Audio Card-->
     <div class = "row">
       <div class = "col-lg 12">
+        {% for card in cards %}
         <div class="card text-center center-block" style = "width: 50%">
   				<div class="card-block header-block">
-            <h4 class="card-title">Outdoor Day with Grandpa</h4>
-            <h5 class ="card-subtitle">11/16/1999</h5>
-            <p class="card-description">Grandpa and I spent all weekend hiking and skiing together. We had so much fun. Grandpa is great.</p>
+            <h4 class="card-title">{{ card.card_name }}</h4>
+            <h5 class ="card-subtitle">{{ card.start_month }}/{{ card.start_day }}/{{ card.start_year }}</h5>
+            <p class="card-description">{{ card.description }}</p>
           </div>
 
           <!--Photo-->
@@ -85,6 +87,7 @@
           </div>
 
 				</div>
+        {% endfor %}
       </div>
     </div>
   </div>

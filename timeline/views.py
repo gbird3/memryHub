@@ -2,8 +2,9 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django import forms
+from django.forms import ModelForm
 
-from .models import Timeline
+from .models import Timeline, Card
 # Create your views here.
 
 @login_required(login_url='/login')
@@ -15,7 +16,7 @@ def timelines(request):
 
 @login_required(login_url='/login')
 def create(request):
-    form = CreateTimelineForm();
+    form = CreateTimelineForm()
 
     if request.method == 'POST':
         form = CreateTimelineForm(request.POST)
@@ -68,4 +69,47 @@ class CreateTimelineForm(forms.Form):
 def view(request, timeline_id):
     timeline = get_object_or_404(Timeline, pk=timeline_id)
 
-    return render(request, 'view.html', {'timeline': timeline})
+    cards = Card.objects.filter(timeline_id=timeline_id)
+
+    template_vars = {
+        'timeline': timeline,
+        'cards': cards
+    }
+
+    return render(request, 'view.html', template_vars)
+
+
+@login_required(login_url='/login')
+def create_card(request, timeline_id):
+    form = CardForm()
+    if request.method == 'POST':
+        timeline = get_object_or_404(Timeline, pk=timeline_id)
+
+        form = CardForm(request.POST)
+
+        if form.is_valid():
+            c = Card()
+            c.timeline_id = timeline
+            c.start_day = form.cleaned_data.get('start_day')
+            c.start_month = form.cleaned_data.get('start_month')
+            c.start_year = form.cleaned_data.get('start_year')
+            c.card_name = form.cleaned_data.get('card_name')
+            c.description = form.cleaned_data.get('description')
+            c.owner = request.user
+            c.save()
+
+            card_id = c.id
+        return HttpResponseRedirect('/timeline/memory/{}/{}'.format(timeline_id, card_id))
+
+    return render(request, 'create_card.html', {'form': form})
+
+
+class CardForm(ModelForm):
+    class Meta:
+        model = Card
+        fields = ['start_day', 'start_month', 'start_year', 'card_name', 'description']
+
+def add_memory(request, timeline_id, card_id):
+    print(timeline_id, card_id)
+
+    return render(request, 'add_memory.html')
