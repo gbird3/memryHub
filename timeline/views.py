@@ -8,7 +8,9 @@ import requests
 import json
 
 from .models import Timeline, Card
+from home.models import UserInfo
 
+url = 'https://www.googleapis.com/drive/v3/files'
 # Create your views here.
 
 @login_required(login_url='/login')
@@ -22,21 +24,61 @@ def timelines(request):
 def create(request):
     form = CreateTimelineForm()
 
+    # First check if a root folder (MemryHub) has been created. If not create it.
+    try:
+        uinfo = UserInfo.objects.get(user=request.user)
+    except:
+        data = createFolder(request.user, 'MemryHub')
+
+        print(data)
+        uinfo = UserInfo()
+        uinfo.user = request.user
+        uinfo.root_folder_id = data['id']
+        uinfo.save()
+
+
     if request.method == 'POST':
         form = CreateTimelineForm(request.POST)
 
         if form.is_valid():
+
+            data = createFolder(request.user, form.cleaned_data.get('name'), uinfo.root_folder_id)
+
             t = Timeline()
             t.owner = request.user
             t.name = form.cleaned_data.get('name')
             t.description = form.cleaned_data.get('description')
-
+            t.timeline_folder_id = data['id']
             t.save()
 
         return HttpResponseRedirect('/timeline/view')
 
     return render(request, 'create.html', {'form': form})
 
+def createFolder(user, folderName, parents=None):
+    social = user.social_auth.get(provider='google-oauth2')
+    access_token = social.extra_data['access_token']
+
+    headers = {
+        'Authorization':'Bearer {}'.format(access_token),
+        'Content-Type': 'application/json'
+    }
+
+    file_metadata = {
+        'name': folderName,
+        'mimeType': 'application/vnd.google-apps.folder',
+    }
+
+    if parents:
+        file_metadata['parents'] = [parents]
+
+    response = requests.post(
+        url,
+        headers = headers,
+        data = json.dumps(file_metadata)
+    )
+
+    return response.json()
 
 @login_required(login_url='/login')
 def edit(request, timeline_id):
@@ -161,39 +203,16 @@ def edit_card(request, card_id):
     return render(request, 'edit_card.html', {'form': form})
 
 def add_memory(request, timeline_id, card_id):
-    print(timeline_id, card_id)
-
-    return render(request, 'add_memory.html')
-
-def google_picker(request):
     user = request.user
+
+    timeline = get_object_or_404(Timeline, pk=timeline_id)
 
     social = user.social_auth.get(provider='google-oauth2')
     access_token = social.extra_data['access_token']
 
-    # url = 'https://www.googleapis.com/drive/v3/files'
-    #
-    # headers = {
-    #     'Authorization':'Bearer {}'.format(social.extra_data['access_token']),
-    #     'Content-Type': 'application/json'
-    # }
-    #
-    # file_metadata = {
-    #     'name': 'Testing',
-    #     'mimeType': 'application/vnd.google-apps.folder'
-    # }
-    #
-    #
-    # response = requests.post(
-    #     url,
-    #     headers = headers,
-    #     data = json.dumps(file_metadata)
-    # )
-    #
-    # print(response.json())
-
     template_vars = {
-        'access_token': access_token
+        'access_token': access_token,
+        'parent_id': timeline.timeline_folder_id
     }
 
     return render(request, 'gpicker.html', template_vars)

@@ -33,7 +33,7 @@
   function createPicker() {
     if (pickerApiLoaded && oauthToken) {
       var picker = new google.picker.PickerBuilder().
-          addView(new google.picker.DocsUploadView().setParent('1S_P0CAoiT74i-W97tHxv9avUfvz-q34L')).
+          addView(new google.picker.DocsUploadView().setParent('{{ parent_id }}')).
           setOAuthToken(oauthToken).
           setDeveloperKey(developerKey).
           setCallback(pickerCallback).
