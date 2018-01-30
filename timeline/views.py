@@ -51,7 +51,9 @@ def create(request):
             t.timeline_folder_id = data['id']
             t.save()
 
-        return HttpResponseRedirect('/timeline/view')
+            timeline_id  = t.id
+
+        return HttpResponseRedirect('/timeline/view/{}'.format(timeline_id))
 
     return render(request, 'create.html', {'form': form})
 
