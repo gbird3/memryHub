@@ -40,15 +40,27 @@
         <div class="card text-center center-block" style = "width: 50%">
   				<div class="card-block header-block">
             <h4 class="card-title">{{ card.card_name }}</h4>
-            <h5 class ="card-subtitle">{{ card.start_month }}/{{ card.start_day }}/{{ card.start_year }}</h5>
+            <h5 class ="card-subtitle">
+              {% if card.start_month is None %}
+                  ''
+              {% else %}
+                {{ card.start_month }}
+              {% endif %}
+              /
+              {{ card.start_day }}
+              /
+              {{ card.start_year }}</h5>
             <p class="card-description">{{ card.description }}</p>
           </div>
 
-          <!--Photo-->
+          {% if card.file_type == 'Written Memory' %}
+
+          {% endif %}
+          <!--Photo
           <div class = "card-block picture-block">
             <h5>Skiing with Grandpa</h5>
-            <iframe frameborder="0" src="https://drive.google.com/file/d/1_ptji-UIBrqoYdt1Pp92cnrf46sEBspi/preview?usp=sharing"></iframe>
-
+            <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
+          -->
 
           <!--
             <div class="card-columns card-columns-photo">
@@ -62,12 +74,12 @@
                 <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
               </div>
             </div>
-          -->
-          </div>
 
+          </div>
+          -->
           <div class = "card-block audio-block">
             <h5>Singing Happy Birthday</h5>
-            <iframe frameborder="0" src="https://drive.google.com/file/d/1zv6-1-Uz1uOypmaKwYBlUXjAqZOBtSro/preview?usp=drive_web"></iframe>
+            <iframe frameborder="0" src="https://drive.google.com/file/d/1zv6-1-Uz1uOypmaKwYBlUXjAqZOBtSro/preview?usp=sharing"></iframe>
   				</div>
 
 
