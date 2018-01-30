@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}MemryHub{% endblock %}
+
+{% block css %}
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<title>Google Picker Example</title>
+
+<script type="text/javascript">
+
+  // The Browser API key obtained from the Google API Console.
+  var developerKey = 'AIzaSyByL9-SR6OjZfHaV-YIQlxmFn9SeGTxKO8';
+
+  // The Client ID obtained from the Google API Console. Replace with your own Client ID.
+  var clientId = "416104053530-7lar744p4o8b7jqstahqiuovabi6qd4a.apps.googleusercontent.com"
+
+  var pickerApiLoaded = false;
+  var oauthToken = '{{ access_token }}';
+
+  // Use the API Loader script to load google.picker and gapi.auth.
+  function onGDriveButton() {
+    gapi.load('picker', {'callback': onPickerApiLoad});
+  }
+
+  function onPickerApiLoad() {
+    pickerApiLoaded = true;
+    createPicker();
+  }
+
+  // Create and render a Picker object for picking user Photos.
+  function createPicker() {
+    if (pickerApiLoaded && oauthToken) {
+      var picker = new google.picker.PickerBuilder().
+          addView(new google.picker.DocsUploadView().setParent('{{ parent_id }}')).
+          setOAuthToken(oauthToken).
+          setDeveloperKey(developerKey).
+          setCallback(pickerCallback).
+          build();
+      picker.setVisible(true);
+    }
+  }
+
+  // A simple callback implementation.
+  function pickerCallback(data) {
+    var url = 'nothing';
+    if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+      var doc = data[google.picker.Response.DOCUMENTS][0];
+      url = doc[google.picker.Document.URL];
+    }
+    var message = 'You picked: ' + url;
+    document.getElementById('result').innerHTML = message;
+
+    // const csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    //   // Send the code to the server
+    //   $.ajax({
+    //     type: 'POST',
+    //     url: '/account/glogin/',
+    //     data: {'authcode': authResult['code']},
+    //     headers: {
+    //       'X-CSRFToken': csrftoken
+    //     },
+    //     // contentType: 'application/octet-stream; charset=utf-8',
+    //     success: function(result) {
+    //       // Handle or verify the server response.
+    //       console.log('success')
+    //     },
+    //   });
+    // } else {
+    //   // There was an error.
+    //   console.log('fail')
+
+
+
+
+  }
+</script>
+{% endblock %}
+
+{% block content %}
+<button  id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Google Drive</button>
+<div id="result"></div>
+
+<!-- The Google API Loader script. -->
+<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+{% endblock %}
