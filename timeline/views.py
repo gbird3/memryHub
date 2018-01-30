@@ -4,7 +4,11 @@ from django.http import HttpResponseRedirect
 from django import forms
 from django.forms import ModelForm
 
+import requests
+import json
+
 from .models import Timeline, Card
+
 # Create your views here.
 
 @login_required(login_url='/login')
@@ -160,3 +164,36 @@ def add_memory(request, timeline_id, card_id):
     print(timeline_id, card_id)
 
     return render(request, 'add_memory.html')
+
+def google_picker(request):
+    user = request.user
+
+    social = user.social_auth.get(provider='google-oauth2')
+    access_token = social.extra_data['access_token']
+
+    # url = 'https://www.googleapis.com/drive/v3/files'
+    #
+    # headers = {
+    #     'Authorization':'Bearer {}'.format(social.extra_data['access_token']),
+    #     'Content-Type': 'application/json'
+    # }
+    #
+    # file_metadata = {
+    #     'name': 'Testing',
+    #     'mimeType': 'application/vnd.google-apps.folder'
+    # }
+    #
+    #
+    # response = requests.post(
+    #     url,
+    #     headers = headers,
+    #     data = json.dumps(file_metadata)
+    # )
+    #
+    # print(response.json())
+
+    template_vars = {
+        'access_token': access_token
+    }
+
+    return render(request, 'gpicker.html', template_vars)
