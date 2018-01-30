@@ -10,6 +10,7 @@ class Timeline(models.Model):
     update_time = models.DateTimeField(auto_now=True)
     description = models.TextField(null=True, blank=True)
     image = models.CharField(null=True, blank=True, max_length=200)
+    timeline_folder_id = models.CharField(null=True, blank=True, max_length=300)
 
 DAY_CHOICES = ( tuple((i, str(i)) for i in range(1, 31)) )
 
