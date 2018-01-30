@@ -29,7 +29,9 @@ def create(request):
 
             t.save()
 
-        return HttpResponseRedirect('/timeline/view')
+            timeline_id  = t.id
+
+        return HttpResponseRedirect('/timeline/view/{}'.format(timeline_id))
 
     return render(request, 'create.html', {'form': form})
 
