@@ -117,7 +117,7 @@ class CreateTimelineForm(forms.Form):
 def view(request, timeline_id):
     timeline = get_object_or_404(Timeline, pk=timeline_id)
 
-    cards = Card.objects.filter(timeline_id=timeline_id)
+    cards = Card.objects.filter(timeline_id=timeline_id).order_by('start_year')
 
     template_vars = {
         'timeline': timeline,

@@ -10,15 +10,14 @@
 {% endblock %}
 
 {% block content %}
-  <h1>{{ timeline.name}}</h1>
-  <p> {{ timeline.description }}</p>
   <div class = "container-fluid">
     <!--Timeline Divider-->
     <div class = "row">
       <div class = "col-lg-12">
-        <a href="{% url 'create_card' timeline.id %}" class="btn btn-info bottom-buffer">Add Memory</a>
         <div class = "main-title">
-          <h1>Sterling Colton</h1>
+          <h1>{{ timeline.name}}</h1>
+          <p> {{ timeline.description }}</p>
+          <a href="{% url 'create_card' timeline.id %}" class="btn btn-info bottom-buffer" id = "add-memory-button">Add Memory</a>
         </div>
       </div>
     </div>
@@ -32,6 +31,7 @@
         </div>
       </div>
     </div>
+
 
     <!--Audio Card-->
     <div class = "row">

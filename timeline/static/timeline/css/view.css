@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+#add-memory-button{
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .timeline-divider{
 
 }
