@@ -3,3 +3,13 @@
 .top-buffer { margin-top:20px; }
 .bottom-buffer { margin-bottom: 20px}
 .close-margin { margin: 0 }
+
+#login-button{
+  background-color: #3498DB;
+  border: 0px;
+}
+
+#signup-button{
+  background-color: #2ECC71;
+  border: 0px;
+}
