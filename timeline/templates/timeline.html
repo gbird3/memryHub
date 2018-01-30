@@ -4,24 +4,26 @@
 
 {% block title %}MemryHub{% endblock %}
 
-{% block content %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href={% static "timeline/css/timeline.css" %}>
+{% endblock %}
 
+{% block content %}
 <div>
 	<div class="container-fluid">
 		<div class = "row top-buffer text-center">
 			<div class = "col-lg 12">
-				<h1>Your Timelines</h1>
+				<h1>{{ user.first_name }}'s Timelines</h1>
 				<a href="/timeline/create"><button type="button" class="btn btn-success">Create New Timeline</button></a>
 			</div>
 		</div>
-		<div class="row top-buffer bottom-buffer">
+		<div class="row top-buffer bottom-buffer side-buffer">
       {% for timeline in timelines %}
-			<div class = "col-lg-3 center-block btn-block">
-				<div class="card top-buffer card-outline-info text-center" style="width: 20rem;">
+			<div class = "col-lg-4 center-block btn-block">
+				<div class="card top-buffer card-outline-info text-center" style="width: 100%;">
   				<img class="card-img-top" src= {% static "/home/media/grandpa.jpg" %} alt="Timeline card image">
   				<div class="card-block">
     				<h4 class="card-title">{{ timeline.name }}</h4>
-    				<h6 class="card-subtitle mb-2 text-muted">{{ timeline.name }}</h6>
     				<p class="card-text">{{ timeline.description }}</p>
     				<a href="{% url 'view' timeline.id %}" class="btn btn-info bottom-buffer">View Timeline</a>
             <a href="{% url 'edit' timeline.id %}" class="btn btn-info bottom-buffer">Edit Timeline</a>
