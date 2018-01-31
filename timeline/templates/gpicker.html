@@ -47,30 +47,27 @@
     var url = 'nothing';
     if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
       var doc = data[google.picker.Response.DOCUMENTS][0];
-      url = doc[google.picker.Document.URL];
+      id = doc[google.picker.Document.id];
+      console.log(doc.id, doc.type)
     }
-    var message = 'You picked: ' + url;
+    var message = 'You picked: ' + id;
     document.getElementById('result').innerHTML = message;
 
-    // const csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
-    //   // Send the code to the server
-    //   $.ajax({
-    //     type: 'POST',
-    //     url: '/account/glogin/',
-    //     data: {'authcode': authResult['code']},
-    //     headers: {
-    //       'X-CSRFToken': csrftoken
-    //     },
-    //     // contentType: 'application/octet-stream; charset=utf-8',
-    //     success: function(result) {
-    //       // Handle or verify the server response.
-    //       console.log('success')
-    //     },
-    //   });
-    // } else {
-    //   // There was an error.
-    //   console.log('fail')
-
+    const csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+      // Send the code to the server
+      $.ajax({
+        type: 'POST',
+        url: '/account/glogin/',
+        data: {'authcode': authResult['code']},
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        // contentType: 'application/octet-stream; charset=utf-8',
+        success: function(result) {
+          // Handle or verify the server response.
+          console.log('success')
+        },
+      });
   }
 </script>
 {% endblock %}
