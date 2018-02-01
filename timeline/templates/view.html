@@ -33,7 +33,7 @@
     </div>
 
 
-    <!--Audio Card-->
+    <!--Cards-->
     <div class = "row">
       <div class = "col-lg 12">
         {% for card in cards %}
@@ -58,54 +58,54 @@
             </h5>
             <p class="card-description">{{ card.description }}</p>
           </div>
-
-          {% if card.file_type == 'Written Memory' %}
-
-          {% endif %}
-          <!--Photo
-          <div class = "card-block picture-block">
-            <h5>Skiing with Grandpa</h5>
-            <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
-          -->
-
-          <!--
-            <div class="card-columns card-columns-photo">
-              <div class="card photo-card">
-                <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
-              </div>
-              <div class="card photo-card">
-                <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
-              </div>
-              <div class="card photo-card">
-                <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
-              </div>
+          {% for memory in memories %}
+            {% if memory.file_type == 'Audio' and memory.card_id == card.id %}
+            <div class = "card-block audio-block">
+              <h5>{{memory.description}}</h5>
+              <iframe data-toggle ="tooltip" title = "Temporary Title" frameborder="0" src="https://drive.google.com/file/d/1zv6-1-Uz1uOypmaKwYBlUXjAqZOBtSro/preview?usp=sharing"></iframe>
             </div>
+            {% endif %}
 
-          </div>
-          -->
-          <div class = "card-block audio-block">
-            <h5>Singing Happy Birthday</h5>
-            <iframe frameborder="0" src="https://drive.google.com/file/d/1zv6-1-Uz1uOypmaKwYBlUXjAqZOBtSro/preview?usp=sharing"></iframe>
-  				</div>
+            {% if memory.file_type == 'Video' and memory.card_id == card.id %}
+            <div class = "card-block video-block">
+              <h5>{{memory.description}}</h5>
+              <!--<iframe frameborder="0" src="https://drive.google.com/file/d/1oGhksGHndta2el9iGwvMOI8E5w4x8_Pn/preview?usp=sharing"></iframe>-->
+            </div>
+            {% endif %}
 
+            {% if memory.file_type == 'Written Memory' and memory.card_id == card.id  %}
+            <div class = "card-block text-block">
+              <h5>{{memory.description}}</h5>
+              <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
+            </div>
+            {% endif %}
 
-          <!--Video Card-->
-          <div class = "card-block video-block">
-            <h5>Random Video</h5>
-            <iframe frameborder="0" src="https://drive.google.com/file/d/1oGhksGHndta2el9iGwvMOI8E5w4x8_Pn/preview?usp=sharing"></iframe>
-  				</div>
+            {% if memory.file_type == 'Photo' and memory.card_id == card.id %}
+            <div class = "card-block picture-block">
+              <h5>{{memory.description}}</h5>
+              <!--<iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>-->
+            <!--
+              <div class="card-columns card-columns-photo">
+                <div class="card photo-card">
+                  <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
+                </div>
+                <div class="card photo-card">
+                  <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
+                </div>
+                <div class="card photo-card">
+                  <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
+                </div>
+              </div>
+            -->
+            </div>
+            {% endif %}
+          {% endfor %}
 
-          <!--Text Card-->
-          <div class = "card-block text-block">
-            <h5>Story about Grandpa</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  				</div>
 
           <div class = "card-block footer-block">
             <h6>Created by Brandon Colton</h6>
             <a href="{% url 'edit_card' card.id %}">Edit Memory Details</a>
           </div>
-
 				</div>
         {% endfor %}
       </div>

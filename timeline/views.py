@@ -7,7 +7,7 @@ from django.forms import ModelForm
 import requests
 import json
 
-from .models import Timeline, Card
+from .models import Timeline, Card, Memory
 from home.models import UserInfo
 
 url = 'https://www.googleapis.com/drive/v3/files'
@@ -118,10 +118,12 @@ def view(request, timeline_id):
     timeline = get_object_or_404(Timeline, pk=timeline_id)
 
     cards = Card.objects.filter(timeline_id=timeline_id).order_by('start_year')
+    memories = Memory.objects.filter(card__in = cards)
 
     template_vars = {
         'timeline': timeline,
-        'cards': cards
+        'cards': cards,
+        'memories': memories
     }
 
     return render(request, 'view.html', template_vars)
