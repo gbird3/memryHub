@@ -62,7 +62,7 @@ file_choices = (
 
 class Memory(AbstractDate):
     '''A specific instance of a Memory.'''
-    card = models.ForeignKey(User, on_delete=models.CASCADE)
+    card = models.ForeignKey(Card, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     file_type = models.CharField(null=True, blank=True, choices=file_choices, max_length=30)
     description = models.TextField(null=True, blank=True)
