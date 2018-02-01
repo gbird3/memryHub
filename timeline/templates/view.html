@@ -42,14 +42,20 @@
             <h4 class="card-title">{{ card.card_name }}</h4>
             <h5 class ="card-subtitle">
               {% if card.start_month is None %}
-                  ''
               {% else %}
-                {{ card.start_month }}
+                {{ card.start_month }}/
               {% endif %}
-              /
-              {{ card.start_day }}
-              /
-              {{ card.start_year }}</h5>
+
+              {% if card.start_day is None %}
+              {% else %}
+                {{ card.start_day }}/
+              {% endif %}
+
+              {% if card.start_year is None %}
+              {% else %}
+                {{ card.start_year }}
+              {% endif %}
+            </h5>
             <p class="card-description">{{ card.description }}</p>
           </div>
 
