@@ -51,11 +51,11 @@ class Card(AbstractDate):
     update_time = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
-    
 
 class Memory(AbstractDate):
     '''A specific instance of a Memory.'''
     card = models.ForeignKey(Card, on_delete=models.CASCADE)
+    name = models.CharField(null=True, max_length=40)
     date_created = models.DateTimeField(auto_now_add=True)
     file_type = models.CharField(null=True, blank=True, max_length=30)
     description = models.TextField(null=True, blank=True)
