@@ -52,19 +52,12 @@ class Card(AbstractDate):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
 
-
-file_choices = (
-    (0, 'Written Memory'),
-    (1, 'Audio'),
-    (2, 'Video'),
-    (3, 'Picture'),
-)
-
 class Memory(AbstractDate):
     '''A specific instance of a Memory.'''
     card = models.ForeignKey(Card, on_delete=models.CASCADE)
+    name = models.CharField(null=True, max_length=40)
     date_created = models.DateTimeField(auto_now_add=True)
-    file_type = models.CharField(null=True, blank=True, choices=file_choices, max_length=30)
+    file_type = models.CharField(null=True, blank=True, max_length=30)
     description = models.TextField(null=True, blank=True)
     file_id = models.CharField(null=True, blank=True, max_length=300)
     city = models.CharField(null=True, blank=True, max_length=100)

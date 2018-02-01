@@ -7,7 +7,7 @@ from django.forms import ModelForm
 import requests
 import json
 
-from .models import Timeline, Card
+from .models import Timeline, Card, Memory, DAY_CHOICES, MONTH_CHOICES, YEAR_CHOICES
 from home.models import UserInfo
 
 url = 'https://www.googleapis.com/drive/v3/files'
@@ -127,48 +127,66 @@ def view(request, timeline_id):
     return render(request, 'view.html', template_vars)
 
 
+class UserAddsMemoryForm(forms.Form):
+    card_name = forms.CharField(label='Memory Name', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Memory Name'}))
+    card_description = forms.CharField(label='Description of your Memory', required=False, max_length=100, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Short description of your memory.'}))
+    start_day = forms.ChoiceField(required=False, choices=((0, 'Day'),) + DAY_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
+    start_month = forms.ChoiceField(required=False, choices=((0, 'Month'),) + MONTH_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
+    start_year = forms.ChoiceField(choices=(('', 'Year'),) + YEAR_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
+    file_id = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_id'}))
+    file_name = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_name'}))
+    file_description = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_description'}))
+    file_type = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_type'}))
+
 @login_required(login_url='/login')
 def create_card(request, timeline_id):
-    form = CardForm()
+    form = UserAddsMemoryForm()
+
+    user = request.user
+    timeline = get_object_or_404(Timeline, pk=timeline_id)
+
+    social = user.social_auth.get(provider='google-oauth2')
+    access_token = social.extra_data['access_token']
+
     if request.method == 'POST':
         timeline = get_object_or_404(Timeline, pk=timeline_id)
 
-        form = CardForm(request.POST)
+        form = UserAddsMemoryForm(request.POST)
 
         if form.is_valid():
             c = Card()
+
             c.timeline_id = timeline
-            c.start_day = form.cleaned_data.get('start_day')
-            c.start_month = form.cleaned_data.get('start_month')
+            if (form.cleaned_data.get('start_day') == 0):
+                c.start_day = form.cleaned_data.get('start_day')
+            if (form.cleaned_data.get('start_month') == 0):
+                c.start_month = form.cleaned_data.get('start_month')
             c.start_year = form.cleaned_data.get('start_year')
             c.card_name = form.cleaned_data.get('card_name')
-            c.description = form.cleaned_data.get('description')
+            c.description = form.cleaned_data.get('card_description')
             c.owner = request.user
             c.save()
 
-            card_id = c.id
-        return HttpResponseRedirect('/timeline/memory/{}/{}'.format(timeline_id, card_id))
+            if (form.cleaned_data.get('file_id') != ''):
+                m = Memory()
+                m.card = c
+                m.name = form.cleaned_data.get('file_name')
+                m.description = form.cleaned_data.get('file_description')
+                m.file_id = form.cleaned_data.get('file_id')
+                m.file_type = form.cleaned_data.get('file_type')
+                m.start_year = form.cleaned_data.get('start_year')
+                m.save()
 
-    return render(request, 'create_card.html', {'form': form})
 
+        return HttpResponseRedirect('/timeline/view/{}'.format(timeline_id))
 
-class CardForm(ModelForm):
-    class Meta:
-        model = Card
-        fields = ['start_day', 'start_month', 'start_year', 'card_name', 'description']
-        widgets = {
-            'card_name': forms.TextInput(attrs={'class':'form-control','placeholder':'Memory Name'}),
-            'description': forms.Textarea(attrs={'class':'form-control','placeholder':'Description of the Memory.'}),
-            'start_day': forms.Select(attrs={'class': 'form-control'}),
-            'start_month': forms.Select(attrs={'class': 'form-control'}),
-            'start_year': forms.Select(attrs={'class': 'form-control'}),
-        }
-        labels = {
-            'card_name': 'Memory Name',
-            'start_day': 'Day',
-            'start_month': 'Month',
-            'start_year': 'Year'
-        }
+    template_vars = {
+        'form': form,
+        'access_token': access_token,
+        'parent_id': timeline.timeline_folder_id
+    }
+
+    return render(request, 'create_card.html', template_vars)
 
 
 def edit_card(request, card_id):
@@ -203,6 +221,24 @@ def edit_card(request, card_id):
         return HttpResponseRedirect('/timeline/view/{}'.format(timeline.id))
 
     return render(request, 'edit_card.html', {'form': form})
+
+class CardForm(ModelForm):
+    class Meta:
+        model = Card
+        fields = ['start_day', 'start_month', 'start_year', 'card_name', 'description']
+        widgets = {
+            'card_name': forms.TextInput(attrs={'class':'form-control','placeholder':'Memory Name'}),
+            'description': forms.Textarea(attrs={'class':'form-control','placeholder':'Description of the Memory.'}),
+            'start_day': forms.Select(attrs={'class': 'form-control'}),
+            'start_month': forms.Select(attrs={'class': 'form-control'}),
+            'start_year': forms.Select(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'card_name': 'Memory Name',
+            'start_day': 'Day',
+            'start_month': 'Month',
+            'start_year': 'Year'
+        }
 
 def add_memory(request, timeline_id, card_id):
     user = request.user
