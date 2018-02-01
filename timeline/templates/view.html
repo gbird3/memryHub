@@ -10,87 +10,124 @@
 {% endblock %}
 
 {% block content %}
-  <h1>{{ timeline.name}}</h1>
-  <p> {{ timeline.description }}</p>
   <div class = "container-fluid">
-    <!--Timeline Divider-->
     <div class = "row">
       <div class = "col-lg-12">
-        <a href="{% url 'create_card' timeline.id %}" class="btn btn-info bottom-buffer">Add Memory</a>
         <div class = "main-title">
-          <h1>Sterling Colton</h1>
+          <h1>{{ timeline.name}}</h1>
+          <p> {{ timeline.description }}</p>
+          <a href="{% url 'create_card' timeline.id %}" class="btn btn-info bottom-buffer" id = "add-memory-button">Add Memory</a>
         </div>
       </div>
     </div>
 
+    <!--First Timeline Divider-->
     <div class = "row">
       <div class = "col-lg 12">
         <div class="timeline-divider text-center">
           <hr/>
-  				<h2>1938</h2>
+          <h2>{{first_year}}</h2>
           <hr/>
         </div>
       </div>
     </div>
 
-    <!--Audio Card-->
+
+    <!--Cards-->
     <div class = "row">
       <div class = "col-lg 12">
         {% for card in cards %}
+
+
         <div class="card text-center center-block" style = "width: 50%">
   				<div class="card-block header-block">
             <h4 class="card-title">{{ card.card_name }}</h4>
-            <h5 class ="card-subtitle">{{ card.start_month }}/{{ card.start_day }}/{{ card.start_year }}</h5>
+            <h5 class ="card-subtitle">
+              {% if card.start_month is None %}
+              {% else %}
+                {{ card.start_month }}/
+              {% endif %}
+
+              {% if card.start_day is None %}
+              {% else %}
+                {{ card.start_day }}/
+              {% endif %}
+
+              {% if card.start_year is None %}
+              {% else %}
+                {{ card.start_year }}
+              {% endif %}
+            </h5>
             <p class="card-description">{{ card.description }}</p>
+            <a href="#" class="btn btn-secondary btn-sm add-file-button">Add Memory</a>
           </div>
-
-          <!--Photo-->
-          <div class = "card-block picture-block">
-            <h5>Skiing with Grandpa</h5>
-            <iframe frameborder="0" src="https://drive.google.com/file/d/1KKG27bSGWK8NkuOPn-Twk8_RSwVcTC3DaMQyl39BFrg/preview?usp=sharing"></iframe>
-
-
-          <!--
-            <div class="card-columns card-columns-photo">
-              <div class="card photo-card">
-                <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
-              </div>
-              <div class="card photo-card">
-                <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
-              </div>
-              <div class="card photo-card">
-                <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
-              </div>
+          {% for memory in memories %}
+            {% if memory.file_type == 'Audio' and memory.card_id == card.id %}
+            <div class = "card-block audio-block">
+              <h5  data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
+              <iframe frameborder="0" src="https://drive.google.com/file/d/1zv6-1-Uz1uOypmaKwYBlUXjAqZOBtSro/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
             </div>
-          -->
-          </div>
+            {% endif %}
 
-          <div class = "card-block audio-block">
-            <h5>Singing Happy Birthday</h5>
-            <iframe frameborder="0" src="https://drive.google.com/file/d/1zv6-1-Uz1uOypmaKwYBlUXjAqZOBtSro/preview?usp=drive_web"></iframe>
-  				</div>
+            {% if memory.file_type == 'Video' and memory.card_id == card.id %}
+            <div class = "card-block video-block">
+              <h5 data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
+              <!--<iframe frameborder="0" src="https://drive.google.com/file/d/1oGhksGHndta2el9iGwvMOI8E5w4x8_Pn/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>-->
+            </div>
+            {% endif %}
 
+            {% if memory.file_type == 'Written Memory' and memory.card_id == card.id  %}
+            <div class = "card-block text-block">
+              <h5 data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
+              <!--<p data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
+            </div>
+            {% endif %}
 
-          <!--Video Card-->
-          <div class = "card-block video-block">
-            <h5>Random Video</h5>
-            <iframe frameborder="0" src="https://drive.google.com/file/d/1oGhksGHndta2el9iGwvMOI8E5w4x8_Pn/preview?usp=sharing"></iframe>
-  				</div>
+            {% if memory.file_type == 'Photo' and memory.card_id == card.id %}
+            <div class = "card-block picture-block">
+              <h5 data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
+              <!--<iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>-->
+            <!--
+              <div class="card-columns card-columns-photo">
+                <div class="card photo-card">
+                  <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
+                </div>
+                <div class="card photo-card">
+                  <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
+                </div>
+                <div class="card photo-card">
+                  <iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing"></iframe>
+                </div>
+              </div>
+            -->
+            </div>
+            {% endif %}
+          {% endfor %}
 
-          <!--Text Card-->
-          <div class = "card-block text-block">
-            <h5>Story about Grandpa</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  				</div>
 
           <div class = "card-block footer-block">
             <h6>Created by Brandon Colton</h6>
             <a href="{% url 'edit_card' card.id %}">Edit Memory Details</a>
           </div>
-
 				</div>
         {% endfor %}
       </div>
     </div>
   </div>
+
+  <!--First Timeline Divider-->
+  <div class = "row">
+    <div class = "col-lg 12">
+      <div class="timeline-divider text-center">
+        <hr/>
+        <h2>{{last_year}}</h2>
+        <hr/>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  <script src = {% static "timeline/scripts/view.js" %}></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script>
 {% endblock %}
