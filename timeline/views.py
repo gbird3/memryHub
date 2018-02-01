@@ -120,10 +120,18 @@ def view(request, timeline_id):
     cards = Card.objects.filter(timeline_id=timeline_id).order_by('start_year')
     memories = Memory.objects.filter(card__in = cards)
 
+    first_year = cards.first().start_year
+    first_year = first_year - (first_year % 10)
+
+    last_year = cards.last().start_year
+    last_year = last_year + (10 - (last_year % 10))
+
     template_vars = {
         'timeline': timeline,
         'cards': cards,
-        'memories': memories
+        'memories': memories,
+        'first_year': first_year,
+        'last_year': last_year
     }
 
     return render(request, 'view.html', template_vars)

@@ -11,7 +11,6 @@
 
 {% block content %}
   <div class = "container-fluid">
-    <!--Timeline Divider-->
     <div class = "row">
       <div class = "col-lg-12">
         <div class = "main-title">
@@ -22,11 +21,12 @@
       </div>
     </div>
 
+    <!--First Timeline Divider-->
     <div class = "row">
       <div class = "col-lg 12">
         <div class="timeline-divider text-center">
           <hr/>
-  				<h2>1938</h2>
+          <h2>{{first_year}}</h2>
           <hr/>
         </div>
       </div>
@@ -37,6 +37,8 @@
     <div class = "row">
       <div class = "col-lg 12">
         {% for card in cards %}
+
+
         <div class="card text-center center-block" style = "width: 50%">
   				<div class="card-block header-block">
             <h4 class="card-title">{{ card.card_name }}</h4>
@@ -109,6 +111,17 @@
           </div>
 				</div>
         {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!--First Timeline Divider-->
+  <div class = "row">
+    <div class = "col-lg 12">
+      <div class="timeline-divider text-center">
+        <hr/>
+        <h2>{{last_year}}</h2>
+        <hr/>
       </div>
     </div>
   </div>
