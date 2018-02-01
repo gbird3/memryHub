@@ -47,27 +47,27 @@
     var url = 'nothing';
     if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
       var doc = data[google.picker.Response.DOCUMENTS][0];
-      id = doc[google.picker.Document.id];
-      console.log(doc.id, doc.type)
+      console.log(doc)
+      console.log(doc.id, doc.type, doc.mimeType)
     }
-    var message = 'You picked: ' + id;
+    var message = 'You picked: ' + doc.id;
     document.getElementById('result').innerHTML = message;
 
     const csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
       // Send the code to the server
-      $.ajax({
-        type: 'POST',
-        url: '/account/glogin/',
-        data: {'authcode': authResult['code']},
-        headers: {
-          'X-CSRFToken': csrftoken
-        },
-        // contentType: 'application/octet-stream; charset=utf-8',
-        success: function(result) {
-          // Handle or verify the server response.
-          console.log('success')
-        },
-      });
+      // $.ajax({
+      //   type: 'POST',
+      //   url: '/timeline/memory/add',
+      //   data: {'id': doc.id, 'type': doc.mimeType, 'name': },
+      //   headers: {
+      //     'X-CSRFToken': csrftoken
+      //   },
+      //   // contentType: 'application/octet-stream; charset=utf-8',
+      //   success: function(result) {
+      //     // Handle or verify the server response.
+      //     console.log('success')
+      //   },
+      // });
   }
 </script>
 {% endblock %}
