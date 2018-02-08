@@ -126,7 +126,7 @@ def view(request, timeline_id):
 
          last_year = cards.last().start_year
          last_year = last_year + (10 - (last_year % 10))
-     else:
+    else:
         first_year = ""
         last_year = ""
 
