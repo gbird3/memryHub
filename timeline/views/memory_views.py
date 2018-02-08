@@ -62,6 +62,7 @@ class UserAddsMemoryForm(forms.Form):
     file_description = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_description'}))
     file_type = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_type'}))
 
+@login_required(login_url='/login')
 def edit_memory(request, memory_id):
     memory = get_object_or_404(Memory, pk=memory_id)
 
@@ -112,3 +113,28 @@ class MemoryForm(ModelForm):
             'month': 'Month',
             'year': 'Year'
         }
+
+@login_required(login_url='/login')
+def delete_memory(request, memory_id):
+    m = Memory.objects.get(pk=memory_id)
+    m.active = 0
+    m.save()
+
+    f = File.objects.filter(memory_id=memory_id).update(active=0)
+
+
+    timeline = m.timeline_id
+
+    return HttpResponseRedirect('/timeline/view/{}'.format(timeline.id))
+
+@login_required(login_url='/login')
+def delete_file(request, file_id):
+    f = File.objects.get(pk=file_id)
+    f.active = 0
+    f.save()
+
+    memory = f.memory
+
+    timeline = Memory.objects.get(pk=memory.id).timeline_id
+
+    return HttpResponseRedirect('/timeline/view/{}'.format(timeline.id))
