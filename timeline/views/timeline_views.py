@@ -11,7 +11,7 @@ from ..gdrive import createFolder
 @login_required(login_url='/login')
 def timelines(request):
     '''View all Timelines'''
-    timelines = Timeline.objects.filter(owner=request.user)
+    timelines = Timeline.objects.filter(owner=request.user, active=1)
     return render(request, 'timeline.html', {'timelines': timelines})
 
 @login_required(login_url='/login')
@@ -87,8 +87,8 @@ def view(request, timeline_id):
     '''View an individual timeline'''
     timeline = get_object_or_404(Timeline, pk=timeline_id)
 
-    memories = Memory.objects.filter(timeline_id=timeline_id).order_by('year')
-    files = File.objects.filter(memory__in = memories)
+    memories = Memory.objects.filter(timeline_id=timeline_id, active=1).order_by('year')
+    files = File.objects.filter(memory__in = memories, active=1)
 
     if hasattr(memories.first(), 'year'):
          first_year = memories.first().year
@@ -109,3 +109,12 @@ def view(request, timeline_id):
     }
 
     return render(request, 'view.html', template_vars)
+
+@login_required(login_url='/login')
+def delete(request, timeline_id):
+    '''Delete a timeline'''
+    t = Timeline.objects.get(pk=timeline_id)
+    t.active = 0
+    t.save()
+
+    return HttpResponseRedirect('/timeline')
