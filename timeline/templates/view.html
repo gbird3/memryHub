@@ -63,30 +63,32 @@
             <div class = "card-block audio-block">
               <h5  data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
               <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
-
               <!--
               <iframe frameborder="0" src="https://drive.google.com/file/d/1zv6-1-Uz1uOypmaKwYBlUXjAqZOBtSro/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
             -->
             </div>
             {% endif %}
 
-            {% if file.file_type == 'video' and file.memory_id == memory %}
+            {% if file.file_type == 'video' and file.memory == memory %}
             <div class = "card-block video-block">
               <h5 data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
+              <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
               <!--<iframe frameborder="0" src="https://drive.google.com/file/d/1oGhksGHndta2el9iGwvMOI8E5w4x8_Pn/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>-->
             </div>
             {% endif %}
 
-            {% if file.file_type == 'application' and file.memory_id == memory  %}
+            {% if file.file_type == 'application' and file.memory == memory  %}
             <div class = "card-block text-block">
               <h5 data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
+              <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
               <!--<p data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
             </div>
             {% endif %}
 
-            {% if file.file_type == 'image' and file.memory_id == memory %}
+            {% if file.file_type == 'image' and file.memory == memory %}
             <div class = "card-block picture-block">
               <h5 data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
+              <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
               <!--<iframe frameborder="0" src="https://drive.google.com/file/d/1nUuX0AdZIMFJ4MQQHiraQciC00V0-NNO/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>-->
             <!--
               <div class="card-columns card-columns-photo">

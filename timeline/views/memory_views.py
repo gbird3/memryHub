@@ -30,6 +30,9 @@ def add_memory(request, timeline_id):
             m.year = form.cleaned_data.get('start_year')
             m.name = form.cleaned_data.get('memory_name')
             m.description = form.cleaned_data.get('memory_description')
+            m.city = form.cleaned_data.get('city')
+            m.state = form.cleaned_data.get('state')
+            m.country = form.cleaned_data.get('country')
             m.owner = request.user
             m.save()
 
@@ -61,6 +64,9 @@ class UserAddsMemoryForm(forms.Form):
     file_name = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_name'}))
     file_description = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_description'}))
     file_type = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_type'}))
+    city = forms.CharField(label='Memory City', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Memory City'}))
+    state = forms.CharField(label='Memory State', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Memory State'}))
+    country = forms.CharField(label='Memory Country', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Memory Country'}))
 
 @login_required(login_url='/login')
 def edit_memory(request, memory_id):
