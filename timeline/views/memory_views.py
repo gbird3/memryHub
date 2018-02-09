@@ -57,16 +57,16 @@ def add_memory(request, timeline_id):
 class UserAddsMemoryForm(forms.Form):
     memory_name = forms.CharField(label='Memory Name', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Memory Name'}))
     memory_description = forms.CharField(label='Description of your Memory', required=False, max_length=100, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Short description of your memory.'}))
-    start_day = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Day'}))
-    start_month = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Month'}))
-    start_year = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Year'}))
+    start_day = forms.IntegerField(label='Day', required=False, widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Day'}))
+    start_month = forms.IntegerField(label='Month', required=False, widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Month'}))
+    start_year = forms.IntegerField(label='Year', widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Year'}))
     file_id = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_id'}))
     file_name = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_name'}))
     file_description = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_description'}))
     file_type = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_type'}))
-    city = forms.CharField(label='Memory City', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Memory City'}))
-    state = forms.CharField(label='Memory State', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Memory State'}))
-    country = forms.CharField(label='Memory Country', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Memory Country'}))
+    city = forms.CharField(label='City', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'City'}))
+    state = forms.CharField(label='State', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'State'}))
+    country = forms.CharField(label='Country', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Country'}))
 
 @login_required(login_url='/login')
 def edit_memory(request, memory_id):
