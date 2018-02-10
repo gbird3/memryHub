@@ -107,10 +107,11 @@
             {% endif %}
           {% endfor %}
 
-
           <div class = "card-block footer-block">
-            <h6>Created by Brandon Colton</h6>
+            <h6>Created by {{ memory.owner.first_name }}</h6>
             <a href="{% url 'edit_memory' memory.id %}">Edit Memory Details</a>
+            <br>
+            <a href="{% url 'delete_memory' memory.id %}" style = "color:red">Delete Memory</a>
           </div>
 				</div>
         {% endfor %}
