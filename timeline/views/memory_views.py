@@ -30,6 +30,9 @@ def add_memory(request, timeline_id):
             m.year = form.cleaned_data.get('start_year')
             m.name = form.cleaned_data.get('memory_name')
             m.description = form.cleaned_data.get('memory_description')
+            m.city = form.cleaned_data.get('city')
+            m.state = form.cleaned_data.get('state')
+            m.country = form.cleaned_data.get('country')
             m.owner = request.user
             m.save()
 
@@ -54,13 +57,16 @@ def add_memory(request, timeline_id):
 class UserAddsMemoryForm(forms.Form):
     memory_name = forms.CharField(label='Memory Name', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Memory Name'}))
     memory_description = forms.CharField(label='Description of your Memory', required=False, max_length=100, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Short description of your memory.'}))
-    start_day = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Day'}))
-    start_month = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Month'}))
-    start_year = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Year'}))
+    start_day = forms.IntegerField(label='Day', required=False, widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Day'}))
+    start_month = forms.IntegerField(label='Month', required=False, widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Month'}))
+    start_year = forms.IntegerField(label='Year', widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Year'}))
     file_id = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_id'}))
     file_name = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_name'}))
     file_description = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_description'}))
     file_type = forms.CharField(required=False, widget=forms.HiddenInput(attrs={'id': 'file_type'}))
+    city = forms.CharField(label='City', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'City'}))
+    state = forms.CharField(label='State', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'State'}))
+    country = forms.CharField(label='Country', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Country'}))
 
 @login_required(login_url='/login')
 def edit_memory(request, memory_id):
