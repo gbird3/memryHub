@@ -96,6 +96,7 @@ def view(request, timeline_id):
 
          last_year = memories.last().year
          last_year = last_year + (10 - (last_year % 10))
+
     else:
         first_year = ""
         last_year = ""

@@ -33,9 +33,20 @@
     </div>
 
     <!--Cards-->
+    {% for memory in memories %}
+    <!--Dividers
     <div class = "row">
       <div class = "col-lg 12">
-        {% for memory in memories %}
+        <div class="timeline-divider text-center">
+          <hr/>
+          <h2>{{first_year}}</h2>
+          <hr/>
+        </div>
+      </div>
+    </div>
+    -->
+    <div class = "row">
+      <div class = "col-lg 12">
         <div class="card text-center center-block" style = "width: 80%">
   				<div class="card-block header-block">
             <h4 class="card-title">{{ memory.name }}</h4>
@@ -123,9 +134,9 @@
             <a href="{% url 'delete_memory' memory.id %}" style = "color:red">Delete Memory</a>
           </div>
 				</div>
-        {% endfor %}
       </div>
     </div>
+  {% endfor %}
   </div>
 
   <!--First Timeline Divider-->
