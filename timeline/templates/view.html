@@ -33,18 +33,21 @@
     </div>
 
     <!--Cards-->
-    {% for memory in memories %}
-    <!--Dividers
-    <div class = "row">
-      <div class = "col-lg 12">
-        <div class="timeline-divider text-center">
-          <hr/>
-          <h2>{{first_year}}</h2>
-          <hr/>
+    {% for memory in memories_with_years %}
+    <!--Dividers-->
+    {% if memory.divider_year > 0 %}
+      <div class = "row">
+        <div class = "col-lg 12">
+          <div class="timeline-divider text-center">
+            <hr/>
+            <h2>{{memory.divider_year}}</h2>
+            <hr/>
+          </div>
         </div>
       </div>
-    </div>
-    -->
+    {% endif %}
+
+    {% if memory.year > 0 %}
     <div class = "row">
       <div class = "col-lg 12">
         <div class="card text-center center-block" style = "width: 80%">
@@ -152,10 +155,11 @@
 				</div>
       </div>
     </div>
+    {% endif %}
   {% endfor %}
   </div>
 
-  <!--First Timeline Divider-->
+  <!--Last Timeline Divider-->
   <div class = "row">
     <div class = "col-lg 12">
       <div class="timeline-divider text-center">
