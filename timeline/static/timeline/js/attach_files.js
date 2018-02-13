@@ -32,7 +32,7 @@ function pickerCallback(data) {
 
 		sendData(docArray).then((fileCount) => {
 			document.getElementById("save-memory").disabled = false;
-			document.getElementById('file').innerHTML = ' Attached ' + fileCount + ' file(s)' 
+			document.getElementById('file').innerHTML = ' Attached ' + fileCount + ' file(s).'
     	document.getElementById('file_div').removeAttribute('hidden')
 		})
   } else {
@@ -83,7 +83,7 @@ function sendData(data) {
 			})
     }
 
-		resolve(i + 1)
+		resolve(i)
 
 	});
 }

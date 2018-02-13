@@ -16,8 +16,7 @@
         <div class = "main-title">
           <h1>{{ timeline.name}}</h1>
           <p> {{ timeline.description }}</p>
-          <a href="{% url 'add_memory' timeline.id %}" class="btn btn-info bottom-buffer" id = "add-memory-button">Add Memory</a>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMemory">Add Memory</button>
+          <button type="button" class="btn btn-info bottom-buffer" data-toggle="modal" data-target="#addMemory">Add Memory</button>
         </div>
       </div>
     </div>
@@ -87,7 +86,7 @@
               {% endif %}
             </h5>
             </div>
-            <a href="#" class="btn btn-secondary btn-sm add-file-button">Attach File</a>
+            <a href="{% url 'attach_file' memory.id %}" class="btn btn-secondary btn-sm add-file-button">Add Files</a>
           </div>
 
 
@@ -149,7 +148,7 @@
 
           <div class = "card-block footer-block">
             <h6>Memory Owner: {{ memory.owner.first_name }}</h6>
-            <a href="{% url 'edit_memory' memory.id %}">Edit Memory Details</a>
+            <a href="{% url 'attach_file' memory.id %}">Edit Memory</a>
             <br>
             <a href="{% url 'delete_memory' memory.id %}" style = "color:red">Delete Memory</a>
           </div>
@@ -192,13 +191,13 @@
             </div>
             <div class="form-group">
               <label for="memory_year" class="form-control-label">Memory Year:</label>
-              <input type="text" class="form-control" id="memory_year">
+              <input type="number" class="form-control" id="memory_year">
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" onClick="createMemory('timeline')" class="btn btn-primary">Create</button>
+          <button type="button" onClick="createMemory('timeline')" class="btn btn-primary">Add</button>
           <button type="button" onClick="createMemory('files')" class="btn btn-primary">Attach Files</button>
         </div>
       </div>

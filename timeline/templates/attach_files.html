@@ -33,11 +33,6 @@ const timeline_id = '{{ timeline_id }}'
         {{ form.memory_description }}
         {{ form.start_year }}
 
-        {{ form.file_id }}
-        {{ form.file_name }}
-        {{ form.file_description }}
-        {{ form.file_type }}
-
         <br>
         <button type = "button" class="btn btn-sm btn-secondary" data-toggle = "collapse" data-target = "#form-collapse" aria-expanded="false" aria-controls="collapseExample">More Options</button>
         <div class="collapse" id="form-collapse">
@@ -52,12 +47,11 @@ const timeline_id = '{{ timeline_id }}'
         <br>
         <br>
         <div hidden id='file_div' class="row">
-          <h5>Attached File:</h5>
           <p id="file"></p>
         </div>
         <div class="row">
           <div class="create-timeline">
-            <button class="btn btn-primary" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Attach File</button>
+            <button class="btn btn-primary" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
             <button id="save-memory" class="btn btn-primary" type="submit" name="action">Save</button>
           </div>
         </div>
