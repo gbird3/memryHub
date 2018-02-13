@@ -10,6 +10,7 @@
 .card{
   margin-bottom: 20px;
   margin-top: 20px;
+<<<<<<< HEAD
 }
 
 .file-card{
@@ -31,19 +32,28 @@
 .card-description{
   margin-left: 15%;
   margin-right: 15%;
+=======
 }
 
-.header-block{
+h5{
+  font-size: small;
+>>>>>>> 1d7df9f8fb5ce23e2ebcda34fbd50df8424e7b8e
+}
 
+.file-card{
+  margin-right: 30px;
+
+  display: inline-block;
+
+.card-description{
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 0%;
 }
 
 .picture-block{
   margin-bottom: 20px;
   margin-top: 20px;
-}
-
-.card-columns-photo{
-
 }
 
 .photo-card{
@@ -70,10 +80,6 @@
 .text-block{
   margin-bottom: 20px;
   margin-top: 20px;
-}
-
-.footer-block{
-
 }
 
 .center-block{
