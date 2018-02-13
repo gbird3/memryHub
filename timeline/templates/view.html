@@ -33,9 +33,23 @@
     </div>
 
     <!--Cards-->
+    {% for memory in memories_with_years %}
+    <!--Dividers-->
+    {% if memory.divider_year > 0 %}
+      <div class = "row">
+        <div class = "col-lg 12">
+          <div class="timeline-divider text-center">
+            <hr/>
+            <h2>{{memory.divider_year}}</h2>
+            <hr/>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if memory.year > 0 %}
     <div class = "row">
       <div class = "col-lg 12">
-        {% for memory in memories %}
         <div class="card text-center center-block" style = "width: 80%">
   				<div class="card-block header-block">
             <h4 class="card-title">{{ memory.name }}</h4>
@@ -44,18 +58,34 @@
               {% else %}
                 {{ memory.month }}/
               {% endif %}
-
               {% if memory.day is None %}
               {% else %}
                 {{ memory.day }}/
               {% endif %}
-
               {% if memory.year is None %}
               {% else %}
                 {{ memory.year }}
               {% endif %}
             </h5>
             <p class="card-description">{{ memory.description }}</p>
+            <div class = "location">
+              <h5>
+              {% if memory.city is None or memory.city == "" %}
+              {% else %}
+                {{ memory.city }},
+              {% endif %}
+
+              {% if memory.state is None or memory.state == "" %}
+              {% else %}
+                {{ memory.state }},
+              {% endif %}
+
+              {% if memory.country is None or memory.country == "" %}
+              {% else %}
+                {{ memory.country }}
+              {% endif %}
+            </h5>
+            </div>
             <a href="#" class="btn btn-secondary btn-sm add-file-button">Attach File</a>
           </div>
 
@@ -123,12 +153,13 @@
             <a href="{% url 'delete_memory' memory.id %}" style = "color:red">Delete Memory</a>
           </div>
 				</div>
-        {% endfor %}
       </div>
     </div>
+    {% endif %}
+  {% endfor %}
   </div>
 
-  <!--First Timeline Divider-->
+  <!--Last Timeline Divider-->
   <div class = "row">
     <div class = "col-lg 12">
       <div class="timeline-divider text-center">
