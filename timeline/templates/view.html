@@ -52,8 +52,8 @@
         <div class = "col-lg 12">
           <div class="card text-center center-block" style = "width: 80%">
     				<div class="card-block header-block">
-              <h4 class="card-title">{{ memory.name }}</h4>
-              <h5 class ="card-subtitle">
+              <h3 class="card-title">{{ memory.name }}</h3>
+              <h4 class ="card-subtitle">
                 {% if memory.month is None %}
                 {% else %}
                   {{ memory.month }}/
@@ -66,7 +66,7 @@
                 {% else %}
                   {{ memory.year }}
                 {% endif %}
-              </h5>
+              </h4>
               <p class="card-description">{{ memory.description }}</p>
               <div class = "location">
                 <h5>
