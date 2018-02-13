@@ -17,6 +17,7 @@
           <h1>{{ timeline.name}}</h1>
           <p> {{ timeline.description }}</p>
           <a href="{% url 'add_memory' timeline.id %}" class="btn btn-info bottom-buffer" id = "add-memory-button">Add Memory</a>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMemory">Add Memory</button>
         </div>
       </div>
     </div>
@@ -135,6 +136,40 @@
         <hr/>
         <h2>{{last_year}}</h2>
         <hr/>
+      </div>
+    </div>
+  </div>
+
+<!--  Modal for adding memory -->
+
+  <div class="modal fade" id="addMemory" tabindex="-1" role="dialog" aria-labelledby="Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Memory</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="hidden" id="timeline_id" name="timeline_id" value="{{timeline.id}}">
+              <label for="memory_name" class="form-control-label">Memory Name:</label>
+              <input type="text" class="form-control" id="memory_name">
+            </div>
+            <div class="form-group">
+              <label for="memory_year" class="form-control-label">Memory Year:</label>
+              <input type="text" class="form-control" id="memory_year">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" onClick="createMemory('timeline')" class="btn btn-primary">Create</button>
+          <button type="button" onClick="createMemory('files')" class="btn btn-primary">Add Files</button>
+        </div>
       </div>
     </div>
   </div>

@@ -12,4 +12,5 @@ urlpatterns = [
     path('memory/edit/<int:memory_id>/', views.edit_memory, name='edit_memory'),
     path('memory/delete/<int:memory_id>/', views.delete_memory, name='delete_memory'),
     path('file/delete/<int:file_id>/', views.delete_file, name='delete_file'),
+    path('api/add-memory', views.api_add_memory, name='api_add_memory'),
 ]

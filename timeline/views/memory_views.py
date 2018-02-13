@@ -1,8 +1,10 @@
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django import forms
 from django.forms import ModelForm
+
+import json
 
 from ..models import Timeline, Memory, File
 
@@ -144,3 +146,15 @@ def delete_file(request, file_id):
     timeline = Memory.objects.get(pk=memory.id).timeline_id
 
     return HttpResponseRedirect('/timeline/view/{}'.format(timeline.id))
+
+@login_required(login_url='/login')
+def api_add_memory(request):
+    data = request.POST
+
+    print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.', data)
+
+    json_data = json.dumps(data)
+
+    print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', json_data)
+
+    return HttpResponse(200)
