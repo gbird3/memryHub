@@ -55,18 +55,34 @@
               {% else %}
                 {{ memory.month }}/
               {% endif %}
-
               {% if memory.day is None %}
               {% else %}
                 {{ memory.day }}/
               {% endif %}
-
               {% if memory.year is None %}
               {% else %}
                 {{ memory.year }}
               {% endif %}
             </h5>
             <p class="card-description">{{ memory.description }}</p>
+            <div class = "location">
+              <h5>
+              {% if memory.city is None or memory.city == "" %}
+              {% else %}
+                {{ memory.city }},
+              {% endif %}
+
+              {% if memory.state is None or memory.state == "" %}
+              {% else %}
+                {{ memory.state }},
+              {% endif %}
+
+              {% if memory.country is None or memory.country == "" %}
+              {% else %}
+                {{ memory.country }}
+              {% endif %}
+            </h5>
+            </div>
             <a href="#" class="btn btn-secondary btn-sm add-file-button">Attach File</a>
           </div>
 

@@ -12,38 +12,25 @@
   margin-top: 20px;
 }
 
+h5{
+  font-size: small;
+}
+
 .file-card{
   margin-right: 30px;
-  
+
   display: inline-block;
 }
-
-.add-file-button{
-
-}
-
-.timeline-divider{
-
-}
-
-
 
 .card-description{
   margin-left: 15%;
   margin-right: 15%;
-}
-
-.header-block{
-
+  margin-bottom: 0%;
 }
 
 .picture-block{
   margin-bottom: 20px;
   margin-top: 20px;
-}
-
-.card-columns-photo{
-
 }
 
 .photo-card{
@@ -70,10 +57,6 @@
 .text-block{
   margin-bottom: 20px;
   margin-top: 20px;
-}
-
-.footer-block{
-
 }
 
 .center-block{
