@@ -3,7 +3,12 @@ from django.http import HttpResponse
 from django.contrib.auth import logout as auth_logout
 
 def index(request):
-    return render(request, 'index.html')
+    user = request.user
+
+    template_vars = {
+        'user': user,
+    }
+    return render(request, 'index.html',template_vars)
 
 def logout(request):
     """Logs out a user"""

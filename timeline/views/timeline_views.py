@@ -90,12 +90,51 @@ def view(request, timeline_id):
     memories = Memory.objects.filter(timeline_id=timeline_id, active=1).order_by('year')
     files = File.objects.filter(memory__in = memories, active=1)
 
+
+    #adding divider years between memories
+    memories_with_years = list(memories)
+
+    first_year_temp = memories.first().year
+    first_year_temp = first_year_temp - (first_year_temp % 10)
+    temp_year = first_year_temp + 10
+    temp_position = 0
+    last_year_temp = memories.last().year
+    last_year_temp = last_year_temp + (10 - (last_year_temp % 10))
+
+    memories_with_years.insert(0,first_year_temp)
+
+    class Divider_Object:
+        divider_year = 0
+
+
+    temp_divider = Divider_Object()
+    temp_divider.divider_year = 2000
+
+    for e in memories_with_years:
+        if hasattr(e,'year'):
+            if e.year > temp_year:
+                temp_divider = Divider_Object()
+                temp_divider.divider_year = temp_year
+                memories_with_years.insert(temp_position,temp_divider)
+                print('++++++++++++++++++++++++++',temp_divider.divider_year)
+                temp_year = temp_year + 10
+        temp_position = temp_position + 1
+        print(type(e))
+
+    for e in memories_with_years:
+        if hasattr(e,'year'):
+            print("---------------------------------",e.year)
+        if hasattr(e,'divider_year'):
+            print("---------------------------------",e.divider_year)
+
+
     if hasattr(memories.first(), 'year'):
          first_year = memories.first().year
          first_year = first_year - (first_year % 10)
 
          last_year = memories.last().year
          last_year = last_year + (10 - (last_year % 10))
+
     else:
         first_year = ""
         last_year = ""
@@ -105,7 +144,8 @@ def view(request, timeline_id):
         'memories': memories,
         'files': files,
         'first_year': first_year,
-        'last_year': last_year
+        'last_year': last_year,
+        'memories_with_years': memories_with_years
     }
 
     return render(request, 'view.html', template_vars)
