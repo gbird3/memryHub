@@ -16,10 +16,15 @@ h5{
   font-size: small;
 }
 
+h4{
+  font-size: 100%;
+}
+
 .file-card{
   margin-right: 30px;
 
   display: inline-block;
+}
 
 .card-description{
   margin-left: 15%;
@@ -62,4 +67,9 @@ h5{
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+
+.collapse-link{
+  color: text-muted;
+  font-size: small;
 }

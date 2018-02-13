@@ -43,6 +43,7 @@ def create(request):
             t.owner = request.user
             t.name = form.cleaned_data.get('name')
             t.description = form.cleaned_data.get('description')
+            print("+++++++++++++++++++++++++++++++++++++++++",data)
             t.timeline_folder_id = data['id']
             t.save()
 
@@ -92,41 +93,34 @@ def view(request, timeline_id):
 
 
     #adding divider years between memories
-    memories_with_years = list(memories)
+    if hasattr(memories.first(), 'year'):
+        memories_with_years = list(memories)
 
-    first_year_temp = memories.first().year
-    first_year_temp = first_year_temp - (first_year_temp % 10)
-    temp_year = first_year_temp + 10
-    temp_position = 0
-    last_year_temp = memories.last().year
-    last_year_temp = last_year_temp + (10 - (last_year_temp % 10))
+        first_year_temp = memories.first().year
+        first_year_temp = first_year_temp - (first_year_temp % 10)
+        temp_year = first_year_temp + 10
+        temp_position = 0
+        last_year_temp = memories.last().year
+        last_year_temp = last_year_temp + (10 - (last_year_temp % 10))
 
-    memories_with_years.insert(0,first_year_temp)
+        memories_with_years.insert(0,first_year_temp)
 
-    class Divider_Object:
-        divider_year = 0
+        class Divider_Object:
+            divider_year = 0
 
+        temp_divider = Divider_Object()
+        temp_divider.divider_year = 2000
 
-    temp_divider = Divider_Object()
-    temp_divider.divider_year = 2000
-
-    for e in memories_with_years:
-        if hasattr(e,'year'):
-            if e.year > temp_year:
-                temp_divider = Divider_Object()
-                temp_divider.divider_year = temp_year
-                memories_with_years.insert(temp_position,temp_divider)
-                print('++++++++++++++++++++++++++',temp_divider.divider_year)
-                temp_year = temp_year + 10
-        temp_position = temp_position + 1
-        print(type(e))
-
-    for e in memories_with_years:
-        if hasattr(e,'year'):
-            print("---------------------------------",e.year)
-        if hasattr(e,'divider_year'):
-            print("---------------------------------",e.divider_year)
-
+        for e in memories_with_years:
+            if hasattr(e,'year'):
+                if e.year >= temp_year:
+                    temp_divider = Divider_Object()
+                    temp_divider.divider_year = temp_year
+                    memories_with_years.insert(temp_position,temp_divider)
+                    temp_year = temp_year + 10
+            temp_position = temp_position + 1
+    else:
+        memories_with_years = list(memories)
 
     if hasattr(memories.first(), 'year'):
          first_year = memories.first().year
