@@ -34,133 +34,133 @@
 
     <!--Cards-->
     {% for memory in memories_with_years %}
-    <!--Dividers-->
-    {% if memory.divider_year > 0 %}
+      <!--Dividers-->
+      {% if memory.divider_year > 0 %}
+        <div class = "row">
+          <div class = "col-lg 12">
+            <div class="timeline-divider text-center">
+              <hr/>
+              <h2>{{memory.divider_year}}</h2>
+              <hr/>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if memory.year > 0 %}
       <div class = "row">
         <div class = "col-lg 12">
-          <div class="timeline-divider text-center">
-            <hr/>
-            <h2>{{memory.divider_year}}</h2>
-            <hr/>
-          </div>
-        </div>
-      </div>
-    {% endif %}
-
-    {% if memory.year > 0 %}
-    <div class = "row">
-      <div class = "col-lg 12">
-<<<<<<< HEAD
-        {% for memory in memories %}
-=======
->>>>>>> 1d7df9f8fb5ce23e2ebcda34fbd50df8424e7b8e
-        <div class="card text-center center-block" style = "width: 80%">
-  				<div class="card-block header-block">
-            <h4 class="card-title">{{ memory.name }}</h4>
-            <h5 class ="card-subtitle">
-              {% if memory.month is None %}
-              {% else %}
-                {{ memory.month }}/
-              {% endif %}
-              {% if memory.day is None %}
-              {% else %}
-                {{ memory.day }}/
-              {% endif %}
-              {% if memory.year is None %}
-              {% else %}
-                {{ memory.year }}
-              {% endif %}
-            </h5>
-            <p class="card-description">{{ memory.description }}</p>
-            <div class = "location">
-              <h5>
-              {% if memory.city is None or memory.city == "" %}
-              {% else %}
-                {{ memory.city }},
-              {% endif %}
-
-              {% if memory.state is None or memory.state == "" %}
-              {% else %}
-                {{ memory.state }},
-              {% endif %}
-
-              {% if memory.country is None or memory.country == "" %}
-              {% else %}
-                {{ memory.country }}
-              {% endif %}
-            </h5>
-            </div>
-            <a href="#" class="btn btn-secondary btn-sm add-file-button">Attach File</a>
-          </div>
-
-
-          <div class = "card-columns">
-          {% for file in files %}
-            {% if file.memory == memory %}
-            <div class = "card file-card">
-              <!--<h5  data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{file.name}}</h5>-->
-              <h5>{{file.name}}</h5>
-              <!--<h5  data-toggle ="tooltip"  title = "Location: {{memory.city}}, {{memory.state}}" data-placement="top">{{file.name}}</h5>-->
-              <a href="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" target="_blank">
-                {% if file.file_type == 'audio' %}
-                <i class="fa fa-file-audio-o "></i>
-                {% elif file.file_type == 'video' %}
-                <i class="fa fa-file-video-o "></i>
-                {% elif file.file_type == 'application' %}
-                <i class="fa fa-file-text-o "></i>
-                {% elif file.file_type == 'image' %}
-                <i class="fa fa-file-image-o "></i>
+          <div class="card text-center center-block" style = "width: 80%">
+    				<div class="card-block header-block">
+              <h4 class="card-title">{{ memory.name }}</h4>
+              <h5 class ="card-subtitle">
+                {% if memory.month is None %}
                 {% else %}
-                <i class="fa fa-file-o "></i>
+                  {{ memory.month }}/
                 {% endif %}
-              </a>
-              <!--<iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>-->
-            </div>
-            {% endif %}
+                {% if memory.day is None %}
+                {% else %}
+                  {{ memory.day }}/
+                {% endif %}
+                {% if memory.year is None %}
+                {% else %}
+                  {{ memory.year }}
+                {% endif %}
+              </h5>
+              <p class="card-description">{{ memory.description }}</p>
+              <div class = "location">
+                <h5>
+                {% if memory.city is None or memory.city == "" %}
+                {% else %}
+                  {{ memory.city }},
+                {% endif %}
 
-            <!--
-            {% if file.file_type == 'audio' and file.memory == memory %}
-            <div class = "card-block audio-block">
-              <h5  data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
-              <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
-            </div>
-            {% endif %}
+                {% if memory.state is None or memory.state == "" %}
+                {% else %}
+                  {{ memory.state }},
+                {% endif %}
 
-            {% if file.file_type == 'video' and file.memory == memory %}
-            <div class = "card-block video-block">
-              <h5 data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
-              <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
+                {% if memory.country is None or memory.country == "" %}
+                {% else %}
+                  {{ memory.country }}
+                {% endif %}
+              </h5>
+              </div>
+              <a href="#" class="btn btn-secondary btn-sm add-file-button">Attach File</a>
             </div>
-            {% endif %}
 
-            {% if file.file_type == 'application' and file.memory == memory  %}
-            <div class = "card-block text-block">
-              <h5 data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
-              <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
-            </div>
-            {% endif %}
 
-            {% if file.file_type == 'image' and file.memory == memory %}
-            <div class = "card-block picture-block">
-              <h5 data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
-              <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
-            </div>
-            {% endif %}
-          -->
-          {% endfor %}
-        </div>
+            <div class = "card-columns">
+            {% for file in files %}
+              {% if file.memory == memory %}
+              <div class = "card file-card">
+                <!--<h5  data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{file.name}}</h5>-->
+                <h4>{{file.name}}</h4>
+                <!--<h5  data-toggle ="tooltip"  title = "Location: {{memory.city}}, {{memory.state}}" data-placement="top">{{file.name}}</h5>-->
+                <a href="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" target="_blank">
+                  {% if file.file_type == 'audio' %}
+                  <i class="fa fa-file-audio-o "></i>
+                  {% elif file.file_type == 'video' %}
+                  <i class="fa fa-file-video-o "></i>
+                  {% elif file.file_type == 'application' %}
+                  <i class="fa fa-file-text-o "></i>
+                  {% elif file.file_type == 'image' %}
+                  <i class="fa fa-file-image-o "></i>
+                  {% else %}
+                  <i class="fa fa-file-o "></i>
+                  {% endif %}
+                </a>
+                <br>
+                <a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-{{ file.file_id }}" aria-expanded="false" aria-controls="collapseExample">Preview</a>
+                <div class="collapse" id="preview-file-collapse-{{ file.file_id }}">
+                  <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
+                </div>
+              </div>
+              {% endif %}
 
-          <div class = "card-block footer-block">
-            <h6>Memory Owner: {{ memory.owner.first_name }}</h6>
-            <a href="{% url 'edit_memory' memory.id %}">Edit Memory Details</a>
-            <br>
-            <a href="{% url 'delete_memory' memory.id %}" style = "color:red">Delete Memory</a>
+              <!--
+              {% if file.file_type == 'audio' and file.memory == memory %}
+              <div class = "card-block audio-block">
+                <h5  data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
+                <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
+              </div>
+              {% endif %}
+
+              {% if file.file_type == 'video' and file.memory == memory %}
+              <div class = "card-block video-block">
+                <h5 data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
+                <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
+              </div>
+              {% endif %}
+
+              {% if file.file_type == 'application' and file.memory == memory  %}
+              <div class = "card-block text-block">
+                <h5 data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
+                <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
+              </div>
+              {% endif %}
+
+              {% if file.file_type == 'image' and file.memory == memory %}
+              <div class = "card-block picture-block">
+                <h5 data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{memory.description}}</h5>
+                <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
+              </div>
+              {% endif %}
+            -->
+            {% endfor %}
           </div>
-				</div>
+
+            <div class = "card-block footer-block">
+              <h6>Memory Owner: {{ memory.owner.first_name }}</h6>
+              <a href="{% url 'edit_memory' memory.id %}">Edit Memory Details</a>
+              <br>
+              <a href="{% url 'delete_memory' memory.id %}" style = "color:red">Delete Memory</a>
+            </div>
+  				</div>
+        </div>
       </div>
-    </div>
-    {% endif %}
-  {% endfor %}
+      {% endif %}
+    {% endfor %}
   </div>
 
   <!--Last Timeline Divider-->

@@ -10,40 +10,21 @@
 .card{
   margin-bottom: 20px;
   margin-top: 20px;
-<<<<<<< HEAD
-}
-
-.file-card{
-  margin-right: 30px;
-  
-  display: inline-block;
-}
-
-.add-file-button{
-
-}
-
-.timeline-divider{
-
-}
-
-
-
-.card-description{
-  margin-left: 15%;
-  margin-right: 15%;
-=======
 }
 
 h5{
   font-size: small;
->>>>>>> 1d7df9f8fb5ce23e2ebcda34fbd50df8424e7b8e
+}
+
+h4{
+  font-size: 100%;
 }
 
 .file-card{
   margin-right: 30px;
 
   display: inline-block;
+}
 
 .card-description{
   margin-left: 15%;
@@ -86,4 +67,9 @@ h5{
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+
+.collapse-link{
+  color: text-muted;
+  font-size: small;
 }
