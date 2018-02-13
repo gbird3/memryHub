@@ -87,6 +87,8 @@
               </h5>
               </div>
               <a href="#" class="btn btn-secondary btn-sm add-file-button">Attach File</a>
+              <br>
+              <a href="" class = "collapse-link" data-toggle = "collapse" data-target = ".preview-memory-collapse-{{ memory.id }}" aria-expanded="false" aria-controls="collapseExample">Preview All</a>
             </div>
 
 
@@ -112,7 +114,7 @@
                 </a>
                 <br>
                 <a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-{{ file.file_id }}" aria-expanded="false" aria-controls="collapseExample">Preview</a>
-                <div class="collapse" id="preview-file-collapse-{{ file.file_id }}">
+                <div class="collapse preview-memory-collapse-{{ memory.id }}" id ="preview-file-collapse-{{ file.file_id }}" >
                   <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
                 </div>
               </div>
@@ -177,6 +179,6 @@
 {% endblock %}
 
 {% block js %}
-  <script src = {% static "timeline/scripts/view.js" %}></script>
+  <script src = {% static "timeline/js/view.js" %}></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script>
 {% endblock %}
