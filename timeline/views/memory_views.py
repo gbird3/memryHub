@@ -149,12 +149,76 @@ def delete_file(request, file_id):
 
 @login_required(login_url='/login')
 def api_add_memory(request):
-    data = request.POST
+    if request.method == 'POST':
+        timeline = get_object_or_404(Timeline, pk=request.POST.__getitem__('timeline'))
 
-    print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.', data)
+        m = Memory()
+        m.name = request.POST.__getitem__('name')
+        m.year = request.POST.__getitem__('year')
+        m.owner = request.user
+        m.timeline_id = timeline
 
-    json_data = json.dumps(data)
+        m.save()
 
-    print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', json_data)
+    return HttpResponse(m.id)
+
+@login_required(login_url='/login')
+def attach_files(request, memory_id):
+    user = request.user
+    memory = get_object_or_404(Memory, pk=memory_id)
+    timeline = get_object_or_404(Timeline, pk=memory.timeline_id.id)
+
+    social = user.social_auth.get(provider='google-oauth2')
+    access_token = social.extra_data['access_token']
+
+    data = {
+        'memory_name': memory.name,
+        'start_day': memory.day,
+        'start_month': memory.month,
+        'start_year': memory.year,
+        'memory_description': memory.description
+    }
+
+    form = UserAddsMemoryForm(initial=data)
+
+    if request.method == 'POST':
+        form = MemoryForm(request.POST)
+
+        if form.has_changed():
+            if form.is_valid():
+                m = Memory.objects.get(pk=memory_id)
+
+                m.day = form.cleaned_data.get('start_day')
+                m.month = form.cleaned_data.get('start_month')
+                m.year = form.cleaned_data.get('start_year')
+                m.name = form.cleaned_data.get('memory_name')
+                m.description = form.cleaned_data.get('memory_description')
+                m.save()
+
+                timeline = m.timeline_id
+
+        return HttpResponseRedirect('/timeline/view/{}'.format(timeline.id))
+
+
+    template_vars = {
+        'form': form,
+        'access_token': access_token,
+        'parent_id': timeline.timeline_folder_id,
+        'memory_id': memory.id,
+        'timeline_id': timeline.id
+    }
+    return render(request, 'attach_files.html', template_vars)
+
+@login_required(login_url='/login')
+def api_attach_file(request):
+    if request.method == 'POST':
+        memory = get_object_or_404(Memory, pk=request.POST.__getitem__('memory_id'))
+        f = File()
+        f.memory = memory
+        f.name = request.POST.__getitem__('name')
+        f.description = request.POST.__getitem__('description')
+        f.file_id = request.POST.__getitem__('id')
+        f.file_type = request.POST.__getitem__('type')
+        f.save()
 
     return HttpResponse(200)

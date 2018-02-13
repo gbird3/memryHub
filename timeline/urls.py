@@ -13,4 +13,6 @@ urlpatterns = [
     path('memory/delete/<int:memory_id>/', views.delete_memory, name='delete_memory'),
     path('file/delete/<int:file_id>/', views.delete_file, name='delete_file'),
     path('api/add-memory', views.api_add_memory, name='api_add_memory'),
+    path('api/attach-file', views.api_attach_file, name='api_attach_file'),
+    path('memory/attach/<int:memory_id>/', views.attach_files, name='attach_file'),
 ]

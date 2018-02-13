@@ -199,7 +199,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" onClick="createMemory('timeline')" class="btn btn-primary">Create</button>
-          <button type="button" onClick="createMemory('files')" class="btn btn-primary">Add Files</button>
+          <button type="button" onClick="createMemory('files')" class="btn btn-primary">Attach Files</button>
         </div>
       </div>
     </div>
@@ -208,6 +208,6 @@
 {% endblock %}
 
 {% block js %}
-  <script src = {% static "timeline/scripts/view.js" %}></script>
+  <script src = {% static "timeline/js/view.js" %}></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script>
 {% endblock %}
