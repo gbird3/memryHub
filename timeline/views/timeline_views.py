@@ -112,7 +112,7 @@ def view(request, timeline_id):
 
     for e in memories_with_years:
         if hasattr(e,'year'):
-            if e.year > temp_year:
+            if e.year >= temp_year:
                 temp_divider = Divider_Object()
                 temp_divider.divider_year = temp_year
                 memories_with_years.insert(temp_position,temp_divider)
