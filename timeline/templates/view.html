@@ -16,7 +16,7 @@
         <div class = "main-title">
           <h1>{{ timeline.name}}</h1>
           <p> {{ timeline.description }}</p>
-          <a href="{% url 'add_memory' timeline.id %}" class="btn btn-info bottom-buffer" id = "add-memory-button">Add Memory</a>
+          <button type="button" class="btn btn-info bottom-buffer" data-toggle="modal" data-target="#addMemory">Add Memory</button>
         </div>
       </div>
     </div>
@@ -86,7 +86,7 @@
                 {% endif %}
               </h5>
               </div>
-              <a href="#" class="btn btn-secondary btn-sm add-file-button">Attach File</a>
+              <a href="{% url 'attach_file' memory.id %}" class="btn btn-secondary btn-sm add-file-button">Add Files</a>
               <br>
               <a href="" class = "collapse-link" data-toggle = "collapse" data-target = ".preview-memory-collapse-{{ memory.id }}" aria-expanded="false" aria-controls="collapseExample">Preview All</a>
             </div>
@@ -154,7 +154,7 @@
 
             <div class = "card-block footer-block">
               <h6>Memory Owner: {{ memory.owner.first_name }}</h6>
-              <a href="{% url 'edit_memory' memory.id %}">Edit Memory Details</a>
+              <a href="{% url 'attach_file' memory.id %}">Edit Memory</a>
               <br>
               <a href="{% url 'delete_memory' memory.id %}" style = "color:red">Delete Memory</a>
             </div>
@@ -172,6 +172,43 @@
         <hr/>
         <h2>{{last_year}}</h2>
         <hr/>
+      </div>
+    </div>
+  </div>
+
+<!--  Modal for adding memory -->
+
+  <div class="modal fade" id="addMemory" tabindex="-1" role="dialog" aria-labelledby="Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Memory</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div hidden id="required-alert" class="alert alert-danger" role="alert">
+            Name and year are required inputs.
+          </div>
+          <form>
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="hidden" id="timeline_id" name="timeline_id" value="{{timeline.id}}">
+              <label for="memory_name" class="form-control-label">Memory Name:</label>
+              <input type="text" class="form-control" required id="memory_name">
+            </div>
+            <div class="form-group">
+              <label for="memory_year" class="form-control-label">Memory Year:</label>
+              <input type="number" class="form-control" required id="memory_year">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" onClick="createMemory('timeline')" class="btn btn-primary">Add</button>
+          <button type="button" onClick="createMemory('files')" class="btn btn-primary">Attach Files</button>
+        </div>
       </div>
     </div>
   </div>

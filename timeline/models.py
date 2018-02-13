@@ -20,6 +20,7 @@ class Memory(models.Model):
     timeline_id = models.ForeignKey(Timeline, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True, max_length=500)
+    folder_id = models.CharField(null=True, blank=True, max_length=300)
     day = models.PositiveSmallIntegerField(null=True, blank=True, db_index=True)
     month = models.PositiveSmallIntegerField(null=True, blank=True, db_index=True)
     year = models.PositiveSmallIntegerField(db_index=True)
