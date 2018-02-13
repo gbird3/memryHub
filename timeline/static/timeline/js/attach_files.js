@@ -1,5 +1,6 @@
 // Use the API Loader script to load google.picker and gapi.auth.
 function onGDriveButton() {
+	document.getElementById("save-memory").disabled = true;
   gapi.load('picker', {'callback': onPickerApiLoad});
 }
 
@@ -28,12 +29,15 @@ function createPicker() {
 function pickerCallback(data) {
   if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
     let docArray = data[google.picker.Response.DOCUMENTS]
-		
-    for (let i = 0; i < docArray.length; i++) {
-      var doc = docArray[i]
-			sendData(doc)
-    }
-  }
+
+		sendData(docArray).then((fileCount) => {
+			document.getElementById("save-memory").disabled = false;
+			document.getElementById('file').innerHTML = ' Attached ' + fileCount + ' file(s)' 
+    	document.getElementById('file_div').removeAttribute('hidden')
+		})
+  } else {
+		document.getElementById("save-memory").disabled = false;
+	}
 }
 
 function csrfSafeMethod(method) {
@@ -42,34 +46,44 @@ function csrfSafeMethod(method) {
 }
 
 function sendData(data) {
-	console.log(data)
-	let type = data.mimeType.indexOf('/')
-	type = data.mimeType.substring(0, type)
+	return new Promise(function(resolve, reject) {
+		let i = 0
+		for (i; i < data.length; i++) {
+      let doc = data[i]
+			let type = doc.mimeType.indexOf('/')
+			type = doc.mimeType.substring(0, type)
 
-	let csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+			let csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
 
-	let values = {
-		type: type,
-		name: data.name,
-		id: data.id,
-		memory_id: memory_id,
-		description: data.description
-	}
-	// set csrf header
-	$.ajaxSetup({
-	    beforeSend: function(xhr, settings) {
-	        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-	            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-	        }
-	    }
+			let values = {
+				type: type,
+				name: doc.name,
+				id: doc.id,
+				memory_id: memory_id,
+				description: doc.description
+			}
+			// set csrf header
+			$.ajaxSetup({
+			    beforeSend: function(xhr, settings) {
+			        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+			            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+			        }
+			    }
+			});
+
+			$.ajax({
+					url: "/timeline/api/attach-file",
+					type: "POST",
+					data: values,
+					success:function(response){
+					},
+					complete:function(){},
+					error:function (xhr, textStatus, thrownError){
+					}
+			})
+    }
+
+		resolve(i + 1)
+
 	});
-
-	$.ajax({
-			url: "/timeline/api/attach-file",
-			type: "POST",
-			data: values,
-			success:function(response){},
-			complete:function(){},
-			error:function (xhr, textStatus, thrownError){}
-	})
 }
