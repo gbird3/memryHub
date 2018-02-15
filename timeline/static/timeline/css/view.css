@@ -87,3 +87,9 @@ h4{
   color: text-muted;
   font-size: small;
 }
+
+.delete-file-button{
+  color:red;
+  font-size: small;
+
+}

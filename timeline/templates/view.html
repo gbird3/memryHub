@@ -118,7 +118,30 @@
                 <div class="collapse preview-memory-collapse-{{ memory.id }}" id ="preview-file-collapse-{{ file.file_id }}" >
                   <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
                 </div>
+              </br>
+                <a class = "delete-file-button" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete File</a>
               </div>
+
+              <!-- Modal for delete -->
+
+                <div class="modal fade" id="confirm-delete-file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h2 >Confirm delete?</h2>
+                          </div>
+                          <div class="modal-body">
+                              <p>Are you sure you wish to delete this file?</p>
+                              <p style = "font-style: italic">Note: This will not delete the file in your Google Drive folder. This will only make the file inactive on this website. You will still have access to the file through your Google Drive.</p>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                              <a href = "{% url 'delete_file' file.id %}" class="btn btn-danger btn-ok">Confirm Delete</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
               {% endif %}
 
               <!--
@@ -157,7 +180,7 @@
               <h6>Memory Owner: {{ memory.owner.first_name }}</h6>
               <a href="{% url 'attach_file' memory.id %}">Edit Memory</a>
               <br>
-              <a href="" style = "color:red" data-toggle="modal" data-target="#confirm-delete">Delete Memory</a>
+              <a href="" style = "color:red" data-toggle="modal" data-target="#confirm-delete-memory">Delete Memory</a>
             </div>
   				</div>
         </div>
@@ -165,7 +188,7 @@
 
       <!-- Modal for delete -->
 
-        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="confirm-delete-memory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
