@@ -157,11 +157,33 @@
               <h6>Memory Owner: {{ memory.owner.first_name }}</h6>
               <a href="{% url 'attach_file' memory.id %}">Edit Memory</a>
               <br>
-              <a href="{% url 'delete_memory' memory.id %}" style = "color:red">Delete Memory</a>
+              <a href="" style = "color:red" data-toggle="modal" data-target="#confirm-delete">Delete Memory</a>
             </div>
   				</div>
         </div>
       </div>
+
+      <!-- Modal for delete -->
+
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h2 >Confirm delete?</h2>
+                  </div>
+                  <div class="modal-body">
+                      <p>Are you sure you wish to delete this memory?</p>
+                      <p style = "font-style: italic">Note: This will not delete the file in your Google Drive folder. This will only make the file inactive on this website. You will still have access to the file through your Google Drive.</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                      <a href = "{% url 'delete_memory' memory.id %}" class="btn btn-danger btn-ok">Confirm Delete</a>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+
       {% endif %}
     {% endfor %}
   </div>
@@ -213,6 +235,8 @@
       </div>
     </div>
   </div>
+
+
 
 {% endblock %}
 
