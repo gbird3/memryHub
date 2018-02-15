@@ -2,7 +2,6 @@
   margin-left: auto;
   margin-right: auto;
   display: block;
-  margin-bottom: 10px;
 }
 
 .delete-file-button{
@@ -16,13 +15,14 @@
 }
 
 .card{
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .file-card{
   margin-right: 1%;
   display: inline-block;
+  text-align: center;
 }
 
 .card-description{
@@ -32,8 +32,9 @@
 }
 
 .image-card{
-  width: 100%;
-  margin: 1%;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .jumbotron-billboard .jumbotron-img {
