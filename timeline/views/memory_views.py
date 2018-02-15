@@ -35,7 +35,7 @@ def api_add_memory(request):
 
         m.save()
 
-    return HttpResponse(m.id)
+        return HttpResponse(m.id)
 
 @login_required(login_url='/login')
 def attach_files(request, memory_id):
@@ -96,7 +96,8 @@ def api_attach_file(request):
         f.file_type = request.POST.__getitem__('type')
         f.save()
 
-    return HttpResponse(200)
+
+        return HttpResponse(f.id)
 
 
 @login_required(login_url='/login')

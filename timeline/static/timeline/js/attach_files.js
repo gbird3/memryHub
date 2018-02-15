@@ -33,7 +33,7 @@ function pickerCallback(data) {
 		sendData(docArray).then((fileCount) => {
 			document.getElementById("save-memory").disabled = false;
 			document.getElementById('file').innerHTML = ' Attached ' + fileCount + ' file(s).'
-    	document.getElementById('file_div').removeAttribute('hidden')
+      document.getElementById('file_div').removeAttribute('hidden')
 		})
   } else {
 		document.getElementById("save-memory").disabled = false;
@@ -48,6 +48,8 @@ function csrfSafeMethod(method) {
 function sendData(data) {
 	return new Promise(function(resolve, reject) {
 		let i = 0
+    let info = [];
+
 		for (i; i < data.length; i++) {
       let doc = data[i]
 			let type = doc.mimeType.indexOf('/')
@@ -62,6 +64,7 @@ function sendData(data) {
 				memory_id: memory_id,
 				description: doc.description
 			}
+
 			// set csrf header
 			$.ajaxSetup({
 			    beforeSend: function(xhr, settings) {
@@ -71,15 +74,22 @@ function sendData(data) {
 			    }
 			});
 
+      let name = doc.name;
+      let id;
+
 			$.ajax({
 					url: "/timeline/api/attach-file",
 					type: "POST",
 					data: values,
-					success:function(response){
-					},
+					success:function(response) {
+            let list = document.getElementById('fileList');
+            let entry = document.createElement('li');
+            console.log(list)
+            entry.appendChild(document.createTextNode(name + ' ' + response));
+            list.appendChild(entry)
+          },
 					complete:function(){},
-					error:function (xhr, textStatus, thrownError){
-					}
+					error:function (xhr, textStatus, thrownError){}
 			})
     }
 
