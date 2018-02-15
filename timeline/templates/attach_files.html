@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}MemryHub{% endblock %}
+
+{% block css %}
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<script type="text/javascript">
+// The Browser API key obtained from the Google API Console.
+const developerKey = 'AIzaSyByL9-SR6OjZfHaV-YIQlxmFn9SeGTxKO8';
+
+// The Client ID obtained from the Google API Console. Replace with your own Client ID.
+const clientId = "416104053530-7lar744p4o8b7jqstahqiuovabi6qd4a.apps.googleusercontent.com"
+
+let pickerApiLoaded = false;
+const oauthToken = '{{ access_token }}';
+const parent_id = '{{ parent_id }}'
+const memory_id = '{{ memory_id }}'
+const timeline_id = '{{ timeline_id }}'
+</script>
+{% endblock %}
+
+{% block content %}
+<br>
+  <div class="container col-sm-4 col-sm-offset-4">
+    <h1>Attach Files to Memory</h1>
+    <div class="row">
+      <form method="POST">
+        {% csrf_token %}
+
+        {{ form.memory_name }}
+        {{ form.memory_description }}
+        {{ form.start_year }}
+
+        <br>
+        <button type = "button" class="btn btn-sm btn-secondary" data-toggle = "collapse" data-target = "#form-collapse" aria-expanded="false" aria-controls="collapseExample">More Options</button>
+        <div class="collapse" id="form-collapse">
+          <div class="card card-block">
+            {{ form.start_day }}
+            {{ form.start_month }}
+            {{ form.city }}
+            {{ form.state }}
+            {{ form.country }}
+          </div>
+        </div>
+        <br>
+        <br>
+        <div hidden id='file_div' class="row">
+          <p id="file"></p>
+        </div>
+        <div class="row">
+          <div class="create-timeline">
+            <button class="btn btn-primary" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
+            <button id="save-memory" class="btn btn-primary" type="submit" name="action">Save</button>
+          </div>
+        </div>
+    </form>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+{% endblock %}
+
+{% block js %}
+  <script src = {% static "timeline/js/attach_files.js" %}></script>
+{% endblock %}
