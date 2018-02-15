@@ -12,9 +12,9 @@
 {% block content %}
   <div class = "container-fluid">
     <div class = "row">
-      <div class = "col-lg-12">
+      <div class = "col-lg-10 center-block">
         <div class = "main-title">
-          <a href = "#"><i class="fa fa-arrow-alt-left"></i>Back</a>
+          <a href = "{% url 'timelines' %}"><i class="fa fa-arrow-left"></i>Back</a>
           <h1>{{ timeline.name}}</h1>
           <p> {{ timeline.description }}</p>
           <button type="button" class="btn btn-info bottom-buffer" data-toggle="modal" data-target="#addMemory">Add Memory</button>

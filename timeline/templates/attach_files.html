@@ -5,6 +5,9 @@
 {% block title %}MemryHub{% endblock %}
 
 {% block css %}
+<link rel="stylesheet" type="text/css" href={% static "timeline/css/attach_files.css" %}>
+<link rel="stylesheet" type="text/css" href={% static "home/css/font-awesome/css/font-awesome.min.css" %}>
+
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 <script type="text/javascript">
 // The Browser API key obtained from the Google API Console.
@@ -23,9 +26,15 @@ const timeline_id = '{{ timeline_id }}'
 
 {% block content %}
 <br>
-  <div class="container col-sm-4 col-sm-offset-4">
-    <h1>Attach Files to Memory</h1>
-    <div class="row">
+  <div class="container-fluid col-sm-10 col-sm-offset-10">
+    <div class = "header-class ">
+      <a href = "{% url 'view' timeline_id %}"><i class="fa fa-arrow-left"></i>Back</a>
+      <h1>Attach Files to Memory</h1>
+    </div>
+    </br>
+  </div>
+  <div class ="container-fluid col-sm-4">
+    <div class="row center-block">
       <form method="POST">
         {% csrf_token %}
 
@@ -50,7 +59,7 @@ const timeline_id = '{{ timeline_id }}'
           <p id="file"></p>
         </div>
         <div class="row">
-          <div class="create-timeline">
+          <div class="create-timeline center-block">
             <button class="btn btn-primary" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
             <button id="save-memory" class="btn btn-primary" type="submit" name="action">Save</button>
           </div>
