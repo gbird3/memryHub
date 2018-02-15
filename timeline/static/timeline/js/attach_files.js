@@ -84,7 +84,6 @@ function sendData(data) {
 					success:function(response) {
             let list = document.getElementById('fileList');
             let entry = document.createElement('li');
-            console.log(list)
             entry.appendChild(document.createTextNode(name + ' ' + response));
             list.appendChild(entry)
           },
