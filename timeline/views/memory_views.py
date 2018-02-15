@@ -57,7 +57,7 @@ def attach_files(request, memory_id):
     form = UserAddsMemoryForm(initial=data)
 
     if request.method == 'POST':
-        form = MemoryForm(request.POST)
+        form = UserAddsMemoryForm(request.POST)
 
         if form.has_changed():
             if form.is_valid():
