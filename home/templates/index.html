@@ -4,10 +4,86 @@
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href={% static "home/css/index.css" %}>
+<link rel="stylesheet" type="text/css" href={% static "home/css/font-awesome/css/font-awesome.min.css" %}>
 {% endblock %}
 
 {% block content %}
 <div>
+	<div class = "container-fluid">
+		<div class = "row">
+      <div class = "col-lg 12">
+        <div class="timeline-divider text-center">
+          <hr/>
+          <h2>MemryHub</h2>
+          <hr/>
+        </div>
+      </div>
+    </div>
+
+		<div class = "row">
+			<div class = "col-lg-12 center-block">
+				<div class="card text-center center-block" style = "width: 80%">
+					<div class="card-block header-block">
+						<h3 class="card-title">Everyone has a story, let's help them share it.</h3>
+						<h4 class ="card-subtitle">
+						</h4>
+						<p class="card-description">MemryHub lets you store and manage your life memories. Photos, videos, audio files, and text stories are stored in your Google Drive but managed & accessed through MemryHub.</p>
+					</div>
+
+					<div class = "card-columns">
+						<div class = "card file-card">
+							<h4>Baptism Photos</h4>
+							<a href="#">
+								<i class="fa fa-file-image-o"></i>
+							</a>
+							<br>
+							<a href="#" class = "collapse-link">Preview</a>
+							<img class = "image-card" frameborder="0" src={% static "home/media/baptism.jpg" %}></img>
+							</br>
+							<a class = "delete-file-button" href="">Delete File</a>
+						</div>
+
+						<div class = "card file-card">
+							<h4>Wedding Video</h4>
+							<a href="#">
+								<i class="fa fa-file-video-o"></i>
+							</a>
+							<br>
+							<a href="#" class = "collapse-link">Preview</a>
+							<iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
+							</br>
+							<a class = "delete-file-button" href="">Delete File</a>
+						</div>
+
+						<div class = "card file-card">
+							<h4>Retirement Speech</h4>
+							<a href="#">
+								<i class="fa fa-file-audio-o"></i>
+							</a>
+							<br>
+							<a href="#" class = "collapse-link">Preview</a>
+							<iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
+							</br>
+							<a class = "delete-file-button" href="">Delete File</a>
+						</div>
+					</div>
+
+
+					<div class="card-block video-block">
+						<div class="embed-responsive embed-responsive-16by9 top-buffer bottom-buffer">
+							<iframe src="https://biteable.com/watch/embed/memryhub-1675378" allowfullscreen="true"></iframe><p><a href="https://biteable.com/watch/memryhub-1675378"></a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<!--Old homepage jumbotron
+
 	<div class="jumbotron jumbotron-billboard p-o p-md-0 text-white rounded bg-dark">
 		<div class = "jumbotron-img">
 			<div class = "container">
@@ -21,18 +97,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid">
-		<div class ="row bg-light">
-			<div class="col-lg-2">
-			</div>
-			<div class = "col-lg-8 center-block top-buffer">
-				<div class="embed-responsive embed-responsive-16by9 top-buffer bottom-buffer">
-					<iframe src="https://biteable.com/watch/embed/memryhub-1675378" allowfullscreen="true"></iframe><p><a href="https://biteable.com/watch/memryhub-1675378"></a></p>
-				</div>
-			</div>
-			<div class="col-lg-2">
-			</div>
-		</div>
-	</div>
+-->
 </div>
 {% endblock %}

@@ -36,7 +36,6 @@ h4{
 
 .file-card{
   margin-right: 30px;
-
   display: inline-block;
 }
 
@@ -91,5 +90,4 @@ h4{
 .delete-file-button{
   color:red;
   font-size: small;
-
 }

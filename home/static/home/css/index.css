@@ -1,3 +1,41 @@
+.center-block{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.delete-file-button{
+  color:red;
+  font-size: small;
+}
+
+.collapse-link{
+  color: text-muted;
+  font-size: small;
+}
+
+.card{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.file-card{
+  margin-right: 1%;
+  display: inline-block;
+}
+
+.card-description{
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 0%;
+}
+
+.image-card{
+  width: 100%;
+  margin: 1%;
+}
+
 .jumbotron-billboard .jumbotron-img {
     margin-bottom: 0px;
     opacity: 0.8;
