@@ -2,6 +2,20 @@
   text-align: center;
 }
 
+.main-title h1 {
+  display: inline;
+  float: center;
+  text-align: center;
+  margin-right: 3%;
+}
+
+.main-title a {
+  float: left;
+  text-align: left;
+  margin-top: 13px;
+}
+
+
 #add-memory-button{
   margin-left: auto;
   margin-right: auto;
@@ -72,4 +86,10 @@ h4{
 .collapse-link{
   color: text-muted;
   font-size: small;
+}
+
+.delete-file-button{
+  color:red;
+  font-size: small;
+
 }
