@@ -53,7 +53,8 @@ def attach_files(request, memory_id):
         'start_day': memory.day,
         'start_month': memory.month,
         'start_year': memory.year,
-        'memory_description': memory.description
+        'memory_description': memory.description,
+        'memory': memory
     }
 
     form = UserAddsMemoryForm(initial=data)
