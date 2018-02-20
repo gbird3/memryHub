@@ -16,10 +16,12 @@ class EditFileForm(forms.Form):
 @login_required(login_url='/login')
 def edit_file(request, file_id):
     f = File.objects.get(pk=file_id)
+    memory_id = File.objects.first().memory_id
 
     data = {
         'name': f.name,
-        'description': f.description
+        'description': f.description,
+        'memory_id' : memory_id
     }
 
     form = EditFileForm(initial=data)
@@ -41,7 +43,8 @@ def edit_file(request, file_id):
 
     template_vars = {
         'form': form,
-        'file': f
+        'file': f,
+        'memory_id' : memory_id
     }
 
     return render(request, 'edit_file.html', template_vars)

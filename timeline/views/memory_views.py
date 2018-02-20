@@ -53,7 +53,8 @@ def attach_files(request, memory_id):
         'start_day': memory.day,
         'start_month': memory.month,
         'start_year': memory.year,
-        'memory_description': memory.description
+        'memory_description': memory.description,
+        'memory': memory
     }
 
     form = UserAddsMemoryForm(initial=data)
@@ -83,7 +84,8 @@ def attach_files(request, memory_id):
         'parent_id': memory.folder_id,
         'memory_id': memory.id,
         'timeline_id': timeline.id,
-        'files': files
+        'files': files,
+        'memory': memory
     }
     return render(request, 'attach_files.html', template_vars)
 
