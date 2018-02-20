@@ -84,7 +84,8 @@ def attach_files(request, memory_id):
         'parent_id': memory.folder_id,
         'memory_id': memory.id,
         'timeline_id': timeline.id,
-        'files': files
+        'files': files,
+        'memory': memory
     }
     return render(request, 'attach_files.html', template_vars)
 
