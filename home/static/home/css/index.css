@@ -4,6 +4,14 @@
   display: block;
 }
 
+.green-row{
+  background: #dcedc4;
+}
+
+.blue-row{
+  background: #bfe8f3;
+}
+
 .delete-file-button{
   color:red;
   font-size: small;
