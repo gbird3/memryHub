@@ -35,12 +35,14 @@ def api_add_memory(request):
 
         m.save()
 
-    return HttpResponse(m.id)
+        return HttpResponse(m.id)
 
 @login_required(login_url='/login')
 def attach_files(request, memory_id):
     user = request.user
     memory = get_object_or_404(Memory, pk=memory_id)
+    files = File.objects.filter(memory=memory_id, active=1)
+
     timeline = get_object_or_404(Timeline, pk=memory.timeline_id.id)
 
     social = user.social_auth.get(provider='google-oauth2')
@@ -80,7 +82,8 @@ def attach_files(request, memory_id):
         'access_token': access_token,
         'parent_id': memory.folder_id,
         'memory_id': memory.id,
-        'timeline_id': timeline.id
+        'timeline_id': timeline.id,
+        'files': files
     }
     return render(request, 'attach_files.html', template_vars)
 
@@ -96,7 +99,7 @@ def api_attach_file(request):
         f.file_type = request.POST.__getitem__('type')
         f.save()
 
-    return HttpResponse(200)
+        return HttpResponse(f.id)
 
 
 @login_required(login_url='/login')
@@ -109,17 +112,5 @@ def delete_memory(request, memory_id):
 
 
     timeline = m.timeline_id
-
-    return HttpResponseRedirect('/timeline/view/{}'.format(timeline.id))
-
-@login_required(login_url='/login')
-def delete_file(request, file_id):
-    f = File.objects.get(pk=file_id)
-    f.active = 0
-    f.save()
-
-    memory = f.memory
-
-    timeline = Memory.objects.get(pk=memory.id).timeline_id
 
     return HttpResponseRedirect('/timeline/view/{}'.format(timeline.id))

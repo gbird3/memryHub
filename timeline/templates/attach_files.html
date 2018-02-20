@@ -55,8 +55,29 @@ const timeline_id = '{{ timeline_id }}'
         </div>
         <br>
         <br>
-        <div hidden id='file_div' class="row">
-          <p id="file"></p>
+        <div class="row">
+          {% if files %}
+          <table class="table">
+            <thead>
+              <tr>
+                <th>File Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for file in files %}
+              <tr>
+                <td>{{ file.name }}</td>
+                <td>{{ file.description }}</td>
+                <td><a href="{% url 'edit_file' file.id %}">Edit</a>/<a href="{% url 'delete_file' file.id %}">Delete</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <p>This memory doesn't have any files. Upload some by clicking the <button class="btn btn-primary btn-sm" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button> button.</p>
+          {% endif %}
         </div>
         <div class="row">
           <div class="create-timeline center-block">
