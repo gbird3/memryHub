@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}MemryHub{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+<br>
+  <div class="container col-sm-4 col-sm-offset-4">
+    <h1>Edit File Information</h1>
+    <div class="row">
+      <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <div class="row">
+          <div class="create-timeline">
+            <button class="btn btn-primary" type="submit" name="action">Save</button>
+          </div>
+        </div>
+    </form>
+    </div>
+  </div>
+{% endblock %}

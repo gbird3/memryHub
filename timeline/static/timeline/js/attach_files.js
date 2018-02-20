@@ -31,9 +31,7 @@ function pickerCallback(data) {
     let docArray = data[google.picker.Response.DOCUMENTS]
 
 		sendData(docArray).then((fileCount) => {
-			document.getElementById("save-memory").disabled = false;
-			document.getElementById('file').innerHTML = ' Attached ' + fileCount + ' file(s).'
-      document.getElementById('file_div').removeAttribute('hidden')
+			location.reload();
 		})
   } else {
 		document.getElementById("save-memory").disabled = false;
@@ -81,12 +79,7 @@ function sendData(data) {
 					url: "/timeline/api/attach-file",
 					type: "POST",
 					data: values,
-					success:function(response) {
-            let list = document.getElementById('fileList');
-            let entry = document.createElement('li');
-            entry.appendChild(document.createTextNode(name + ' ' + response));
-            list.appendChild(entry)
-          },
+					success:function(response) {},
 					complete:function(){},
 					error:function (xhr, textStatus, thrownError){}
 			})
