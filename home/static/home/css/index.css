@@ -1,3 +1,50 @@
+.center-block{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.green-row{
+  background: #dcedc4;
+}
+
+.blue-row{
+  background: #bfe8f3;
+}
+
+.delete-file-button{
+  color:red;
+  font-size: small;
+}
+
+.collapse-link{
+  color: text-muted;
+  font-size: small;
+}
+
+.card{
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.file-card{
+  margin-right: 1%;
+  display: inline-block;
+  text-align: center;
+}
+
+.card-description{
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 0%;
+}
+
+.image-card{
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .jumbotron-billboard .jumbotron-img {
     margin-bottom: 0px;
     opacity: 0.8;

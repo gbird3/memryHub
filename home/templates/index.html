@@ -4,10 +4,91 @@
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href={% static "home/css/index.css" %}>
+<link rel="stylesheet" type="text/css" href={% static "home/css/font-awesome/css/font-awesome.min.css" %}>
 {% endblock %}
 
 {% block content %}
 <div>
+	<div class = "container-fluid">
+			<div class = "row green-row">
+	      <div class = "col-lg 12">
+	        <div class="timeline-divider text-center">
+	          <hr/>
+	          <h2>MemryHub</h2>
+	          <hr/>
+	        </div>
+	      </div>
+	    </div>
+
+			<div class = "row">
+				<div class = "col-lg-12 center-block">
+					</br>
+					<div class="card text-center center-block" style = "width: 80%">
+						<div class="card-block header-block">
+							<h3 class="card-title">Everyone has a story, let's help them share it.</h3>
+							<h4 class ="card-subtitle">
+							</h4>
+							<p class="card-description">MemryHub lets you store and manage your life memories. Photos, videos, audio files, and text stories are stored in your Google Drive, but managed & accessed through MemryHub.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class = "row">
+				<div class = "col-lg-10 center-block">
+					<div class = "card-deck">
+						<div class = "card file-card">
+							<h4>Photos</h4>
+							<img class = "image-card" frameborder="0" src={% static "home/media/baptism.jpg" %}></img>
+						</div>
+
+						<div class = "card file-card">
+							<h4>Videos</h4>
+							<img class = "image-card" frameborder="0" src={% static "home/media/interview_icon.jpg" %}></img>
+						</div>
+
+						<div class = "card file-card">
+							<h4>Audio Files</h4>
+						</br>
+
+							<h6>Grandma's Childhood Memories</h6>
+							<img class = "image-card" frameborder="0" src={% static "home/media/audio.png" %}></img>
+						</br>
+						</div>
+
+						<div class = "card file-card">
+							<h4>Text Files</h4>
+							<img class = "image-card" frameborder="0" src={% static "home/media/letter_mother.png" %}></img>
+						</br>
+						</div>
+					</div>
+					</br>
+				</div>
+			</div>
+
+		<div class = "row blue-row">
+      <div class = "col-lg 12">
+        <div class="timeline-divider text-center">
+          <hr/>
+          <h2>How it works?</h2>
+          <hr/>
+        </div>
+      </div>
+    </div>
+
+		<div class = "row">
+			<div class = "col-lg-8 center-block">
+				<div class="embed-responsive embed-responsive-16by9 top-buffer bottom-buffer">
+					<iframe src="https://biteable.com/watch/embed/memryhub-1675378" allowfullscreen="true"></iframe><p><a href="https://biteable.com/watch/memryhub-1675378"></a></p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!--Old homepage jumbotron
+
 	<div class="jumbotron jumbotron-billboard p-o p-md-0 text-white rounded bg-dark">
 		<div class = "jumbotron-img">
 			<div class = "container">
@@ -21,18 +102,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid">
-		<div class ="row bg-light">
-			<div class="col-lg-2">
-			</div>
-			<div class = "col-lg-8 center-block top-buffer">
-				<div class="embed-responsive embed-responsive-16by9 top-buffer bottom-buffer">
-					<iframe src="https://biteable.com/watch/embed/memryhub-1675378" allowfullscreen="true"></iframe><p><a href="https://biteable.com/watch/memryhub-1675378"></a></p>
-				</div>
-			</div>
-			<div class="col-lg-2">
-			</div>
-		</div>
-	</div>
+-->
 </div>
 {% endblock %}
