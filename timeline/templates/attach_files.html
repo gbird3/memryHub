@@ -29,7 +29,7 @@ const timeline_id = '{{ timeline_id }}'
   <div class="container-fluid col-sm-10 col-sm-offset-10">
     <div class = "header-class ">
       <a href = "{% url 'view' timeline_id %}"><i class="fa fa-arrow-left"></i>Back</a>
-      <h1>Attach Files to Memory</h1>
+      <h1>Manage Memory/Files</h1>
     </div>
     </br>
   </div>
@@ -70,8 +70,30 @@ const timeline_id = '{{ timeline_id }}'
               <tr>
                 <td>{{ file.name }}</td>
                 <td>{{ file.description }}</td>
-                <td><a href="{% url 'edit_file' file.id %}">Edit</a>/<a href="{% url 'delete_file' file.id %}">Delete</a></td>
+                <td><a href="{% url 'edit_file' file.id %}">Edit</a>/<a style = "color:red" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete</a></td>
               </tr>
+
+              <!-- Modal for delete-->
+
+                <div class="modal fade" id="confirm-delete-file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h2 >Confirm delete?</h2>
+                          </div>
+                          <div class="modal-body">
+                              <p>Are you sure you wish to delete this file?</p>
+                              <p style = "font-style: italic">Note: This will not delete the file in your Google Drive folder. This will only make the file inactive on this website. You will still have access to the file through your Google Drive.</p>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                              <a href ="{% url 'delete_file' file.id %}" class="btn btn-danger btn-ok">Confirm Delete</a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
+
               {% endfor %}
             </tbody>
           </table>
@@ -89,6 +111,7 @@ const timeline_id = '{{ timeline_id }}'
     </div>
   </div>
   <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+</br>
 {% endblock %}
 
 {% block js %}
