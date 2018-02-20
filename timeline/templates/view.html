@@ -87,7 +87,7 @@
                 {% endif %}
               </h5>
               </div>
-              <a href="{% url 'attach_file' memory.id %}" class="btn btn-secondary btn-sm add-file-button">Add Files</a>
+              <a href="{% url 'attach_file' memory.id %}" class="btn btn-secondary btn-sm add-file-button">Manage Memory/Files</a>
               <br>
               <a href="" class = "collapse-link" data-toggle = "collapse" data-target = ".preview-memory-collapse-{{ memory.id }}" aria-expanded="false" aria-controls="collapseExample">Preview All</a>
             </div>
@@ -119,10 +119,12 @@
                   <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
                 </div>
               </br>
+              <!--Delete button
                 <a class = "delete-file-button" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete File</a>
+                -->
               </div>
 
-              <!-- Modal for delete -->
+              <!-- Modal for delete
 
                 <div class="modal fade" id="confirm-delete-file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
@@ -141,6 +143,7 @@
                       </div>
                   </div>
                 </div>
+              -->
 
               {% endif %}
 
@@ -178,15 +181,20 @@
 
             <div class = "card-block footer-block">
               <h6>Memory Owner: {{ memory.owner.first_name }}</h6>
+              <!--eidtmemory button
               <a href="{% url 'attach_file' memory.id %}">Edit Memory</a>
+
               <br>
+              -->
+              <!--Delete memory button
               <a href="" style = "color:red" data-toggle="modal" data-target="#confirm-delete-memory">Delete Memory</a>
+            -->
             </div>
   				</div>
         </div>
       </div>
 
-      <!-- Modal for delete -->
+      <!-- Modal for delete
 
         <div class="modal fade" id="confirm-delete-memory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -205,7 +213,7 @@
               </div>
           </div>
         </div>
-
+        -->
 
       {% endif %}
     {% endfor %}
