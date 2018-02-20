@@ -70,12 +70,12 @@ const timeline_id = '{{ timeline_id }}'
               <tr>
                 <td>{{ file.name }}</td>
                 <td>{{ file.description }}</td>
-                <td><a href="{% url 'edit_file' file.id %}">Edit</a>/<a style = "color:red" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete</a></td>
+                <td><a href="{% url 'edit_file' file.id %}">Edit</a>/<a style = "color:red" href="" data-toggle="modal" data-target="#confirm-delete-file-{{file.id}}" >Delete</a></td>
               </tr>
 
               <!-- Modal for delete-->
 
-                <div class="modal fade" id="confirm-delete-file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="confirm-delete-file-{{file.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                       <div class="modal-content">
                           <div class="modal-header">
