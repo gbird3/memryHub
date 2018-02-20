@@ -40,7 +40,8 @@ def edit_file(request, file_id):
 
 
     template_vars = {
-        'form': form
+        'form': form,
+        'file': f
     }
 
     return render(request, 'edit_file.html', template_vars)

@@ -18,7 +18,6 @@ def sendRequest(url, headers, data):
     )
 
 def sendUpdateRequest(url, headers, data):
-    print(json.dumps(data))
     return requests.put(
         url,
         params = {'uploadType': 'multipart', 'alt': 'json'},
