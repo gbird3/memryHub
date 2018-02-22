@@ -11,7 +11,7 @@ from ..gdrive import createFolder
 @login_required(login_url='/login')
 def timelines(request):
     '''View all Timelines'''
-    timelines = Timeline.objects.filter(owner=request.user, active=1)
+    timelines = Timeline.objects.filter(owner=request.user, active=1).order_by('name')
     return render(request, 'timeline.html', {'timelines': timelines})
 
 @login_required(login_url='/login')

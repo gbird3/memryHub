@@ -28,14 +28,14 @@
     				<a href="{% url 'view' timeline.id %}" class="btn btn-info bottom-buffer">View Timeline</a>
             <a href="{% url 'edit' timeline.id %}" class="btn btn-info bottom-buffer">Edit Timeline</a>
 					</br>
-            <a href="" class="btn btn-danger bottom-buffer" data-toggle="modal" data-target="#confirm-delete">Delete Timeline</a>
+            <a href="" class="btn btn-danger bottom-buffer" data-toggle="modal" data-target="#confirm-delete-{{ timeline.id }}">Delete Timeline</a>
   				</div>
 				</div>
 			</div>
 
 			<!-- Modal for delete -->
 
-        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="confirm-delete-{{ timeline.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
