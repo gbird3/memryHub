@@ -15,10 +15,22 @@
   margin-top: 13px;
 }
 
+#memory-tutorial{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #49BFDC;
+}
 
 #add-memory-button{
   margin-left: auto;
   margin-right: auto;
+  background-color: #8DC63F;
+  color: white;
+}
+
+.back-button{
+  color:#49BFDC;
 }
 
 .card{

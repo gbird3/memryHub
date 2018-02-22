@@ -12,7 +12,13 @@ from ..gdrive import createFolder
 def timelines(request):
     '''View all Timelines'''
     timelines = Timeline.objects.filter(owner=request.user, active=1)
-    return render(request, 'timeline.html', {'timelines': timelines})
+
+    if timelines.count() == 0:
+        timeline_count = 0
+    else:
+        timeline_count = 1
+
+    return render(request, 'timeline.html', {'timelines': timelines,'timeline_count':timeline_count})
 
 @login_required(login_url='/login')
 def create(request):
@@ -133,13 +139,16 @@ def view(request, timeline_id):
         first_year = ""
         last_year = ""
 
+    memory_count = memories.count()
+
     template_vars = {
         'timeline': timeline,
         'memories': memories,
         'files': files,
         'first_year': first_year,
         'last_year': last_year,
-        'memories_with_years': memories_with_years
+        'memories_with_years': memories_with_years,
+        'memory_count': memory_count
     }
 
     return render(request, 'view.html', template_vars)
