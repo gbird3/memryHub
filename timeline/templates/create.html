@@ -7,6 +7,18 @@
 {% block css %}
 <link rel="stylesheet" type="text/css" href={% static "timeline/css/create.css" %}>
 <link rel="stylesheet" type="text/css" href={% static "home/css/font-awesome/css/font-awesome.min.css" %}>
+<script type="text/javascript">
+// The Browser API key obtained from the Google API Console.
+const developerKey = 'AIzaSyByL9-SR6OjZfHaV-YIQlxmFn9SeGTxKO8';
+
+// The Client ID obtained from the Google API Console. Replace with your own Client ID.
+const clientId = "416104053530-7lar744p4o8b7jqstahqiuovabi6qd4a.apps.googleusercontent.com"
+
+let pickerApiLoaded = false;
+const oauthToken = '{{ access_token }}';
+const parent_id = '{{ parent_id }}';
+</script>
+
 {% endblock %}
 
 {% block content %}
@@ -14,22 +26,40 @@
   <div class="container col-sm-10 col-sm-offset-10">
     <div class = "header-class">
       <a href = "{% url 'timelines' %}"><i class="fa fa-arrow-left"></i>Back</a>
-      <h1> Create a Timeline</h1>
+      <h1>Timeline Information</h1>
     </div>
   </div>
   <div class = "container-fluid col-sm-4">
     <div class="row center-block">
       <form method="POST">
         {% csrf_token %}
-        {{ form }}
+        <!-- {{ form }} -->
+
+        {{ form.name.label_tag }}
+        {{ form.name }}
+
+        {{ form.description.label_tag}}
+        {{ form.description }}
+
+        {{ form.title.label_tag}}
+        <div class="input-group">
+          {{ form.title}}
+          <span class="input-group-btn">
+            <button class="btn" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Picture <i class="fas fa-cloud-upload-alt"></i></button>
+          </span>
+        </div>
         <br>
         <div class="row">
-          <div class="create-timeline center-block">
-            <button class="btn btn-primary" type="submit" name="action">Create Timeline</button>
+          <div class="create-timeline">
+            <button id="create-timeline" class="btn btn-primary pull-right" type="submit" name="action">Create Timeline</button>
           </div>
         </div>
     </form>
     </div>
   </div>
 </br>
+{% endblock %}
+{% block js %}
+  <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+  <script src = {% static "timeline/js/create.js" %}></script>
 {% endblock %}
