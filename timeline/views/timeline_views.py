@@ -47,7 +47,9 @@ def edit_timeline(request, timeline_id):
     t = get_object_or_404(Timeline, pk=timeline_id)
 
     data = {
-        'name': t.name
+        'name': t.name,
+        'picture': t.image,
+        'title': t.image_title
     }
 
     form = CreateTimelineForm(initial=data)
@@ -73,8 +75,7 @@ def edit_timeline(request, timeline_id):
     template_vars = {
         'form': form,
         'parent_id': t.timeline_folder_id,
-        'access_token': access_token,
-        'image': t.image
+        'access_token': access_token
     }
 
     return render(request, 'create.html', template_vars)

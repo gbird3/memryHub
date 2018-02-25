@@ -21,10 +21,10 @@
       {% for timeline in timelines %}
 			<div class = "col-lg-4 center-block btn-block">
 				<div class="card top-buffer card-outline-info text-center" style="width: 100%;">
-          {% if timeline.picture %}
-          <img class="card-img-top" src="https://drive.google.com/uc?export=view&id={{ timeline.image }}" alt="Timeline card image">
+          {% if timeline.image %}
+          <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ timeline.image }}" alt="Timeline card image">
           {% else %}
-          <img class="card-img-top" src= {% static "/home/media/grandpa.jpg" %} alt="Timeline card image">
+          <img class="card-img-top img-fluid" src= {% static "/timeline/media/default-profile.png" %} alt="Timeline card image">
           {% endif %}
   				<div class="card-block">
     				<h4 class="card-title">{{ timeline.name }}</h4>

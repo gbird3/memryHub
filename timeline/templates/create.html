@@ -33,8 +33,7 @@ const parent_id = '{{ parent_id }}';
     <div class="row center-block">
       <form method="POST">
         {% csrf_token %}
-        <!-- {{ form }} -->
-
+        {{ form.picture }}
         {{ form.name.label_tag }}
         {{ form.name }}
 
