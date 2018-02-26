@@ -1,12 +1,12 @@
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django import forms
 from django.forms import ModelForm
 
 from ..models import Timeline, Memory, File
 from home.models import UserInfo
-from ..gdrive import createFolder
+from ..gdrive import createFolder, changeFileData
 
 @login_required(login_url='/login')
 def timelines(request):
@@ -15,73 +15,77 @@ def timelines(request):
     return render(request, 'timeline.html', {'timelines': timelines})
 
 @login_required(login_url='/login')
-def create(request):
-    '''Create a timeline'''
-    form = CreateTimelineForm()
-
-    # First check if a root folder (MemryHub) has been created. If not create it.
-    try:
-        uinfo = UserInfo.objects.get(user=request.user)
-    except:
-        data = createFolder(request.user, 'MemryHub')
-
-        print(data)
-        uinfo = UserInfo()
-        uinfo.user = request.user
-        uinfo.root_folder_id = data['id']
-        uinfo.save()
-
-
+def api_create_timeline(request):
     if request.method == 'POST':
-        form = CreateTimelineForm(request.POST)
+        # First check if a root folder (MemryHub) has been created. If not create it.
+        try:
+            uinfo = UserInfo.objects.get(user=request.user)
+        except:
+            data = createFolder(request.user, 'MemryHub')
 
-        if form.is_valid():
+            uinfo = UserInfo()
+            uinfo.user = request.user
+            uinfo.root_folder_id = data['id']
+            uinfo.save()
 
-            data = createFolder(request.user, form.cleaned_data.get('name'), uinfo.root_folder_id)
+        data = createFolder(request.user, request.POST.__getitem__('name'), uinfo.root_folder_id)
 
-            t = Timeline()
-            t.owner = request.user
-            t.name = form.cleaned_data.get('name')
-            t.description = form.cleaned_data.get('description')
-            print("+++++++++++++++++++++++++++++++++++++++++",data)
-            t.timeline_folder_id = data['id']
-            t.save()
+        t = Timeline()
+        t.owner = request.user
+        t.name = request.POST.__getitem__('name')
+        t.timeline_folder_id = data['id']
+        t.save()
 
-            timeline_id  = t.id
-
-        return HttpResponseRedirect('/timeline/view/{}'.format(timeline_id))
-
-    return render(request, 'create.html', {'form': form})
+        return HttpResponse(t.id)
 
 @login_required(login_url='/login')
-def edit(request, timeline_id):
-    '''Edit an individual timeline'''
-    timeline = get_object_or_404(Timeline, pk=timeline_id)
+def edit_timeline(request, timeline_id):
+    user = request.user
+    social = user.social_auth.get(provider='google-oauth2')
+    access_token = social.extra_data['access_token']
+
+    t = get_object_or_404(Timeline, pk=timeline_id)
 
     data = {
-        'name': timeline.name,
-        'description': timeline.description
+        'name': t.name,
+        'picture': t.image,
+        'title': t.image_title
     }
 
     form = CreateTimelineForm(initial=data)
 
     if request.method == 'POST':
-
         form = CreateTimelineForm(request.POST)
         if form.is_valid():
-            if form.has_changed():
-                t = Timeline.objects.get(pk=timeline_id)
-                t.name = form.cleaned_data.get('name')
-                t.description = form.cleaned_data.get('description')
-                t.save()
+            response = changeFileData(request.user, form.cleaned_data.get('timeline_folder_id'), form.cleaned_data.get('name'), form.cleaned_data.get('description'))
 
-        return HttpResponseRedirect('/timeline')
+            t = Timeline.objects.get(pk=timeline_id)
+            t.owner = request.user
+            t.name = form.cleaned_data.get('name')
+            t.description = form.cleaned_data.get('description')
+            t.timeline_folder_id = form.cleaned_data.get('timeline_folder_id')
+            t.image = form.cleaned_data.get('picture')
+            t.image_title = form.cleaned_data.get('title')
+            t.save()
 
-    return render(request, 'edit.html', {'form': form})
+            timeline_id  = t.id
+
+            return HttpResponseRedirect('/timeline/view/{}'.format(timeline_id))
+
+    template_vars = {
+        'form': form,
+        'parent_id': t.timeline_folder_id,
+        'access_token': access_token
+    }
+
+    return render(request, 'create.html', template_vars)
 
 class CreateTimelineForm(forms.Form):
     name = forms.CharField(label='Person Name', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Person Name'}))
-    description = forms.CharField(label='Description of Timeline', required=False, max_length=100, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Short description of your timeline.'}))
+    description = forms.CharField(label='Description of Timeline', required=False, max_length=500, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Short description of your timeline.'}))
+    title = forms.CharField(label='Image', required=False, max_length=300, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    picture = forms.CharField(required=False, max_length=100, widget=forms.HiddenInput())
+
 
 @login_required(login_url='/login')
 def view(request, timeline_id):
