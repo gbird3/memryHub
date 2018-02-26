@@ -7,7 +7,7 @@ from django.forms import ModelForm
 import json
 
 from ..models import Timeline, Memory, File
-from ..gdrive import createFolder
+from ..gdrive import createFolder, changeFileData
 
 class UserAddsMemoryForm(forms.Form):
     memory_name = forms.CharField(label='Memory Name', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Memory Name'}))
@@ -23,9 +23,9 @@ class UserAddsMemoryForm(forms.Form):
 def api_add_memory(request):
     if request.method == 'POST':
         timeline = get_object_or_404(Timeline, pk=request.POST.__getitem__('timeline'))
-
+        
         data = createFolder(request.user, request.POST.__getitem__('name'), timeline.timeline_folder_id)
-
+        print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', data)
         m = Memory()
         m.name = request.POST.__getitem__('name')
         m.year = request.POST.__getitem__('year')
@@ -66,6 +66,8 @@ def attach_files(request, memory_id):
             if form.is_valid():
                 m = Memory.objects.get(pk=memory_id)
 
+                response = changeFileData(request.user, m.folder_id, form.cleaned_data.get('memory_name'), form.cleaned_data.get('memory_description'))
+                print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', response)
                 m.day = form.cleaned_data.get('start_day')
                 m.month = form.cleaned_data.get('start_month')
                 m.year = form.cleaned_data.get('start_year')

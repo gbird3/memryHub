@@ -57,13 +57,13 @@ def edit_timeline(request, timeline_id):
     if request.method == 'POST':
         form = CreateTimelineForm(request.POST)
         if form.is_valid():
-            response = changeFileData(request.user, form.cleaned_data.get('timeline_folder_id'), form.cleaned_data.get('name'), form.cleaned_data.get('description'))
-
             t = Timeline.objects.get(pk=timeline_id)
+
+            response = changeFileData(request.user, t.timeline_folder_id, form.cleaned_data.get('name'), form.cleaned_data.get('description'))
+
             t.owner = request.user
             t.name = form.cleaned_data.get('name')
             t.description = form.cleaned_data.get('description')
-            t.timeline_folder_id = form.cleaned_data.get('timeline_folder_id')
             t.image = form.cleaned_data.get('picture')
             t.image_title = form.cleaned_data.get('title')
             t.save()
