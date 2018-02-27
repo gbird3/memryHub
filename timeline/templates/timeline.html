@@ -12,10 +12,10 @@
 {% block content %}
 <div>
 	<div class="container-fluid">
-		<div class = "row top-buffer text-center">
+		<div class = "row top-buffer-first text-center">
 			<div class = "col-lg 12">
 				<h1>{{ user.first_name }}'s Timelines</h1>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTimeline">Create New Timeline</button>
+        <button type="button" class="btn" id = "btn-new-timeline" data-toggle="modal" data-target="#addTimeline">Create New Timeline</button>
 			</div>
 		</div>
 		<div class="row top-buffer bottom-buffer side-buffer">
@@ -32,21 +32,26 @@
 
 			{% for timeline in timelines %}
 			<div class = "col-lg-4 center-block btn-block">
-				<div class="card top-buffer card-outline-info text-center bottom-buffer" style="width: 100%;">
-          {% if timeline.image %}
-          <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ timeline.image }}" alt="Timeline card image">
-          {% else %}
-          <img class="card-img-top img-fluid" src= {% static "/timeline/media/default-profile.png" %} alt="Timeline card image">
-          {% endif %}
-  				<div class="card-block">
-    				<h4 class="card-title">{{ timeline.name }}</h4>
-    				<p class="card-text">{{ timeline.description }}</p>
-    				<a href="{% url 'view' timeline.id %}" class="btn btn-info bottom-buffer">View Timeline</a>
-            <a href="{% url 'edit_timeline' timeline.id %}" class="btn btn-info bottom-buffer">Edit Timeline</a>
-					</br>
-            <a href="" class="btn btn-danger bottom-buffer" data-toggle="modal" data-target="#confirm-delete-{{ timeline.id }}">Delete Timeline</a>
-  				</div>
-				</div>
+				<a href = "{% url 'view' timeline.id %}">
+					<div class="card top-buffer card-outline-info bottom-buffer" style="width: 100%;">
+	          {% if timeline.image %}
+	          <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ timeline.image }}" alt="Timeline card image">
+	          {% else %}
+	          <img class="card-img-top img-fluid" src= {% static "/timeline/media/default-profile.png" %} alt="Timeline card image">
+	          {% endif %}
+						<hr/>
+	  				<div class="card-block text-card-block">
+	    				<h4 class="card-title">{{ timeline.name }}</h4>
+	    				<p class="card-text">{{ timeline.description }}</p>
+							<!--hiding buttons on timeline page
+							<a href="{% url 'view' timeline.id %}" class="btn btn-info bottom-buffer">View Timeline</a>
+	            <a href="{% url 'edit_timeline' timeline.id %}" class="btn btn-info bottom-buffer">Edit Timeline</a>
+						</br>
+	            <a href="" class="btn btn-danger bottom-buffer" data-toggle="modal" data-target="#confirm-delete-{{ timeline.id }}">Delete Timeline</a>
+						-->
+						</div>
+					</div>
+				</a>
 			</div>
 
 			<!-- Modal for delete -->
