@@ -14,6 +14,11 @@ class Timeline(models.Model):
     update_time = models.DateTimeField(auto_now=True)
     active = models.SmallIntegerField(default=1)
 
+class UserHasTimeline(models.Model):
+    '''Timelines shared with users'''
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    timeline = models.ForeignKey(Timeline, on_delete=models.CASCADE)
+    permission = models.CharField(max_length=10, default='read')
 
 class Memory(models.Model):
     '''A specific aspect of the timeline that can hold memories'''

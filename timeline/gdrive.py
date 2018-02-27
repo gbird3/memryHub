@@ -4,7 +4,7 @@ import json
 def getHeaders(user):
     social = user.social_auth.get(provider='google-oauth2')
     access_token = social.extra_data['access_token']
-    
+
     return {
         'Authorization':'Bearer {}'.format(access_token),
         'Content-Type': 'application/json'
@@ -52,3 +52,14 @@ def changeFileData(user, fileId, file_name, description):
     response = sendUpdateRequest(updateUrl, getHeaders(user), file_metadata)
 
     return response
+
+def shareWithUser(owner, userEmail, fileId, role):
+    url = 'https://www.googleapis.com/drive/v3/files/{}/permissions'.format(fileId)
+
+    body = {
+        'role': role,
+        'type': user,
+        'emailAddress': userEmail
+    }
+
+    return sendUpdateRequest(url, getHeaders(owner), body)
