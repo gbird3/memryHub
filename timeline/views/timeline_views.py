@@ -11,19 +11,8 @@ from ..gdrive import createFolder, changeFileData
 @login_required(login_url='/login')
 def timelines(request):
     '''View all Timelines'''
-<<<<<<< HEAD
-    timelines = Timeline.objects.filter(owner=request.user, active=1)
-
-    if timelines.count() == 0:
-        timeline_count = 0
-    else:
-        timeline_count = 1
-
-    return render(request, 'timeline.html', {'timelines': timelines,'timeline_count':timeline_count})
-=======
     timelines = Timeline.objects.filter(owner=request.user, active=1).order_by('name')
     return render(request, 'timeline.html', {'timelines': timelines})
->>>>>>> origin
 
 @login_required(login_url='/login')
 def api_create_timeline(request):
