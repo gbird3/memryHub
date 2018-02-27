@@ -32,7 +32,7 @@
 
 			{% for timeline in timelines %}
 			<div class = "col-lg-4 center-block btn-block">
-				<div class="card top-buffer card-outline-info text-center" style="width: 100%;">
+				<div class="card top-buffer card-outline-info text-center bottom-buffer" style="width: 100%;">
           {% if timeline.image %}
           <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ timeline.image }}" alt="Timeline card image">
           {% else %}
@@ -50,7 +50,6 @@
 			</div>
 
 			<!-- Modal for delete -->
-
         <div class="modal fade" id="confirm-delete-{{ timeline.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
               <div class="modal-content">
@@ -68,7 +67,6 @@
               </div>
           </div>
         </div>
-
       {% endfor %}
   	</div>
 	</div>
