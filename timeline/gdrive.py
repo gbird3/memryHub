@@ -1,5 +1,6 @@
 import requests
 import json
+from social_django.utils import load_strategy
 
 def getAccessToken(user):
     social = user.social_auth.get(provider='google-oauth2')
