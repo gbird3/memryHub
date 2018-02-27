@@ -15,9 +15,12 @@
       <div class = "col-lg-10 center-block">
         <div class = "main-title">
           <a class ="back-button" href = "{% url 'timelines' %}"><i class="fa fa-arrow-left"></i>Back</a>
+        </br>
           <h1>{{ timeline.name}}</h1>
-          <p> {{ timeline.description }}</p>
-          <button type="button" class="btn bottom-buffer" id = "add-memory-button" data-toggle="modal" data-target="#addMemory">Add Memory</button>
+          <a href="{% url 'edit_timeline' timeline.id %}"><span class = "edit-time-span"><i class="fa fa-edit fa-2x"></i></span></a>
+          <!--<p> {{ timeline.description }}</p>-->
+        </br>
+          <button type="button" class="btn bottom-buffer" id = "add-memory-button" data-toggle="modal" data-target="#addMemory"><i class="fa fa-plus-circle"></i>     Add Memory</button>
         </div>
       </div>
     </div>

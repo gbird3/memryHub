@@ -7,20 +7,18 @@
 }
 
 .main-title {
-  text-align: center;
+  margin-top: 2%;
+  text-align: left;
 }
 
 .main-title h1 {
+  text-align: left;
   display: inline;
-  float: center;
-  text-align: center;
-  margin-right: 3%;
 }
 
-.main-title a {
-  float: left;
-  text-align: left;
-  margin-top: 13px;
+.edit-time-span{
+  margin-left: 1%;
+  color:black;
 }
 
 #memory-tutorial{
@@ -31,6 +29,7 @@
 }
 
 #add-memory-button{
+  margin-top: 1%;
   margin-left: auto;
   margin-right: auto;
   background-color: #8DC63F;
@@ -39,6 +38,7 @@
 
 .back-button{
   color:#49BFDC;
+  text-align: left;
 }
 
 .card{
