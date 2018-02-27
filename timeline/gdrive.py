@@ -1,10 +1,13 @@
 import requests
 import json
 
-def getHeaders(user):
+def getAccessToken(user):
     social = user.social_auth.get(provider='google-oauth2')
-    access_token = social.extra_data['access_token']
-    
+    return social.get_access_token(load_strategy())
+
+def getHeaders(user):
+    access_token = getAccessToken(user)
+
     return {
         'Authorization':'Bearer {}'.format(access_token),
         'Content-Type': 'application/json'
