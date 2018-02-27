@@ -1,10 +1,14 @@
 import requests
 import json
+from social_django.utils import load_strategy
+
+def getAccessToken(user):
+    social = user.social_auth.get(provider='google-oauth2')
+    return social.get_access_token(load_strategy())
 
 def getHeaders(user):
-    social = user.social_auth.get(provider='google-oauth2')
-    access_token = social.extra_data['access_token']
-    
+    access_token = getAccessToken(user)
+
     return {
         'Authorization':'Bearer {}'.format(access_token),
         'Content-Type': 'application/json'
