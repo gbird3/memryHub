@@ -7,7 +7,7 @@ from django.forms import ModelForm
 from datetime import datetime
 from ..models import Timeline, Memory, File
 from home.models import UserInfo
-from ..gdrive import createFolder, changeFileData
+from ..gdrive import createFolder, changeFileData, getAccessToken
 
 @login_required(login_url='/login')
 def timelines(request):
@@ -42,9 +42,7 @@ def api_create_timeline(request):
 
 @login_required(login_url='/login')
 def edit_timeline(request, timeline_id):
-    user = request.user
-    social = user.social_auth.get(provider='google-oauth2')
-    access_token = social.extra_data['access_token']
+    access_token = getAccessToken(request.user)
 
     t = get_object_or_404(Timeline, pk=timeline_id)
 
