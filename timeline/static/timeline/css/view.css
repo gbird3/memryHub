@@ -6,6 +6,10 @@
   margin-bottom: 100px;
 }
 
+.header-block{
+  margin-left: 1%;
+}
+
 .main-title {
   margin-top: 2%;
   text-align: left;
@@ -20,6 +24,22 @@
   margin-left: 1%;
   color:black;
 }
+
+.card-subtitle{
+    
+}
+
+.memory-name h3{
+  margin-top: .5%;
+  text-align: left;
+  display: inline;
+}
+
+.edit-memory-span{
+  margin-left: 1%;
+  color:black;
+}
+
 
 #memory-tutorial{
   width: 50%;
@@ -60,8 +80,6 @@ h4{
 }
 
 .card-description{
-  margin-left: 15%;
-  margin-right: 15%;
   margin-bottom: 0%;
 }
 
@@ -110,4 +128,8 @@ h4{
 .delete-file-button{
   color:red;
   font-size: small;
+}
+
+.color-row{
+  /*background: #dcedc4;*/
 }

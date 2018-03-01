@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django import forms
 from django.forms import ModelForm
 
+from datetime import datetime
 from ..models import Timeline, Memory, File
 from home.models import UserInfo
 from ..gdrive import createFolder, changeFileData
@@ -12,7 +13,8 @@ from ..gdrive import createFolder, changeFileData
 def timelines(request):
     '''View all Timelines'''
     timelines = Timeline.objects.filter(owner=request.user, active=1).order_by('name')
-    return render(request, 'timeline.html', {'timelines': timelines})
+    timeline_count = timelines.count()
+    return render(request, 'timeline.html', {'timelines': timelines,'timeline_count':timeline_count})
 
 @login_required(login_url='/login')
 def api_create_timeline(request):
@@ -49,7 +51,8 @@ def edit_timeline(request, timeline_id):
     data = {
         'name': t.name,
         'picture': t.image,
-        'title': t.image_title
+        'title': t.image_title,
+        'timeline_id':timeline_id
     }
 
     form = CreateTimelineForm(initial=data)
@@ -75,7 +78,8 @@ def edit_timeline(request, timeline_id):
     template_vars = {
         'form': form,
         'parent_id': t.timeline_folder_id,
-        'access_token': access_token
+        'access_token': access_token,
+        'timeline_id':timeline_id
     }
 
     return render(request, 'create.html', template_vars)
