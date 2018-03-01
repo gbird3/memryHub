@@ -158,6 +158,18 @@ def delete(request, timeline_id):
 
     return HttpResponseRedirect('/timeline')
 
+@login_required(login_url='/login')
+def timeline_sharing(request, timeline_id):
+    timeline = get_object_or_404(Timeline, pk=timeline_id)
+
+
+    template_vars = {
+        'timeline': timeline
+    }
+
+    return render(request, 'sharing.html', template_vars)
+
+@login_required(login_url='/login')
 def testEmail(request):
     # send_mail('Subject here', 'Here is the message.', 'from@example.com', ['to@example.com'], fail_silently=False)
 
