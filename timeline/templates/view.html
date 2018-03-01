@@ -73,27 +73,25 @@
     				<div class="card-block header-block">
               <div class = "memory-name">
                 <h3 class="card-title">{{ memory.name }}
-                  occured on
-                  
-                  <!--
-                  {% if memory.month is None %}
+<!--
+                  {% for key, value in date_dict.items %}
+                    {% if memory.id == key %}
+                      {{ value }}
+                    {% endif %}
+                  {% endfor %}
+-->
+                  {% if memory.day is None and memory.month is None and memory.year is None%}
+
+                  {% elif memory.day is None and memory.month is None%}
+                    ({{ memory.year }})
+                  {% elif memory.day is None %}
+                    ({{ memory.month }}, {{ memory.year }})
                   {% else %}
-                    {{ memory.month }}/
+                    ({{ memory.month }} {{memory.day}} {{ memory.year }})
                   {% endif %}
-                  {% if memory.day is None %}
-                  {% else %}
-                    {{ memory.day }}/
-                  {% endif %}
-                  {% if memory.year is None %}
-                  {% else %}
-                    {{ memory.year }}
-                  {% endif %}
-                -->
                 </h3>
                 <a href="{% url 'attach_file' memory.id %}"><span class = "edit-memory-span"><i class="fa fa-edit"></i></span></a>
               </div>
-
-              <p class="card-description">{{ memory.description }}</p>
               <div class = "location">
                 <h5>
                 {% if memory.city is None or memory.city == "" %}
@@ -112,6 +110,7 @@
                 {% endif %}
               </h5>
               </div>
+              <p class="card-description">{{ memory.description }}</p>
               <h6>Memory Owner: {{ memory.owner.first_name }}</h6>
               <!--<a href="{% url 'attach_file' memory.id %}" class="btn btn-secondary btn-sm add-file-button">Manage Memory/Files</a>-->
               <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = ".preview-memory-collapse-{{ memory.id }}" aria-expanded="false" aria-controls="collapseExample">Preview All</a>-->

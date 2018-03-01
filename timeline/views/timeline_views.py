@@ -99,6 +99,7 @@ def view(request, timeline_id):
     memories = Memory.objects.filter(timeline_id=timeline_id, active=1).order_by('year')
     files = File.objects.filter(memory__in = memories, active=1)
 
+    date_dict = {}
 
     #adding divider years between memories
     if hasattr(memories.first(), 'year'):
@@ -120,12 +121,62 @@ def view(request, timeline_id):
         temp_divider.divider_year = 2000
 
         for e in memories_with_years:
+#            if hasattr(e,'year'):
+#                my_time = '00:00'
+#                if e.day is None:
+#                    my_day = '01'
+#                    my_time = '2:01'
+#                else:
+#                    my_day = str(e.day)
+#
+#                if e.month is None:
+#                    my_month = '01'
+#                    my_time = '2:02'
+#                else:
+#                    my_month = str(e.month)
+#
+#                if e.year is None:
+#                    my_year = '1900'
+#                    my_time = '2:03'
+#                else:
+#                    my_year = str(e.year)
+#                date_dict[e.id] = datetime.strptime(my_year + ' ' + my_month + ' ' + my_day + ' ' + my_time, '%Y %m %d %H:%M')
+#                print('++++++++++++++++++++++++++++++++++++++',date_dict)
             if hasattr(e,'year'):
                 if e.year >= temp_year:
                     temp_divider = Divider_Object()
                     temp_divider.divider_year = temp_year
                     memories_with_years.insert(temp_position,temp_divider)
                     temp_year = temp_year + 10
+                if e.month == 1:
+                    e.month = "January"
+                elif e.month == 2:
+                    e.month = "February"
+                elif e.month == 3:
+                    e.month = "March"
+                elif e.month == 4:
+                    e.month = "April"
+                elif e.month == 5:
+                    e.month = "May"
+                elif e.month == 6:
+                    e.month = "June"
+                elif e.month == 7:
+                    e.month = "July"
+                elif e.month == 8:
+                    e.month = "August"
+                elif e.month == 9:
+                    e.month = "September"
+                elif e.month == 10:
+                    e.month = "October"
+                elif e.month == 11:
+                    e.month = "November"
+                elif e.month == 12:
+                    e.month = "December"
+                else:
+                    e.month = None
+                print("++++++++++++++++++++++++++++++++",e.year)
+                print("++++++++++++++++++++++++++++++++",e.month)
+                print("++++++++++++++++++++++++++++++++",e.day)
             temp_position = temp_position + 1
     else:
         memories_with_years = list(memories)
@@ -150,7 +201,8 @@ def view(request, timeline_id):
         'first_year': first_year,
         'last_year': last_year,
         'memories_with_years': memories_with_years,
-        'memory_count': memory_count
+        'memory_count': memory_count,
+        'date_dict':date_dict
     }
 
     return render(request, 'view.html', template_vars)
