@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}MemryHub{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href={% static "timeline/css/sharing.css" %}>
+<link rel="stylesheet" type="text/css" href={% static "home/css/font-awesome/css/font-awesome.min.css" %}>
+{% endblock %}
+
+{% block content %}
+<br>
+  <div class="container col-sm-10 col-sm-offset-10">
+    <div class = "header-class">
+    <a href = "{% url 'timelines'  %}"><i class="fa fa-arrow-left"></i>Back</a>
+    <h1>Timeline Sharing</h1>
+  </div>
+  <br>
+  <div class="container-fluid col-lg-8">
+    <div class="row">
+      <h5>Timeline Users</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Access</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Bob Jones</th>
+            <td>bob.jones@jones.com</td>
+            <td>
+              <div class="form-group">
+                <select class="custom-select" required>
+                  <option value="read">Read Access</option>
+                  <option value="edit">Edit Access</option>
+                </select>
+                <div class="invalid-feedback">Example invalid custom select feedback</div>
+              </div>
+            </td>
+            <td><a href="#"><i class="far fa-trash-alt remove-access"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br><br>
+
+    <div class="row">
+      <h5>Add New Users</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Access</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><input type="text" class="form-control" placeholder="Name"></th>
+            <td><input type="text" class="form-control" placeholder="Email"></td>
+            <td>
+              <div class="form-group">
+                <select class="custom-select" required>
+                  <option value="read">Read Access</option>
+                  <option value="edit">Edit Access</option>
+                </select>
+                <div class="invalid-feedback">Example invalid custom select feedback</div>
+              </div>
+            </td>
+            <td><button class="btn btn-primary" type="button">Share <i class="fas fa-share"></i></button></td>
+          </tr>
+
+          <tr>
+            <th><input type="text" class="form-control" placeholder="Name"></th>
+            <td><input type="text" class="form-control" placeholder="Email"></td>
+            <td>
+              <div class="form-group">
+                <select class="custom-select" required>
+                  <option value="read">Read Access</option>
+                  <option value="edit">Edit Access</option>
+                </select>
+                <div class="invalid-feedback">Example invalid custom select feedback</div>
+              </div>
+            </td>
+            <td><button class="btn btn-primary" type="button">Share <i class="fas fa-share"></i></button></td>
+          </tr>
+
+          <tr>
+            <th><input type="text" class="form-control" placeholder="Name"></th>
+            <td><input type="text" class="form-control" placeholder="Email"></td>
+            <td>
+              <div class="form-group">
+                <select class="custom-select" required>
+                  <option value="read">Read Access</option>
+                  <option value="edit">Edit Access</option>
+                </select>
+                <div class="invalid-feedback">Example invalid custom select feedback</div>
+              </div>
+            </td>
+            <td><button class="btn btn-primary" type="button">Share <i class="fas fa-share"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+<!-- {% endblock %} -->
