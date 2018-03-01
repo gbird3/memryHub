@@ -14,4 +14,5 @@ urlpatterns = [
     path('api/attach-file', views.api_attach_file, name='api_attach_file'),
     path('api/add-timeline', views.api_create_timeline, name='api_create_timeline'),
     path('memory/attach/<int:memory_id>/', views.attach_files, name='attach_file'),
+    path('test-email', views.testEmail, name="testEmail")
 ]

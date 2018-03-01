@@ -4,6 +4,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django import forms
 from django.forms import ModelForm
 
+from django.core.mail import send_mail
+from django.template import loader
+#
 from ..models import Timeline, Memory, File
 from home.models import UserInfo
 from ..gdrive import createFolder, changeFileData, getAccessToken
@@ -154,3 +157,18 @@ def delete(request, timeline_id):
     t.save()
 
     return HttpResponseRedirect('/timeline')
+
+def testEmail(request):
+    # send_mail('Subject here', 'Here is the message.', 'from@example.com', ['to@example.com'], fail_silently=False)
+
+    html_message = loader.render_to_string(
+            '../templates/email.html',
+            {
+                'user': request.user.get_full_name(),
+                'memory': 'Test Memory'
+            }
+        )
+
+    send_mail('Test Email', 'Test wants to share a memory with you on MemryHub. Sign up now', 'memryhub@memryhub.com', ['gregbird12@gmail.com'], fail_silently=False, html_message=html_message)
+
+    return render(request, 'email.html', )
