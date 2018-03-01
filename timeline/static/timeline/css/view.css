@@ -110,35 +110,9 @@ h4{
   margin-bottom: 0%;
 }
 
-.picture-block{
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.photo-card{
-  margin-left: 20%;
-  margin-right: 20%;
-}
-
-.audio-block{
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.audio-block iframe{
-  width: auto;
-  border:none;
-
-}
-
-.video-block{
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.text-block{
-  margin-bottom: 20px;
-  margin-top: 20px;
+.file-description{
+  margin-left: 4%;
+  margin-top: 3%;
 }
 
 .center-block{

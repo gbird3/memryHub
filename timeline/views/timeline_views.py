@@ -97,6 +97,8 @@ def view(request, timeline_id):
     memories = Memory.objects.filter(timeline_id=timeline_id, active=1).order_by('year')
     files = File.objects.filter(memory__in = memories, active=1)
 
+    access_token = getAccessToken(request.user)
+
     date_dict = {}
 
     #adding divider years between memories

@@ -126,7 +126,7 @@
               </h5>
               </div>
               <p class="card-description">{{ memory.description }}</p>
-              <h6>Memory Owner: {{ memory.owner.first_name }}</h6>
+              <h6>{{ memory.owner.first_name }} owns this memory.</h6>
               <!--<a href="{% url 'attach_file' memory.id %}" class="btn btn-secondary btn-sm add-file-button">Manage Memory/Files</a>-->
               <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = ".preview-memory-collapse-{{ memory.id }}" aria-expanded="false" aria-controls="collapseExample">Preview All</a>-->
             </div>
@@ -161,6 +161,9 @@
                 <!--<div class="collapse preview-memory-collapse-{{ memory.id }}" id ="preview-file-collapse-{{ file.file_id }}" >-->
                 <div class = "iframe-class">
                   <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
+                </div>
+                <div class = "file-description">
+                  {{file.description}}
                 </div>
                 <!--</div>-->
               </br>
