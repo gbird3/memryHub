@@ -26,7 +26,7 @@
 }
 
 .card-subtitle{
-    
+
 }
 
 .memory-name h3{
@@ -66,8 +66,13 @@
   margin-top: 20px;
 }
 
+.main-card{
+  border: none;
+}
+
 h5{
   font-size: small;
+  margin-bottom: -2px;
 }
 
 h4{
@@ -77,6 +82,28 @@ h4{
 .file-card{
   margin-right: 30px;
   display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.file-card .info-of-card{
+  margin-left: 3%;
+  margin-top: 3%  ;
+}
+
+.file-card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.file-card a{
+  color:black;
+}
+
+.btn-add-file-card{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 25%;
+  margin-bottom: 25%;
 }
 
 .card-description{
@@ -132,4 +159,10 @@ h4{
 
 .color-row{
   /*background: #dcedc4;*/
+}
+
+.iframe-class{
+  margin-left: 5%;
+  margin-right: 5%;
+  width: auto;
 }

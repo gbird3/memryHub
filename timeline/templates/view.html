@@ -7,6 +7,21 @@
 {% block css %}
   <link rel="stylesheet" type="text/css" href={% static "timeline/css/view.css" %}>
   <link rel="stylesheet" type="text/css" href={% static "home/css/font-awesome/css/font-awesome.min.css" %}>
+
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <script type="text/javascript">
+  // The Browser API key obtained from the Google API Console.
+  const developerKey = 'AIzaSyByL9-SR6OjZfHaV-YIQlxmFn9SeGTxKO8';
+
+  // The Client ID obtained from the Google API Console. Replace with your own Client ID.
+  const clientId = "416104053530-7lar744p4o8b7jqstahqiuovabi6qd4a.apps.googleusercontent.com"
+
+  let pickerApiLoaded = false;
+  const oauthToken = '{{ access_token }}';
+  const parent_id = '{{ parent_id }}'
+  const memory_id = '{{ memory_id }}'
+  const timeline_id = '{{ timeline_id }}'
+  </script>
 {% endblock %}
 
 {% block content %}
@@ -69,7 +84,7 @@
       {% if memory.year > 0 %}
       <div class = "row color-row">
         <div class = "col-lg 12">
-          <div class="card center-block" style = "width: 80%">
+          <div class="card center-block main-card" style = "width: 80%">
     				<div class="card-block header-block">
               <div class = "memory-name">
                 <h3 class="card-title">{{ memory.name }}
@@ -87,7 +102,7 @@
                   {% elif memory.day is None %}
                     ({{ memory.month }}, {{ memory.year }})
                   {% else %}
-                    ({{ memory.month }} {{memory.day}} {{ memory.year }})
+                    ({{ memory.month }} {{memory.day}}, {{ memory.year }})
                   {% endif %}
                 </h3>
                 <a href="{% url 'attach_file' memory.id %}"><span class = "edit-memory-span"><i class="fa fa-edit"></i></span></a>
@@ -117,30 +132,36 @@
             </div>
 
 
-            <div class = "card-columns">
+            <div class = "card-columns ">
             {% for file in files %}
               {% if file.memory == memory %}
               <div class = "card file-card">
                 <!--<h5  data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{file.name}}</h5>-->
-                <h4>{{file.name}}</h4>
                 <!--<h5  data-toggle ="tooltip"  title = "Location: {{memory.city}}, {{memory.state}}" data-placement="top">{{file.name}}</h5>-->
-                <a href="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" target="_blank">
-                  {% if file.file_type == 'audio' %}
-                  <i class="fa fa-file-audio-o "></i>
-                  {% elif file.file_type == 'video' %}
-                  <i class="fa fa-file-video-o "></i>
-                  {% elif file.file_type == 'application' %}
-                  <i class="fa fa-file-text-o "></i>
-                  {% elif file.file_type == 'image' %}
-                  <i class="fa fa-file-image-o "></i>
-                  {% else %}
-                  <i class="fa fa-file-o "></i>
-                  {% endif %}
-                </a>
+                <div class = "info-of-card">
+                  <a href="{% url 'edit_file' file.id %}">
+                    <h4>
+                      {% if file.file_type == 'audio' %}
+                      <i class="fa fa-file-audio-o "></i>
+                      {% elif file.file_type == 'video' %}
+                      <i class="fa fa-file-video-o "></i>
+                      {% elif file.file_type == 'application' %}
+                      <i class="fa fa-file-text-o "></i>
+                      {% elif file.file_type == 'image' %}
+                      <i class="fa fa-file-image-o "></i>
+                      {% else %}
+                      <i class="fa fa-file-o "></i>
+                      {% endif %}
+                      {{file.name}}
+                    </h4>
+                  </a>
+                </div>
                 <br>
                 <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-{{ file.file_id }}" aria-expanded="false" aria-controls="collapseExample">Preview</a>-->
                 <!--<div class="collapse preview-memory-collapse-{{ memory.id }}" id ="preview-file-collapse-{{ file.file_id }}" >-->
-                  <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
+                <div class = "iframe-class">
+                  <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
+                </div>
                 <!--</div>-->
               </br>
               <!--Delete button
@@ -201,6 +222,9 @@
               {% endif %}
             -->
             {% endfor %}
+            <div class = "card add-file-card file-card center-block">
+              <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
+            </div>
           </div>
 
 
@@ -293,12 +317,10 @@
       </div>
     </div>
   </div>
-
-
-
 {% endblock %}
 
 {% block js %}
+  <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
   <script src = {% static "timeline/js/view.js" %}></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script>
 {% endblock %}
