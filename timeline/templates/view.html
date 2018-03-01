@@ -7,6 +7,21 @@
 {% block css %}
   <link rel="stylesheet" type="text/css" href={% static "timeline/css/view.css" %}>
   <link rel="stylesheet" type="text/css" href={% static "home/css/font-awesome/css/font-awesome.min.css" %}>
+
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <script type="text/javascript">
+  // The Browser API key obtained from the Google API Console.
+  const developerKey = 'AIzaSyByL9-SR6OjZfHaV-YIQlxmFn9SeGTxKO8';
+
+  // The Client ID obtained from the Google API Console. Replace with your own Client ID.
+  const clientId = "416104053530-7lar744p4o8b7jqstahqiuovabi6qd4a.apps.googleusercontent.com"
+
+  let pickerApiLoaded = false;
+  const oauthToken = '{{ access_token }}';
+  const parent_id = '{{ parent_id }}'
+  const memory_id = '{{ memory_id }}'
+  const timeline_id = '{{ timeline_id }}'
+  </script>
 {% endblock %}
 
 {% block content %}
@@ -14,15 +29,19 @@
     <div class = "row">
       <div class = "col-lg-10 center-block">
         <div class = "main-title">
-          <a href = "{% url 'timelines' %}"><i class="fa fa-arrow-left"></i>Back</a>
+          <a class ="back-button" href = "{% url 'timelines' %}"><i class="fa fa-arrow-left"></i>Back</a>
+        </br>
           <h1>{{ timeline.name}}</h1>
-          <p> {{ timeline.description }}</p>
-          <button type="button" class="btn btn-info bottom-buffer" data-toggle="modal" data-target="#addMemory">Add Memory</button>
+          <a href="{% url 'edit_timeline' timeline.id %}"><span class = "edit-time-span"><i class="fa fa-edit fa-2x"></i></span></a>
+          <!--<p> {{ timeline.description }}</p>-->
+        </br>
+          <button type="button" class="btn bottom-buffer" id = "add-memory-button" data-toggle="modal" data-target="#addMemory"><i class="fa fa-plus-circle"></i>     Add Memory</button>
         </div>
       </div>
     </div>
 
     <!--First Timeline Divider-->
+    {% if first_year > 0 %}
     <div class = "row">
       <div class = "col-lg 12">
         <div class="timeline-divider text-center">
@@ -32,6 +51,20 @@
         </div>
       </div>
     </div>
+    {% endif %}
+
+    {% if memory_count == 0 %}
+    <div class="container-fluid">
+      <div class="row bottom-buffer side-buffer">
+        <div class = "col-lg-12 center-block">
+          <div id = "memory-tutorial" class = "card card-outline-info center-block text-center">
+            <i class="fa fa-arrow-up fa-4x"></i>
+            <h4>Use the "Add Memory" button to create your first memory.</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
 
     <!--Cards-->
     {% for memory in memories_with_years %}
@@ -49,26 +82,31 @@
       {% endif %}
 
       {% if memory.year > 0 %}
-      <div class = "row">
+      <div class = "row color-row">
         <div class = "col-lg 12">
-          <div class="card text-center center-block" style = "width: 80%">
+          <div class="card center-block main-card" style = "width: 80%">
     				<div class="card-block header-block">
-              <h3 class="card-title">{{ memory.name }}</h3>
-              <h4 class ="card-subtitle">
-                {% if memory.month is None %}
-                {% else %}
-                  {{ memory.month }}/
-                {% endif %}
-                {% if memory.day is None %}
-                {% else %}
-                  {{ memory.day }}/
-                {% endif %}
-                {% if memory.year is None %}
-                {% else %}
-                  {{ memory.year }}
-                {% endif %}
-              </h4>
-              <p class="card-description">{{ memory.description }}</p>
+              <div class = "memory-name">
+                <h3 class="card-title">{{ memory.name }}
+<!--
+                  {% for key, value in date_dict.items %}
+                    {% if memory.id == key %}
+                      {{ value }}
+                    {% endif %}
+                  {% endfor %}
+-->
+                  {% if memory.day is None and memory.month is None and memory.year is None%}
+
+                  {% elif memory.day is None and memory.month is None%}
+                    ({{ memory.year }})
+                  {% elif memory.day is None %}
+                    ({{ memory.month }}, {{ memory.year }})
+                  {% else %}
+                    ({{ memory.month }} {{memory.day}}, {{ memory.year }})
+                  {% endif %}
+                </h3>
+                <a href="{% url 'attach_file' memory.id %}"><span class = "edit-memory-span"><i class="fa fa-edit"></i></span></a>
+              </div>
               <div class = "location">
                 <h5>
                 {% if memory.city is None or memory.city == "" %}
@@ -87,37 +125,47 @@
                 {% endif %}
               </h5>
               </div>
-              <a href="{% url 'attach_file' memory.id %}" class="btn btn-secondary btn-sm add-file-button">Manage Memory/Files</a>
-              <br>
-              <a href="" class = "collapse-link" data-toggle = "collapse" data-target = ".preview-memory-collapse-{{ memory.id }}" aria-expanded="false" aria-controls="collapseExample">Preview All</a>
+              <p class="card-description">{{ memory.description }}</p>
+              <!--<h6>{{ memory.owner.first_name }} owns this memory.</h6>-->
+              <!--<a href="{% url 'attach_file' memory.id %}" class="btn btn-secondary btn-sm add-file-button">Manage Memory/Files</a>-->
+              <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = ".preview-memory-collapse-{{ memory.id }}" aria-expanded="false" aria-controls="collapseExample">Preview All</a>-->
             </div>
 
 
-            <div class = "card-columns">
+            <div class = "card-columns ">
             {% for file in files %}
               {% if file.memory == memory %}
               <div class = "card file-card">
                 <!--<h5  data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{file.name}}</h5>-->
-                <h4>{{file.name}}</h4>
                 <!--<h5  data-toggle ="tooltip"  title = "Location: {{memory.city}}, {{memory.state}}" data-placement="top">{{file.name}}</h5>-->
-                <a href="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" target="_blank">
-                  {% if file.file_type == 'audio' %}
-                  <i class="fa fa-file-audio-o "></i>
-                  {% elif file.file_type == 'video' %}
-                  <i class="fa fa-file-video-o "></i>
-                  {% elif file.file_type == 'application' %}
-                  <i class="fa fa-file-text-o "></i>
-                  {% elif file.file_type == 'image' %}
-                  <i class="fa fa-file-image-o "></i>
-                  {% else %}
-                  <i class="fa fa-file-o "></i>
-                  {% endif %}
-                </a>
-                <br>
-                <a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-{{ file.file_id }}" aria-expanded="false" aria-controls="collapseExample">Preview</a>
-                <div class="collapse preview-memory-collapse-{{ memory.id }}" id ="preview-file-collapse-{{ file.file_id }}" >
-                  <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom"></iframe>
+                <div class = "info-of-card">
+                  <a href="{% url 'edit_file' file.id %}">
+                    <h4>
+                      {% if file.file_type == 'audio' %}
+                      <i class="fa fa-file-audio-o "></i>
+                      {% elif file.file_type == 'video' %}
+                      <i class="fa fa-file-video-o "></i>
+                      {% elif file.file_type == 'application' %}
+                      <i class="fa fa-file-text-o "></i>
+                      {% elif file.file_type == 'image' %}
+                      <i class="fa fa-file-image-o "></i>
+                      {% else %}
+                      <i class="fa fa-file-o "></i>
+                      {% endif %}
+                      {{file.name}}
+                    </h4>
+                  </a>
                 </div>
+                <br>
+                <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-{{ file.file_id }}" aria-expanded="false" aria-controls="collapseExample">Preview</a>-->
+                <!--<div class="collapse preview-memory-collapse-{{ memory.id }}" id ="preview-file-collapse-{{ file.file_id }}" >-->
+                <div class = "iframe-class">
+                  <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
+                </div>
+                <div class = "file-description">
+                  {{file.description}}
+                </div>
+                <!--</div>-->
               </br>
               <!--Delete button
                 <a class = "delete-file-button" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete File</a>
@@ -177,10 +225,14 @@
               {% endif %}
             -->
             {% endfor %}
+            <div class = "card add-file-card file-card center-block">
+              <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
+            </div>
           </div>
 
+
             <div class = "card-block footer-block">
-              <h6>Memory Owner: {{ memory.owner.first_name }}</h6>
+
               <!--eidtmemory button
               <a href="{% url 'attach_file' memory.id %}">Edit Memory</a>
 
@@ -220,7 +272,8 @@
   </div>
 
   <!--Last Timeline Divider-->
-  <div class = "row">
+  {% if last_year > 0 %}
+  <div class = "row bottom-buffer-end">
     <div class = "col-lg 12">
       <div class="timeline-divider text-center">
         <hr/>
@@ -229,6 +282,7 @@
       </div>
     </div>
   </div>
+  {% endif %}
 
 <!--  Modal for adding memory -->
 
@@ -266,12 +320,10 @@
       </div>
     </div>
   </div>
-
-
-
 {% endblock %}
 
 {% block js %}
+  <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
   <script src = {% static "timeline/js/view.js" %}></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script>
 {% endblock %}

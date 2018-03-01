@@ -25,7 +25,7 @@ const parent_id = '{{ parent_id }}';
 <br>
   <div class="container col-sm-10 col-sm-offset-10">
     <div class = "header-class">
-      <a href = "{% url 'timelines' %}"><i class="fa fa-arrow-left"></i>Back</a>
+      <a href = "{% url 'view' timeline_id %}"><i class="fa fa-arrow-left"></i>Back</a>
       <h1>Timeline Information</h1>
     </div>
   </div>
@@ -50,8 +50,32 @@ const parent_id = '{{ parent_id }}';
         <br>
         <div class="row">
           <div class="create-timeline">
-            <button id="create-timeline" class="btn btn-primary pull-right" type="submit" name="action">Create Timeline</button>
+            <button id="create-timeline" class="btn btn-primary pull-right" type="submit" name="action">Update Timeline</button>
           </div>
+          <div class="create-timeline">
+            <button type="button" id="delete-timeline" class="btn btn-danger bottom-buffer" data-toggle="modal" data-target="#confirm-delete-timeline">Delete Timeline</button>
+          </div>
+
+          <!-- Modal for delete -->
+            <div class="modal fade" id="confirm-delete-timeline" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h2 >Confirm delete?</h2>
+                      </div>
+                      <div class="modal-body">
+                          <p>Are you sure you wish to delete this timeline?</p>
+                          <p style = "font-style: italic">Note: This will not delete the folder in your Google Drive folder. This will only make the folder inactive on this website. You will still have access to the folder through your Google Drive.</p>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                          <a href = "{% url 'delete' timeline_id %}" class="btn btn-danger btn-ok">Confirm Delete</a>
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+
         </div>
     </form>
     </div>

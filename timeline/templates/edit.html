@@ -13,10 +13,10 @@
 <br>
   <div class="container col-sm-10 col-sm-offset-10">
     <div class = "header-class">
-    <a href = "{% url 'timelines'  %}"><i class="fa fa-arrow-left"></i>Back</a>
+    <a class = "back-button" href = "{% url 'timelines'  %}"><i class="fa fa-arrow-left"></i>Back</a>
     <h1> Edit Your Timeline</h1>
   </div>
-  <div class="container-fluid col-lg-4"
+  <div class="container-fluid col-lg-4">
     <div class="row">
       <form method="POST">
         {% csrf_token %}
