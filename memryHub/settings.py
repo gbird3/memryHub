@@ -140,7 +140,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = [
     'desolate-cliffs-30112.herokuapp.com',
-    'memryHub.com',
+    '.memryHub.com',
     'localhost'
 ]
 
@@ -189,6 +189,11 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'https://www.googleapis.com/auth/userinfo.profile',
     'https://www.googleapis.com/auth/drive'
 ]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {
+    'access_type': 'offline',
+    # 'approval_prompt': 'force'
+}
 
 ## Un-comment when needing to debug on prod.
 
