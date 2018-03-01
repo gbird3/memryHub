@@ -140,7 +140,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = [
     'desolate-cliffs-30112.herokuapp.com',
-    'memryHub.com',
+    '.memryHub.com',
     'localhost'
 ]
 
