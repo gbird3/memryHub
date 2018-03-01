@@ -169,6 +169,6 @@ def testEmail(request):
             }
         )
 
-    send_mail('Test Email', 'Test wants to share a memory with you on MemryHub. Sign up now', 'support@memryhub.com', ['gregbird12@gmail.com'], fail_silently=False, html_message=html_message)
+    send_mail('Test Email', 'Test wants to share a memory with you on MemryHub. Sign up now', 'memryhub@memryhub.com', ['gregbird12@gmail.com'], fail_silently=False, html_message=html_message)
 
     return render(request, 'email.html', )
