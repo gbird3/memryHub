@@ -11,13 +11,13 @@
 
 {% block content %}
 <br>
-  <div class="container col-sm-10 col-sm-offset-10">
+<div class="container col-sm-10 col-sm-offset-10">
     <div class = "header-class">
     <a href = "{% url 'timelines'  %}"><i class="fa fa-arrow-left"></i>Back</a>
-    <h1>Timeline Sharing</h1>
-  </div>
+    <h1>{{ timeline.name }} Sharing Settings</h1>
   <br>
-  <div class="container-fluid col-lg-8">
+</div>
+<div class="container col-sm-8">
     <div class="row">
       <h5>Timeline Users</h5>
       <table class="table table-striped">
@@ -45,13 +45,22 @@
       </table>
     </div>
     <br><br>
+    <div id="share-success" class="alert alert-success" style="display: none;" role="alert">
+      <h5>Timeline Shared</h5>
+      <p>The timeline has been successfully shared with the user.</p>
+    </div>
+    <div id="share-email" class="alert alert-info" style="display: none;" role="alert">
+      <h4>Email Sent</h4>
+      <p>The invited user does not have a MemryHub account. An email has been sent to invite them. Once they have joined, you will need to share this timeline with them again!</p>
+    </div>
 
     <div class="row">
+      {% csrf_token %}
       <h5>Add New Users</h5>
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">Name</th>
+            <!-- <th scope="col">Name</th> -->
             <th scope="col">Email</th>
             <th scope="col">Access</th>
             <th></th>
@@ -59,43 +68,47 @@
         </thead>
         <tbody>
           <tr>
-            <th><input type="text" class="form-control" placeholder="Name"></th>
-            <td><input type="text" class="form-control" placeholder="Email"></td>
+            <!-- <th><input type="text" id="new_user_name" class="form-control" placeholder="Name"></th> -->
+            <td><input type="text" id="new_user_email_1" type="email" class="form-control" placeholder="Email"></td>
             <td>
-              <select class="custom-select" required>
+              <select id="new_user_access_1" class="custom-select" required>
                 <option value="read">Read Access</option>
                 <option value="edit">Edit Access</option>
               </select>
             </td>
-            <td><button class="btn btn-primary" type="button">Share <i class="fas fa-share"></i></button></td>
+            <td><button id="share_1" class="btn btn-primary" onclick="share(1, {{ timeline.id }})" type="button">Share <i class="fas fa-share"></i></button></td>
           </tr>
 
           <tr>
-            <th><input type="text" class="form-control" placeholder="Name"></th>
-            <td><input type="text" class="form-control" placeholder="Email"></td>
+            <!-- <th><input type="text" class="form-control" placeholder="Name"></th> -->
+            <td><input id="new_user_email_2" type="text" type="email" class="form-control" placeholder="Email"></td>
             <td>
-              <select class="custom-select" required>
+              <select id="new_user_access_2" class="custom-select" required>
                 <option value="read">Read Access</option>
                 <option value="edit">Edit Access</option>
               </select>
             </td>
-            <td><button class="btn btn-primary" type="button">Share <i class="fas fa-share"></i></button></td>
+            <td><button id="share_2" class="btn btn-primary" onclick="share(2, {{ timeline.id }})" type="button">Share <i class="fas fa-share"></i></button></td>
           </tr>
 
           <tr>
-            <th><input type="text" class="form-control" placeholder="Name"></th>
-            <td><input type="text" class="form-control" placeholder="Email"></td>
+            <!-- <th><input type="text" class="form-control" placeholder="Name"></th> -->
+            <td><input id="new_user_email_3" type="text" type="email" class="form-control" placeholder="Email"></td>
             <td>
-              <select class="custom-select" required>
+              <select id="new_user_access_3" class="custom-select" required>
                 <option value="read">Read Access</option>
                 <option value="edit">Edit Access</option>
               </select>
             </td>
-            <td><button class="btn btn-primary" type="button">Share <i class="fas fa-share"></i></button></td>
+            <td><button id="share_3" class="btn btn-primary" onclick="share(3, {{ timeline.id }})" type="button">Share <i class="fas fa-share"></i></button></td>
           </tr>
         </tbody>
       </table>
     </div>
-
   </div>
-<!-- {% endblock %} -->
+</div>
+{% endblock %}
+
+{% block js %}
+  <script src = {% static "timeline/js/sharing.js" %}></script>
+{% endblock %}

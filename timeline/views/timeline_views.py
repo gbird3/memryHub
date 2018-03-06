@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django import forms
 from django.forms import ModelForm
@@ -229,6 +230,28 @@ def timeline_sharing(request, timeline_id):
     }
 
     return render(request, 'sharing.html', template_vars)
+
+@login_required(login_url='/login')
+def api_share_timeline(request):
+    if request.method == 'POST':
+        email = request.POST.__getitem__('email')
+
+        if User.objects.filter(email=email).exists():
+            print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', request.POST.__getitem__('timeline'))
+            status = 200
+        else:
+            html_message = loader.render_to_string(
+                    '../templates/email.html',
+                    {
+                        'user': request.user.get_full_name()
+                    }
+            )
+
+            send_mail('MemryHub Invite', '{} wants to share a Timeline with you on MemryHub. Sign up at memryhub.com'.format(request.user.get_full_name()), 'memryhub@memryhub.com', [email], fail_silently=False, html_message=html_message)
+
+            status = 201
+
+    return HttpResponse(status)
 
 @login_required(login_url='/login')
 def testEmail(request):
