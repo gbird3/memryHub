@@ -138,6 +138,7 @@
                 <a href="{% url 'edit_file' file.id %}"></a>
                 <div class = "info-of-card">
                     <h4>
+                      <!--
                       {% if file.file_type == 'audio' %}
                       <i class="fa fa-file-audio-o "></i>
                       {% elif file.file_type == 'video' %}
@@ -149,14 +150,27 @@
                       {% else %}
                       <i class="fa fa-file-o "></i>
                       {% endif %}
+                    -->
                       {{file.name}}
                     </h4>
                 </div>
                 <br>
                 <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-{{ file.file_id }}" aria-expanded="false" aria-controls="collapseExample">Preview</a>-->
                 <!--<div class="collapse preview-memory-collapse-{{ memory.id }}" id ="preview-file-collapse-{{ file.file_id }}" >-->
-                <div class = "iframe-class">
-                  <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
+                <div class = "iframe-class center-block">
+                  <!--<iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>-->
+
+                  {% if file.file_type == 'audio' %}
+                    <i class="fa fa-file-audio-o fa-5x"></i>
+                  {% elif file.file_type == 'video' %}
+                    <i class="fa fa-file-video-o fa-5x"></i>
+                  {% elif file.file_type == 'application' %}
+                    <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
+                  {% elif file.file_type == 'image' %}
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id={{ file.file_id }}" alt="Image">
+                  {% else %}
+                  <i class="fa fa-file-o "></i>
+                  {% endif %}
                 </div>
                 <div class = "file-description">
                   {{file.description}}
