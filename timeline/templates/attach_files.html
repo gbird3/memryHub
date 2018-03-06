@@ -28,7 +28,7 @@ const timeline_id = '{{ timeline_id }}'
 <br>
   <div class="container-fluid col-sm-10 col-sm-offset-10">
     <div class = "header-class ">
-      <a href = "{% url 'view' timeline_id %}"><i class="fa fa-arrow-left"></i>Back</a>
+      <a class = "back-button" href = "{% url 'view' timeline_id %}"><i class="fa fa-arrow-left"></i>Back</a>
       <h1>Manage Memory/Files</h1>
     </div>
     </br>
@@ -102,14 +102,14 @@ const timeline_id = '{{ timeline_id }}'
           {% endif %}
         </div>
         <div class="row">
-          <div class="create-timeline center-block">
+          <div class="center-block">
             <button class="btn btn-primary" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
             <button id="save-memory" class="btn btn-primary" type="submit" name="action">Save</button>
+          </br>
             <button type = "button" class = "btn btn-danger" data-toggle="modal" data-target="#confirm-delete-memory">Delete Memory</a>
           </div>
-
+        </div>
           <!-- Modal for delete memory -->
-
             <div class="modal fade" id="confirm-delete-memory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                   <div class="modal-content">
@@ -129,7 +129,6 @@ const timeline_id = '{{ timeline_id }}'
             </div>
 
 
-        </div>
     </form>
     </div>
   </div>

@@ -1,3 +1,19 @@
+.card{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card-block{
+  margin-top: 2%;
+}
+
+.top-buffer-first{
+  margin-top: 3%;
+}
+
 .side-buffer{
     margin-left: 10%;
     margin-right: 10%;
@@ -5,4 +21,44 @@
 
 .btn-block+.btn-block {
     margin-top: 0rem;
+}
+
+#btn-new-timeline{
+  background-color: #8DC63F;
+  color: white;
+}
+
+#timeline-tutorial{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #49BFDC;
+}
+
+.back-button{
+  color:#49BFDC;
+}
+
+.bottom-buffer{
+  margin-bottom: 60px;
+}
+
+.card-title{
+  margin-left: 3%;
+  color: black;
+}
+
+.card-text{
+  margin-left: 3%;
+  margin-top: -2%;
+  color: black;
+}
+
+.text-card-block{
+    margin-bottom: 15px;
+}
+
+a:hover{
+  color: black;
+  text-decoration: none;
 }

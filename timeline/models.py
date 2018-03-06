@@ -37,6 +37,10 @@ class Memory(models.Model):
     update_time = models.DateTimeField(auto_now=True)
     active = models.SmallIntegerField(default=1)
 
+    def __date__(self):
+        if self.day:
+            print("testing.........")
+
 class File(models.Model):
     '''Files attached to a memory (Pictures, Videos, Audio, Text).'''
     memory = models.ForeignKey(Memory, on_delete=models.CASCADE)

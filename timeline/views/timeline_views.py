@@ -1,18 +1,24 @@
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django import forms
 from django.forms import ModelForm
 
+from datetime import datetime
+from django.core.mail import send_mail
+from django.template import loader
+
 from ..models import Timeline, Memory, File
 from home.models import UserInfo
-from ..gdrive import createFolder, changeFileData
+from ..gdrive import createFolder, changeFileData, getAccessToken
 
 @login_required(login_url='/login')
 def timelines(request):
     '''View all Timelines'''
     timelines = Timeline.objects.filter(owner=request.user, active=1).order_by('name')
-    return render(request, 'timeline.html', {'timelines': timelines})
+    timeline_count = timelines.count()
+    return render(request, 'timeline.html', {'timelines': timelines,'timeline_count':timeline_count})
 
 @login_required(login_url='/login')
 def api_create_timeline(request):
@@ -40,16 +46,15 @@ def api_create_timeline(request):
 
 @login_required(login_url='/login')
 def edit_timeline(request, timeline_id):
-    user = request.user
-    social = user.social_auth.get(provider='google-oauth2')
-    access_token = social.extra_data['access_token']
+    access_token = getAccessToken(request.user)
 
     t = get_object_or_404(Timeline, pk=timeline_id)
 
     data = {
         'name': t.name,
         'picture': t.image,
-        'title': t.image_title
+        'title': t.image_title,
+        'timeline_id':timeline_id
     }
 
     form = CreateTimelineForm(initial=data)
@@ -75,7 +80,8 @@ def edit_timeline(request, timeline_id):
     template_vars = {
         'form': form,
         'parent_id': t.timeline_folder_id,
-        'access_token': access_token
+        'access_token': access_token,
+        'timeline_id':timeline_id
     }
 
     return render(request, 'create.html', template_vars)
@@ -95,6 +101,9 @@ def view(request, timeline_id):
     memories = Memory.objects.filter(timeline_id=timeline_id, active=1).order_by('year')
     files = File.objects.filter(memory__in = memories, active=1)
 
+    access_token = getAccessToken(request.user)
+
+    date_dict = {}
 
     #adding divider years between memories
     if hasattr(memories.first(), 'year'):
@@ -116,12 +125,62 @@ def view(request, timeline_id):
         temp_divider.divider_year = 2000
 
         for e in memories_with_years:
+#            if hasattr(e,'year'):
+#                my_time = '00:00'
+#                if e.day is None:
+#                    my_day = '01'
+#                    my_time = '2:01'
+#                else:
+#                    my_day = str(e.day)
+#
+#                if e.month is None:
+#                    my_month = '01'
+#                    my_time = '2:02'
+#                else:
+#                    my_month = str(e.month)
+#
+#                if e.year is None:
+#                    my_year = '1900'
+#                    my_time = '2:03'
+#                else:
+#                    my_year = str(e.year)
+#                date_dict[e.id] = datetime.strptime(my_year + ' ' + my_month + ' ' + my_day + ' ' + my_time, '%Y %m %d %H:%M')
+#                print('++++++++++++++++++++++++++++++++++++++',date_dict)
             if hasattr(e,'year'):
                 if e.year >= temp_year:
                     temp_divider = Divider_Object()
                     temp_divider.divider_year = temp_year
                     memories_with_years.insert(temp_position,temp_divider)
                     temp_year = temp_year + 10
+                if e.month == 1:
+                    e.month = "January"
+                elif e.month == 2:
+                    e.month = "February"
+                elif e.month == 3:
+                    e.month = "March"
+                elif e.month == 4:
+                    e.month = "April"
+                elif e.month == 5:
+                    e.month = "May"
+                elif e.month == 6:
+                    e.month = "June"
+                elif e.month == 7:
+                    e.month = "July"
+                elif e.month == 8:
+                    e.month = "August"
+                elif e.month == 9:
+                    e.month = "September"
+                elif e.month == 10:
+                    e.month = "October"
+                elif e.month == 11:
+                    e.month = "November"
+                elif e.month == 12:
+                    e.month = "December"
+                else:
+                    e.month = None
+                print("++++++++++++++++++++++++++++++++",e.year)
+                print("++++++++++++++++++++++++++++++++",e.month)
+                print("++++++++++++++++++++++++++++++++",e.day)
             temp_position = temp_position + 1
     else:
         memories_with_years = list(memories)
@@ -137,13 +196,17 @@ def view(request, timeline_id):
         first_year = ""
         last_year = ""
 
+    memory_count = memories.count()
+
     template_vars = {
         'timeline': timeline,
         'memories': memories,
         'files': files,
         'first_year': first_year,
         'last_year': last_year,
-        'memories_with_years': memories_with_years
+        'memories_with_years': memories_with_years,
+        'memory_count': memory_count,
+        'date_dict':date_dict
     }
 
     return render(request, 'view.html', template_vars)
@@ -156,3 +219,52 @@ def delete(request, timeline_id):
     t.save()
 
     return HttpResponseRedirect('/timeline')
+
+@login_required(login_url='/login')
+def timeline_sharing(request, timeline_id):
+    timeline = get_object_or_404(Timeline, pk=timeline_id)
+
+
+    template_vars = {
+        'timeline': timeline
+    }
+
+    return render(request, 'sharing.html', template_vars)
+
+@login_required(login_url='/login')
+def api_share_timeline(request):
+    if request.method == 'POST':
+        email = request.POST.__getitem__('email')
+
+        if User.objects.filter(email=email).exists():
+            print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', request.POST.__getitem__('timeline'))
+            status = 200
+        else:
+            html_message = loader.render_to_string(
+                    '../templates/email.html',
+                    {
+                        'user': request.user.get_full_name()
+                    }
+            )
+
+            send_mail('MemryHub Invite', '{} wants to share a Timeline with you on MemryHub. Sign up at memryhub.com'.format(request.user.get_full_name()), 'memryhub@memryhub.com', [email], fail_silently=False, html_message=html_message)
+
+            status = 201
+
+    return HttpResponse(status)
+
+@login_required(login_url='/login')
+def testEmail(request):
+    # send_mail('Subject here', 'Here is the message.', 'from@example.com', ['to@example.com'], fail_silently=False)
+
+    html_message = loader.render_to_string(
+            '../templates/email.html',
+            {
+                'user': request.user.get_full_name(),
+                'memory': 'Test Memory'
+            }
+        )
+
+    send_mail('Test Email', 'Test wants to share a memory with you on MemryHub. Sign up now', 'memryhub@memryhub.com', ['gregbird12@gmail.com'], fail_silently=False, html_message=html_message)
+
+    return render(request, 'email.html', )

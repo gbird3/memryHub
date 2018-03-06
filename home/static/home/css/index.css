@@ -81,3 +81,7 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.bottom-buffer{
+  margin-bottom: 50px;
+}

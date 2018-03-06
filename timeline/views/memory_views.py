@@ -7,7 +7,7 @@ from django.forms import ModelForm
 import json
 
 from ..models import Timeline, Memory, File
-from ..gdrive import createFolder, changeFileData
+from ..gdrive import createFolder, changeFileData, getAccessToken
 
 class UserAddsMemoryForm(forms.Form):
     memory_name = forms.CharField(label='Memory Name', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Memory Name'}))
@@ -23,9 +23,9 @@ class UserAddsMemoryForm(forms.Form):
 def api_add_memory(request):
     if request.method == 'POST':
         timeline = get_object_or_404(Timeline, pk=request.POST.__getitem__('timeline'))
-        
+
         data = createFolder(request.user, request.POST.__getitem__('name'), timeline.timeline_folder_id)
-        print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', data)
+
         m = Memory()
         m.name = request.POST.__getitem__('name')
         m.year = request.POST.__getitem__('year')
@@ -39,14 +39,12 @@ def api_add_memory(request):
 
 @login_required(login_url='/login')
 def attach_files(request, memory_id):
-    user = request.user
     memory = get_object_or_404(Memory, pk=memory_id)
     files = File.objects.filter(memory=memory_id, active=1)
 
     timeline = get_object_or_404(Timeline, pk=memory.timeline_id.id)
 
-    social = user.social_auth.get(provider='google-oauth2')
-    access_token = social.extra_data['access_token']
+    access_token = getAccessToken(request.user)
 
     data = {
         'memory_name': memory.name,
@@ -67,7 +65,6 @@ def attach_files(request, memory_id):
                 m = Memory.objects.get(pk=memory_id)
 
                 response = changeFileData(request.user, m.folder_id, form.cleaned_data.get('memory_name'), form.cleaned_data.get('memory_description'))
-                print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', response)
                 m.day = form.cleaned_data.get('start_day')
                 m.month = form.cleaned_data.get('start_month')
                 m.year = form.cleaned_data.get('start_year')

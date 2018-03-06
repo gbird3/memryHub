@@ -1,24 +1,64 @@
+.bottom-buffer{
+  margin-bottom: 20px;
+}
+
+.bottom-buffer-end{
+  margin-bottom: 100px;
+}
+
+.header-block{
+  margin-left: 1%;
+}
+
 .main-title {
-  text-align: center;
+  margin-top: 2%;
+  text-align: left;
 }
 
 .main-title h1 {
-  display: inline;
-  float: center;
-  text-align: center;
-  margin-right: 3%;
-}
-
-.main-title a {
-  float: left;
   text-align: left;
-  margin-top: 13px;
+  display: inline;
+}
+
+.edit-time-span{
+  margin-left: 1%;
+  color:black;
+}
+
+.card-subtitle{
+
+}
+
+.memory-name h3{
+  margin-top: .5%;
+  text-align: left;
+  display: inline;
+}
+
+.edit-memory-span{
+  margin-left: 1%;
+  color:black;
 }
 
 
-#add-memory-button{
+#memory-tutorial{
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
+  color: #49BFDC;
+}
+
+#add-memory-button{
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #8DC63F;
+  color: white;
+}
+
+.back-button{
+  color:#49BFDC;
+  text-align: left;
 }
 
 .card{
@@ -26,8 +66,13 @@
   margin-top: 20px;
 }
 
+.main-card{
+  border: none;
+}
+
 h5{
   font-size: small;
+  margin-bottom: -2px;
 }
 
 h4{
@@ -37,43 +82,37 @@ h4{
 .file-card{
   margin-right: 30px;
   display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.file-card .info-of-card{
+  margin-left: 3%;
+  margin-top: 3%  ;
+}
+
+.file-card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.file-card a{
+  color:black;
+}
+
+.btn-add-file-card{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 25%;
+  margin-bottom: 25%;
 }
 
 .card-description{
-  margin-left: 15%;
-  margin-right: 15%;
   margin-bottom: 0%;
 }
 
-.picture-block{
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.photo-card{
-  margin-left: 20%;
-  margin-right: 20%;
-}
-
-.audio-block{
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.audio-block iframe{
-  width: auto;
-  border:none;
-
-}
-
-.video-block{
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.text-block{
-  margin-bottom: 20px;
-  margin-top: 20px;
+.file-description{
+  margin-left: 4%;
+  margin-top: 3%;
 }
 
 .center-block{
@@ -90,4 +129,19 @@ h4{
 .delete-file-button{
   color:red;
   font-size: small;
+}
+
+.color-row{
+  /*background: #dcedc4;*/
+}
+
+.iframe-class{
+  margin-left: 5%;
+  margin-right: 5%;
+  width: auto;
+}
+
+.timeline-divider{
+  background-url: "../media/dust_scratches.png";
+  background: url("../media/dust_scratches.png") top center;
 }

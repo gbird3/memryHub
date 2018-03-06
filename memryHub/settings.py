@@ -140,7 +140,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = [
     'desolate-cliffs-30112.herokuapp.com',
-    'memryHub.com',
+    '.memryHub.com',
     'localhost'
 ]
 
@@ -159,6 +159,11 @@ STATICFILES_DIRS = [
 # https://warehouse.python.org/project/whitenoise/
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'memryHub'
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
@@ -184,6 +189,11 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'https://www.googleapis.com/auth/userinfo.profile',
     'https://www.googleapis.com/auth/drive'
 ]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {
+    'access_type': 'offline',
+    # 'approval_prompt': 'force'
+}
 
 ## Un-comment when needing to debug on prod.
 
