@@ -28,32 +28,50 @@ const timeline_id = '{{ timeline_id }}'
   <div class="container-fluid col-sm-10 col-sm-offset-10">
     <div class = "header-class ">
       <a class = "back-button" href = "{% url 'view' timeline_id %}"><i class="fa fa-arrow-left"></i>Back</a>
-      <h1>Manage Memory/Files</h1>
+    </br>
+      <h1>Edit Memory</h1>
     </div>
     </br>
   </div>
-  <div class ="container-fluid col-sm-4">
+  <div class ="container-fluid col-sm-6 memory-form">
     <div class="row center-block">
       <form method="POST">
         {% csrf_token %}
 
+        {{ form.memory_name.label_tag}}
         {{ form.memory_name }}
+
+        {{ form.memory_description.label_tag}}
         {{ form.memory_description }}
+
+        {{ form.start_year.label_tag}}
         {{ form.start_year }}
 
         <br>
         <button type = "button" class="btn btn-sm btn-secondary" data-toggle = "collapse" data-target = "#form-collapse" aria-expanded="false" aria-controls="collapseExample">More Options</button>
         <div class="collapse" id="form-collapse">
-          <div class="card card-block">
+          <div class="">
+            {{ form.start_day.label_tag}}
             {{ form.start_day }}
+
+            {{ form.start_month.label_tag}}
             {{ form.start_month }}
+
+            {{ form.city.label_tag}}
             {{ form.city }}
+
+            {{ form.state.label_tag}}
             {{ form.state }}
+
+            {{ form.country.label_tag}}
             {{ form.country }}
           </div>
         </div>
         <br>
         <br>
+      </div>
+    </div>
+    <div class ="container-fluid col-sm-10 file-table">
         <div class="row">
           {% if files %}
           <table class="table">
@@ -91,8 +109,6 @@ const timeline_id = '{{ timeline_id }}'
                       </div>
                   </div>
                 </div>
-
-
               {% endfor %}
             </tbody>
           </table>
@@ -102,10 +118,9 @@ const timeline_id = '{{ timeline_id }}'
         </div>
         <div class="row">
           <div class="center-block">
-            <button class="btn btn-primary" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
+            <button class="btn btn-success" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
             <button id="save-memory" class="btn btn-primary" type="submit" name="action">Save</button>
-          </br>
-            <button type = "button" class = "btn btn-danger" data-toggle="modal" data-target="#confirm-delete-memory">Delete Memory</a>
+            <button type = "button" class = "btn btn-danger delete-memory" data-toggle="modal" data-target="#confirm-delete-memory">Delete Memory</a>
           </div>
         </div>
           <!-- Modal for delete memory -->
@@ -121,7 +136,7 @@ const timeline_id = '{{ timeline_id }}'
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                          <a href = "{% url 'delete_memory' memory_id %}" class="btn btn-danger btn-ok">Confirm Delete</a>
+                          <a href = "{% url 'delete_memory' memory_id %}" class="btn btn-danger btn-ok confirm-delete-button">Confirm Delete</a>
                       </div>
                   </div>
               </div>

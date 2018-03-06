@@ -29,8 +29,8 @@ const parent_id = '{{ parent_id }}';
       <h1>Timeline Information</h1>
     </div>
   </div>
-  <div class = "container-fluid col-sm-10 timeline-form">
-    <div class="row ">
+  <div class = "container-fluid col-sm-6 timeline-form">
+    <div class="row center-block">
       <form method="POST">
         {% csrf_token %}
         {{ form.picture }}
