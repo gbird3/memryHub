@@ -1,22 +1,9 @@
 .header-class {
-  text-align: center;
+  text-align: left;
 }
 
 .back-button{
   color:#49BFDC;
-}
-
-.header-class h1{
-  float: center;
-  text-align: center;
-  display: inline;
-  margin-right: 3%;
-}
-
-.header-class a{
-  float: left;
-  text-align: left;
-  margin-top: 13px;
 }
 
 .center-block{
@@ -33,4 +20,16 @@
 label {
   padding-bottom: .2em;
   padding-top: .3em;
+}
+
+.timeline-form{
+  margin-left: 10%;
+}
+
+#delete-timeline{
+  background-color: #ff5555;
+}
+
+#update-timeline{
+  background-color: #4285F4;
 }
