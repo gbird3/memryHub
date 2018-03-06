@@ -6,7 +6,6 @@
 
 {% block css %}
   <link rel="stylesheet" type="text/css" href={% static "timeline/css/view.css" %}>
-  <link rel="stylesheet" type="text/css" href={% static "home/css/font-awesome/css/font-awesome.min.css" %}>
 
   <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   <script type="text/javascript">
@@ -136,10 +135,8 @@
             {% for file in files %}
               {% if file.memory == memory %}
               <div class = "card file-card">
-                <!--<h5  data-toggle ="tooltip" title = "Location: {{memory.city}}, {{memory.state}}" data-placement="bottom">{{file.name}}</h5>-->
-                <!--<h5  data-toggle ="tooltip"  title = "Location: {{memory.city}}, {{memory.state}}" data-placement="top">{{file.name}}</h5>-->
+                <a href="{% url 'edit_file' file.id %}"></a>
                 <div class = "info-of-card">
-                  <a href="{% url 'edit_file' file.id %}">
                     <h4>
                       {% if file.file_type == 'audio' %}
                       <i class="fa fa-file-audio-o "></i>
@@ -154,7 +151,6 @@
                       {% endif %}
                       {{file.name}}
                     </h4>
-                  </a>
                 </div>
                 <br>
                 <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-{{ file.file_id }}" aria-expanded="false" aria-controls="collapseExample">Preview</a>-->
@@ -171,6 +167,7 @@
                 <a class = "delete-file-button" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete File</a>
                 -->
               </div>
+
 
               <!-- Modal for delete
 
@@ -225,9 +222,12 @@
               {% endif %}
             -->
             {% endfor %}
+            <a class = "no-underline" href="{% url 'attach_file' memory.id %}">
             <div class = "card add-file-card file-card center-block">
-              <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
+              <button type = "button" class="btn btn-primary btn-add-file-card" >Add Files</button>
+              <!--<button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>-->
             </div>
+            </a>
           </div>
 
 
