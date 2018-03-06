@@ -29,7 +29,21 @@ const timeline_id = '{{ timeline_id }}'
     <div class = "header-class ">
       <a class = "back-button" href = "{% url 'view' timeline_id %}"><i class="fa fa-arrow-left"></i>Back</a>
     </br>
-      <h1>Edit Memory</h1>
+      <h1>{{ memory.name }}
+
+        {% if memory.day is None and memory.month is None and memory.year is None%}
+
+        {% elif memory.day is None and memory.month is None%}
+          ({{ memory.year }})
+        {% elif memory.day is None %}
+          ({% if memory.month == 1 %}January{% elif memory.month == 2 %}February{% elif memory.month == 3 %}March{% elif memory.month == 4 %}April{% elif memory.month == 5 %}May{% elif memory.month == 6 %}June{% elif memory.month == 7 %}July{% elif memory.month == 8 %}August{% elif memory.month == 9 %}Sepetember{% elif memory.month == 10 %}October{% elif memory.month == 11 %}November{% elif memory.month == 12 %}December{% endif %}
+          , {{ memory.year }})
+        {% else %}
+          ({% if memory.month == 1 %}January{% elif memory.month == 2 %}February{% elif memory.month == 3 %}March{% elif memory.month == 4 %}April{% elif memory.month == 5 %}May{% elif memory.month == 6 %}June{% elif memory.month == 7 %}July{% elif memory.month == 8 %}August{% elif memory.month == 9 %}Sepetember{% elif memory.month == 10 %}October{% elif memory.month == 11 %}November{% elif memory.month == 12 %}December{% endif %}
+          {{memory.day}}, {{ memory.year }})
+        {% endif %}
+
+      </h1>
     </div>
     </br>
   </div>
