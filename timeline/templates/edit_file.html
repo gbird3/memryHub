@@ -13,28 +13,33 @@
   <div class="container-fluid col-sm-10 col-sm-offset-10">
     <div class = "header-class ">
       <a class = "back-button" href = "{% url 'attach_file' memory_id %}"><i class="fa fa-arrow-left"></i>Back</a>
+    </br>
       <h1>Edit File Information</h1>
     </div>
     </br>
-  </div>
-  <div class="container col-sm-4 col-sm-offset-4">
-    <div class="row center-block">
+
+  <div class="row">
+    <div class="col-sm-6 center-block">
       <form method="POST">
         {% csrf_token %}
         {{ form }}
         <br>
         <div class="row center-block">
           <div class="create-timeline">
-            <button class="btn btn-primary" type="submit" name="action">Save</button>
+            <button class="btn btn-primary save-button" type="submit" name="action">Save</button>
           </div>
         </div>
     </form>
     </div>
-    <br>
-    <h2>File Preview:</h2>
-    <div class="row center-block">
-      <iframe frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing" data-toggle ="tooltip" data-placement="bottom"></iframe>
+    <div class ="col-sm-6">
+      <div class = "file-preview">
+      File Preview:
+      </div>
+      <div class="center-block">
+        <iframe class = "preview-frame" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
+      </div>
+      <br>
     </div>
-    <br>
   </div>
+</div>
 {% endblock %}
