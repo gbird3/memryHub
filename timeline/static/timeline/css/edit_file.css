@@ -4,6 +4,10 @@
   display: block;
 }
 
+.back-button{
+  color:#49BFDC;
+}
+
 .header-class {
   text-align: center;
 }
