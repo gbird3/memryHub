@@ -72,6 +72,28 @@
           </div>
         </div>
       {% endfor %}
+
+      <div class="col-lg-4 center-block btn-block">
+        <h3>Timelines Shared with You</h3>
+        {% for shared in shared_timelines %}
+        <div>
+          <a href = "{% url 'view' shared.timeline.id %}">
+            <div class="card top-buffer card-outline-info bottom-buffer" style="width: 100%;">
+              {% if shared.timeline.image %}
+              <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ shared.timeline.image }}" alt="Timeline card image">
+              {% else %}
+              <img class="card-img-top img-fluid" src= {% static "/timeline/media/default-profile.png" %} alt="Timeline card image">
+              {% endif %}
+              <hr/>
+              <div class="card-block text-card-block">
+                <h4 class="card-title">{{ shared.timeline.name }}</h4>
+                <p class="card-text">{{ shared.timeline.description }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
   	</div>
 	</div>
 </div>
