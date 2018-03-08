@@ -14,11 +14,13 @@ class Timeline(models.Model):
     update_time = models.DateTimeField(auto_now=True)
     active = models.SmallIntegerField(default=1)
 
-class UserHasTimeline(models.Model):
+class SharedTimeline(models.Model):
     '''Timelines shared with users'''
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     timeline = models.ForeignKey(Timeline, on_delete=models.CASCADE)
-    permission = models.CharField(max_length=10, default='read')
+    permission = models.CharField(max_length=10, default='reader')
+    permission_id = models.CharField(null=True, blank=True, max_length=300)
+    active = models.SmallIntegerField(default=1)
 
 class Memory(models.Model):
     '''A specific aspect of the timeline that can hold memories'''
@@ -36,10 +38,6 @@ class Memory(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
     active = models.SmallIntegerField(default=1)
-
-    def __date__(self):
-        if self.day:
-            print("testing.........")
 
 class File(models.Model):
     '''Files attached to a memory (Pictures, Videos, Audio, Text).'''
