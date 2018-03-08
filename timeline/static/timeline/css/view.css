@@ -160,3 +160,13 @@ h4{
   background-url: "../media/dust_scratches.png";
   background: url("../media/dust_scratches.png") top center;
 }
+
+.modal-header{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.modal-body{
+  margin-left: 3%;
+  margin-right: 3%;
+}

@@ -15,9 +15,6 @@
   display: block;
 }
 
-h2{
-  font-size: medium;
-}
 
 .save-button{
   background-color: #4285F4;
@@ -31,3 +28,15 @@ h2{
 .file-preview{
   margin-bottom: 2%;
 }
+
+.modal-header{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.modal-body{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.row{margin-bottom: 20px;}
