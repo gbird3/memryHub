@@ -6,7 +6,6 @@
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href={% static "timeline/css/create.css" %}>
-<link rel="stylesheet" type="text/css" href={% static "home/css/font-awesome/css/font-awesome.min.css" %}>
 <script type="text/javascript">
 // The Browser API key obtained from the Google API Console.
 const developerKey = 'AIzaSyByL9-SR6OjZfHaV-YIQlxmFn9SeGTxKO8';
@@ -23,13 +22,14 @@ const parent_id = '{{ parent_id }}';
 
 {% block content %}
 <br>
-  <div class="container col-sm-10 col-sm-offset-10">
+  <div class="container col-sm-10">
     <div class = "header-class">
-      <a href = "{% url 'view' timeline_id %}"><i class="fa fa-arrow-left"></i>Back</a>
+      <a class = "back-button" href = "{% url 'view' timeline_id %}"><i class="fa fa-arrow-left"></i>Back</a>
+    </br>
       <h1>Timeline Information</h1>
     </div>
   </div>
-  <div class = "container-fluid col-sm-4">
+  <div class = "container-fluid col-sm-6 timeline-form">
     <div class="row center-block">
       <form method="POST">
         {% csrf_token %}
@@ -48,11 +48,9 @@ const parent_id = '{{ parent_id }}';
           </span>
         </div>
         <br>
-        <div class="row">
-          <div class="create-timeline">
-            <button id="create-timeline" class="btn btn-primary pull-right" type="submit" name="action">Update Timeline</button>
-          </div>
-          <div class="create-timeline">
+        <div class="row center-block">
+          <div class="">
+            <button id="update-timeline" class="btn btn-primary pull-right" type="submit" name="action">Save Timeline</button>
             <button type="button" id="delete-timeline" class="btn btn-danger bottom-buffer" data-toggle="modal" data-target="#confirm-delete-timeline">Delete Timeline</button>
           </div>
 

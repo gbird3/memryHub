@@ -17,7 +17,21 @@
 
 <div class="flex-container">
     <div class="row">
+      <div class = "col-sm-5">
         <a class="btn btn-outline-danger btn-large google-login" role="button" href="{% url "social:begin" "google-oauth2" %}?next=/timeline">Login with Google</a>
+      </div>
+
+
+      <div class = "col-sm-5">
+        <div class = "explanation">
+          <h1>Welcome to MemryHub.</h1>
+          <p>You'll need to log in with your Google Account, as Google Drive is where all of your memories will be stored.</p>
+          <p class = "question">What if I don't have a Google account?</p>
+          <p>A Google Account is required to use MemryHub. Click the "Login with Google" button and you'll be instructed on how to create an account.</p>
+          <p class = "question">How does MemryHub interact with my Google Drive?</p>
+          <p>MemryHub stores all of your uploaded files into your Google Drive, giving you complete control over your memories. MemryHub never deletes any files from your Google Drive. If you if you delete a file on the site, it still keeps a copy of the file safe on your Google Drive.</p>
+        </div>
+      </div>
     </div>
 </div>
 {% endblock %}
