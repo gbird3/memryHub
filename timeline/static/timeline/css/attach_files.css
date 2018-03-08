@@ -37,3 +37,7 @@
 .confirm-delete-button{
   background-color: #ff5555;
 }
+
+.table-hover tr {
+    cursor: pointer;
+}
