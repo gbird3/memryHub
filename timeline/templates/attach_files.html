@@ -27,7 +27,7 @@ const timeline_id = '{{ timeline_id }}'
 <br>
   <div class="container-fluid col-sm-10 col-sm-offset-10">
     <div class = "header-class ">
-      <a class = "back-button" href = "{% url 'view' timeline_id %}"><i class="fa fa-arrow-left"></i>Back</a>
+      <a class = "back-button" href = "{% url 'view' timeline_id %}#memory-{{memory.id}}"><i class="fa fa-arrow-left"></i>Back</a>
     </br>
       <h1>{{ memory.name }}
 
