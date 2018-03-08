@@ -1,5 +1,16 @@
 .header-class {
-  text-align: left;
+  text-align: center;
+}
+
+.back-button{
+  color:#49BFDC;
+}
+
+.header-class h1{
+  float: center;
+  text-align: center;
+  display: inline;
+  margin-right: 3%;
 }
 
 .back-button{

@@ -6,6 +6,13 @@
   color:#49BFDC;
 }
 
+.header-class h1{
+  float: center;
+  text-align: center;
+  display: inline;
+  margin-right: 3%;
+}
+
 .memory-form{
   margin-left: 9%;
 }

@@ -10,6 +10,8 @@ services:
   web:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
+    environment:
+      - SENDGRID_PASSWORD=${SENDGRID_PASSWORD}
     volumes:
       - .:/code
     ports:
