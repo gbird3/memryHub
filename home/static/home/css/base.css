@@ -20,6 +20,9 @@
   margin-right: auto;
 }
 
+.navbar .brand-image{
+  margin: 0px;
+}
 
 html {
   position: relative;

@@ -1,5 +1,5 @@
 .header-class {
-  text-align: center;
+  text-align: left;
 }
 
 .back-button{
@@ -13,10 +13,8 @@
   margin-right: 3%;
 }
 
-.header-class a{
-  float: left;
-  text-align: left;
-  margin-top: 13px;
+.memory-form{
+  margin-left: 9%;
 }
 
 .center-block{
@@ -30,9 +28,33 @@
 }
 
 #save-memory{
-  
+  background-color: #4285F4
 }
 
 #googleDrive{
+  background-color: #8DC63F;
+  color: white;
+  border-color: #8DC63F;
+}
 
+.delete-memory{
+  background-color: #ff5555;
+}
+
+.confirm-delete-button{
+  background-color: #ff5555;
+}
+
+.table-hover tr {
+    cursor: pointer;
+}
+
+.modal-header{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.modal-body{
+  margin-left: 3%;
+  margin-right: 3%;
 }

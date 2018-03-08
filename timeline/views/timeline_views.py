@@ -178,9 +178,6 @@ def view(request, timeline_id):
                     e.month = "December"
                 else:
                     e.month = None
-                print("++++++++++++++++++++++++++++++++",e.year)
-                print("++++++++++++++++++++++++++++++++",e.month)
-                print("++++++++++++++++++++++++++++++++",e.day)
             temp_position = temp_position + 1
     else:
         memories_with_years = list(memories)

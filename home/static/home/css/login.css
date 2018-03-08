@@ -4,32 +4,33 @@ html, body {
 body {
     margin: 0;
 }
-.flex-container {
-    /* height: 100%; */
-    padding: 0;
-    margin: 0;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    /* align-items: center; */
-    justify-content: center;
-}
-.row {
-    width: auto;
-}
-.flex-item {
-    padding: 5px;
-    width: 20px;
-    height: 20px;
-    margin: 10px;
-    line-height: 20px;
-    font-weight: bold;
-    font-size: 2em;
-    text-align: center;
-}
 
 .google-login {
   margin: 14em;
+  background-color: #dc3545;
+  color:white;
+}
+
+.google-login:hover{
+  background-color: transparent;
+  color: #dc3545;
+}
+
+.explanation{
+  margin-top: 20%;
+  margin-bottom: auto;
+
+}
+
+h1{
+  text-align: center;
+}
+
+p{
+  text-align: justify;
+}
+
+.question{
+  font-weight: bold;
+  margin-bottom: 0px;
 }
