@@ -205,7 +205,8 @@ def view(request, timeline_id):
         'last_year': last_year,
         'memories_with_years': memories_with_years,
         'memory_count': memory_count,
-        'date_dict':date_dict
+        'date_dict':date_dict,
+        'access_token': access_token
     }
 
     return render(request, 'view.html', template_vars)

@@ -1,6 +1,14 @@
 // Use the API Loader script to load google.picker and gapi.auth.
-function onGDriveButton() {
-	document.getElementById("save-memory").disabled = true;
+// The Browser API key obtained from the Google API Console.
+const developerKey = 'AIzaSyByL9-SR6OjZfHaV-YIQlxmFn9SeGTxKO8';
+
+// The Client ID obtained from the Google API Console. Replace with your own Client ID.
+const clientId = "416104053530-7lar744p4o8b7jqstahqiuovabi6qd4a.apps.googleusercontent.com"
+let pickerApiLoaded = false;
+
+function onGDriveButton(memory_id, parent_id) {
+  window.memory_id = memory_id
+  window.parent_id = parent_id
   gapi.load('picker', {'callback': onPickerApiLoad});
 }
 
@@ -12,10 +20,9 @@ function onPickerApiLoad() {
 function createPicker() {
   if (pickerApiLoaded && oauthToken) {
     let view = new google.picker.View(google.picker.ViewId.DOCS);
-
     var picker = new google.picker.PickerBuilder().
         enableFeature(google.picker.Feature.MULTISELECT_ENABLED).
-        addView(new google.picker.DocsUploadView().setParent(parent_id)).
+        addView(new google.picker.DocsUploadView().setParent(window.parent_id)).
         addView(view).
         setOAuthToken(oauthToken).
         setDeveloperKey(developerKey).
@@ -29,13 +36,10 @@ function createPicker() {
 function pickerCallback(data) {
   if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
     let docArray = data[google.picker.Response.DOCUMENTS]
-
-		sendData(docArray).then((fileCount) => {
-			location.reload();
-		})
-  } else {
-		document.getElementById("save-memory").disabled = false;
-	}
+    sendData(docArray).then(
+      location.reload()
+    )
+  }
 }
 
 function csrfSafeMethod(method) {
@@ -59,39 +63,37 @@ function sendData(data) {
 				type: type,
 				name: doc.name,
 				id: doc.id,
-				memory_id: memory_id,
+				memory_id: window.memory_id,
 				description: doc.description
 			}
 
-			// set csrf header
-			$.ajaxSetup({
-			    beforeSend: function(xhr, settings) {
-			        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-			            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-			        }
-			    }
-			});
-
-      let name = doc.name;
-      let id;
-
-			$.ajax({
-					url: "/timeline/api/attach-file",
-					type: "POST",
-					data: values,
-					success:function(response) {},
-					complete:function(){},
-					error:function (xhr, textStatus, thrownError){}
-			})
+      sendApiRequest(values, csrftoken)
     }
-
-		resolve(i)
-
+    resolve(i)
 	});
 }
 
-jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
+
+function sendApiRequest(values, csrftoken) {
+  return new Promise(function(resolve, reject) {
+    // set csrf header
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
     });
-});
+
+    $.ajax({
+        url: "/timeline/api/attach-file",
+        type: "POST",
+        data: values,
+        success:function(response) {},
+        complete:function(){},
+        error:function (xhr, textStatus, thrownError){}
+    })
+
+    resolve()
+  });
+}
