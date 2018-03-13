@@ -1,6 +1,6 @@
 // Use the API Loader script to load google.picker and gapi.auth.
 function onGDriveButton() {
-	document.getElementById("create-timeline").disabled = true;
+	document.getElementById("update-timeline").disabled = true;
   gapi.load('picker', {'callback': onPickerApiLoad});
 }
 
@@ -28,10 +28,10 @@ function createPicker() {
 function pickerCallback(data) {
   if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
     let docArray = data[google.picker.Response.DOCUMENTS]
-    document.getElementById("create-timeline").disabled = false;
+    document.getElementById("update-timeline").disabled = false;
     document.getElementById("id_picture").value = docArray[0].id
     document.getElementById("id_title").value = docArray[0].name
   } else {
-		document.getElementById("create-timeline").disabled = false;
+		document.getElementById("update-timeline").disabled = false;
 	}
 }

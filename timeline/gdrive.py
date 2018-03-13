@@ -29,6 +29,13 @@ def sendUpdateRequest(url, headers, data):
         data = json.dumps(data)
     )
 
+def patchRequest(url, headers, data):
+    return requests.patch(
+        url,
+        headers = headers,
+        data = json.dumps(data)
+    )
+
 def createFolder(user, folderName, parents=None):
     url = 'https://www.googleapis.com/drive/v3/files'
     headers = getHeaders(user)
@@ -56,3 +63,23 @@ def changeFileData(user, fileId, file_name, description):
     response = sendUpdateRequest(updateUrl, getHeaders(user), file_metadata)
 
     return response
+
+def shareWithUser(owner, userEmail, fileId, role):
+    url = 'https://www.googleapis.com/drive/v3/files/{}/permissions'.format(fileId)
+
+    body = {
+        'role': role,
+        'type': 'user',
+        'emailAddress': userEmail
+    }
+
+    return sendRequest(url, getHeaders(owner), body)
+
+def updateSharing(owner, permissionId, fileId, role):
+    url = 'https://www.googleapis.com/drive/v2/files/{}/permissions/{}'.format(fileId, permissionId)
+
+    body = {
+        'role': role,
+    }
+
+    return patchRequest(url, getHeaders(owner), body)

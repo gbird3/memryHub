@@ -1,3 +1,8 @@
+$( document ).ready(function() {
+  console.log( "ready!" );
+  $('[data-toggle="tooltip"]').tooltip()
+});
+
 function getValues() {
 	let name = document.getElementById("memory_name").value;
 	let year = document.getElementById("memory_year").value;
