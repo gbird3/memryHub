@@ -16,6 +16,7 @@ client_secrets.json
 staticfiles/
 
 db.sqlite3
+.vscode
 
 # Distribution / packaging
 .Python
