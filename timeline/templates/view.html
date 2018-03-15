@@ -9,24 +9,14 @@
 
   <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   <script type="text/javascript">
-  // The Browser API key obtained from the Google API Console.
-  const developerKey = 'AIzaSyByL9-SR6OjZfHaV-YIQlxmFn9SeGTxKO8';
-
-  // The Client ID obtained from the Google API Console. Replace with your own Client ID.
-  const clientId = "416104053530-7lar744p4o8b7jqstahqiuovabi6qd4a.apps.googleusercontent.com"
-
-  let pickerApiLoaded = false;
-  const oauthToken = '{{ access_token }}';
-  const parent_id = '{{ parent_id }}'
-  const memory_id = '{{ memory_id }}'
-  const timeline_id = '{{ timeline_id }}'
+    const oauthToken = '{{ access_token }}';
   </script>
 {% endblock %}
 
 {% block content %}
   <div class = "container-fluid">
     <div class = "row">
-      <div class = "col-lg-10 center-block">
+      <div class = "col-sm-10 center-block">
         <div class = "main-title">
           <a class ="back-button" href = "{% url 'timelines' %}"><i class="fa fa-arrow-left"></i>Back</a>
         </br>
@@ -36,6 +26,9 @@
         </br>
           <button type="button" class="btn bottom-buffer" id = "add-memory-button" data-toggle="modal" data-target="#addMemory"><i class="fa fa-plus-circle"></i>     Add Memory</button>
         </div>
+      </div>
+      <div class="col-md-1 col-md-offset-1 col-sm-2">
+        <a href="{% url 'timeline_sharing' timeline.id %}"><i data-toggle="tooltip" data-placement="top" title="Share timeline" class="sharing fa fa-share-alt fa-2x"></i></a>
       </div>
     </div>
 
@@ -340,4 +333,5 @@
   <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
   <script src = {% static "timeline/js/view.js" %}></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script>
+  <script src = {% static "timeline/js/google_picker.js" %}></script>
 {% endblock %}

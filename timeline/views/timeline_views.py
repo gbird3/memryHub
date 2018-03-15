@@ -9,16 +9,18 @@ from datetime import datetime
 from django.core.mail import send_mail
 from django.template import loader
 
-from ..models import Timeline, Memory, File
+from ..models import Timeline, Memory, File, SharedTimeline
 from home.models import UserInfo
-from ..gdrive import createFolder, changeFileData, getAccessToken
+from ..gdrive import createFolder, changeFileData, getAccessToken, shareWithUser, updateSharing
 
 @login_required(login_url='/login')
 def timelines(request):
     '''View all Timelines'''
     timelines = Timeline.objects.filter(owner=request.user, active=1).order_by('name')
+    shared_timelines = SharedTimeline.objects.filter(user=request.user, active=1)
+
     timeline_count = timelines.count()
-    return render(request, 'timeline.html', {'timelines': timelines,'timeline_count':timeline_count})
+    return render(request, 'timeline.html', {'timelines': timelines,'timeline_count':timeline_count, 'shared_timelines': shared_timelines})
 
 @login_required(login_url='/login')
 def api_create_timeline(request):
@@ -203,7 +205,8 @@ def view(request, timeline_id):
         'last_year': last_year,
         'memories_with_years': memories_with_years,
         'memory_count': memory_count,
-        'date_dict':date_dict
+        'date_dict':date_dict,
+        'access_token': access_token
     }
 
     return render(request, 'view.html', template_vars)
@@ -220,22 +223,53 @@ def delete(request, timeline_id):
 @login_required(login_url='/login')
 def timeline_sharing(request, timeline_id):
     timeline = get_object_or_404(Timeline, pk=timeline_id)
-
+    users = SharedTimeline.objects.filter(timeline=timeline)
 
     template_vars = {
-        'timeline': timeline
+        'timeline': timeline,
+        'users': users
     }
 
     return render(request, 'sharing.html', template_vars)
 
 @login_required(login_url='/login')
 def api_share_timeline(request):
+    '''
+        Share Timeline with user
+        Returns status code
+           200 Timeline Shared
+           201 User doesn't exist, sent invite email
+           400 Error Sharing from Google Drive
+    '''
     if request.method == 'POST':
         email = request.POST.__getitem__('email')
+        role = request.POST.__getitem__('access')
 
         if User.objects.filter(email=email).exists():
-            print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', request.POST.__getitem__('timeline'))
-            status = 200
+            user = User.objects.get(email=email)
+            timeline = Timeline.objects.get(pk=request.POST.__getitem__('timeline'))
+
+            # Share the folder with the user
+            response = shareWithUser(request.user, email, timeline.timeline_folder_id, role)
+            status = 400
+            data = response.json()
+
+            # If the sharing was a success, add the user to the shared DB or update that users permissions
+            if response.status_code == 200:
+                if SharedTimeline.objects.filter(user=user, timeline=timeline).exists():
+                    s = SharedTimeline.objects.get(user=user, timeline=timeline)
+                    s.permission = role
+                    s.permission_id = data['id']
+                    s.save()
+                else:
+                    s = SharedTimeline()
+                    s.user = user
+                    s.timeline = timeline
+                    s.permission = role
+                    s.permission_id = data['id']
+                    s.save()
+
+                status = response.status_code
         else:
             html_message = loader.render_to_string(
                     '../templates/email.html',
@@ -247,6 +281,35 @@ def api_share_timeline(request):
             send_mail('MemryHub Invite', '{} wants to share a Timeline with you on MemryHub. Sign up at memryhub.com'.format(request.user.get_full_name()), 'memryhub@memryhub.com', [email], fail_silently=False, html_message=html_message)
 
             status = 201
+
+    return HttpResponse(status)
+
+
+@login_required(login_url='/login')
+def api_update_share_timeline(request):
+    '''
+        Update Sharing Preferences
+        Returns status code
+          200 Sharing Settings updated
+          400 Error Sharing from Google Drive
+    '''
+    if request.method == 'POST':
+        shared_id = request.POST.__getitem__('id')
+        role = request.POST.__getitem__('access')
+
+        shared = SharedTimeline.objects.get(pk=shared_id)
+
+        # Share the folder with the user
+        response = updateSharing(request.user, shared.permission_id, shared.timeline.timeline_folder_id, role)
+        status = 400
+
+        # If the sharing was a success, add the user to the shared DB or update that users permissions
+        if response.status_code == 200:
+            s = SharedTimeline.objects.get(pk=shared_id)
+            s.permission = role
+            s.save()
+
+            status = response.status_code
 
     return HttpResponse(status)
 

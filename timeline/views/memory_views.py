@@ -25,7 +25,6 @@ def api_add_memory(request):
         timeline = get_object_or_404(Timeline, pk=request.POST.__getitem__('timeline'))
 
         data = createFolder(request.user, request.POST.__getitem__('name'), timeline.timeline_folder_id)
-
         m = Memory()
         m.name = request.POST.__getitem__('name')
         m.year = request.POST.__getitem__('year')
