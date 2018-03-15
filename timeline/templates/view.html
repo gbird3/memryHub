@@ -229,13 +229,12 @@
               {% endif %}
             -->
             {% endfor %}
-            <!-- <a class = "no-underline" href="{% url 'attach_file' memory.id %}"> -->
+            <a class = "no-underline" href="{% url 'attach_file' memory.id %}">
             <div class = "card add-file-card file-card center-block">
-              <button type = "button" class="btn btn-primary btn-add-file-card" onclick="onGDriveButton('{{ memory.id }}', '{{ memory.folder_id }}'); return false;">Add Files</button>
-              <!-- <button class="btn btn-success" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button> -->
+              <button type = "button" class="btn btn-primary btn-add-file-card" >Add Files</button>
               <!--<button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>-->
             </div>
-            <!-- </a> -->
+            </a>
           </div>
 
 
