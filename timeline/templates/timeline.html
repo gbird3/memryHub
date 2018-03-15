@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}MemryHub{% endblock %}
+{% block title %}Timelines{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href={% static "timeline/css/timeline.css" %}>
@@ -10,79 +10,69 @@
 {% endblock %}
 
 {% block content %}
-<div>
+<div class="row">
 	<div class="container-fluid">
 		<div class = "row top-buffer-first text-center">
-			<div class = "col-lg-12">
+			<div class = "col-md-12">
 				<button type="button" class="btn" id = "btn-new-timeline" data-toggle="modal" data-target="#addTimeline"><i class="fa fa-plus-circle"></i>  Create New Timeline</button>
 				<h1>{{ user.first_name }}'s Timelines</h1>
 			</div>
-		</div>
-		<div class="row top-buffer bottom-buffer side-buffer">
+    </div>
+  </div>
+</div>
 
-			{% if timeline_count == 0 %}
-				<div class = "col-lg-12 center-block">
-					<div id = "timeline-tutorial" class = " card-outline-info center-block text-center">
-							<i class="fa fa-arrow-up fa-4x"></i>
-							<h4>Use the "Create New Timeline" button to create your first timeline.</h4>
-					</div>
-				</div>
-			{% endif %}
+<div class="row top-buffer bottom-buffer side-buffer">
+  {% if timeline_count == 0 %}
+    <div class = "col-md-12 center-block">
+      <div id = "timeline-tutorial" class = " card-outline-info center-block text-center">
+          <i class="fa fa-arrow-up fa-4x"></i>
+          <h4>Use the "Create New Timeline" button to create your first timeline.</h4>
+      </div>
+    </div>
+  {% endif %}
+</div>
 
-			{% for timeline in timelines %}
-			<div class = "col-lg-4 center-block btn-block">
-				<a href = "{% url 'view' timeline.id %}">
-					<div class="card top-buffer card-outline-info bottom-buffer" style="width: 100%;">
-	          {% if timeline.image %}
-	          <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ timeline.image }}" alt="Timeline card image">
-						{% else %}
-	          <img class="card-img-top img-fluid" src= {% static "/timeline/media/default-profile.png" %} alt="Timeline card image">
-	          {% endif %}
-						<hr/>
-	  				<div class="card-block text-card-block">
-	    				<h4 class="card-title">{{ timeline.name }}</h4>
-	    				<p class="card-text">{{ timeline.description }}</p>
-							<!--hiding buttons on timeline page
-							<a href="{% url 'view' timeline.id %}" class="btn btn-info bottom-buffer">View Timeline</a>
-	            <a href="{% url 'edit_timeline' timeline.id %}" class="btn btn-info bottom-buffer">Edit Timeline</a>
-						</br>
-	            <a href="" class="btn btn-danger bottom-buffer" data-toggle="modal" data-target="#confirm-delete-{{ timeline.id }}">Delete Timeline</a>
-						-->
-						</div>
-					</div>
-				</a>
-			</div>
-
-			<!-- Modal for delete -->
-        <div class="modal fade" id="confirm-delete-{{ timeline.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h2 >Confirm delete?</h2>
-                  </div>
-                  <div class="modal-body">
-                      <p>Are you sure you wish to delete this timeline?</p>
-                      <p style = "font-style: italic">Note: This will not delete the folder in your Google Drive folder. This will only make the folder inactive on this website. You will still have access to the folder through your Google Drive.</p>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                      <a href = "{% url 'delete' timeline.id %}" class="btn btn-danger btn-ok">Confirm Delete</a>
-                  </div>
-              </div>
+{% if timelines %}
+<div class="row">
+  <div class="row top-buffer bottom-buffer side-buffer">
+    <div>
+      <h3>Your Timelines</h3>
+      {% for timeline in timelines %}
+      <div class = "col-md-4 center-block btn-block">
+        <a href = "{% url 'view' timeline.id %}">
+          <div class="card top-buffer card-outline-info bottom-buffer" style="width: 100%;">
+            {% if timeline.image %}
+            <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ timeline.image }}" alt="{{ timeline.name }}">
+            {% else %}
+            <img class="card-img-top img-fluid" style="width: 900px" src= {% static "/timeline/media/default-profile.png" %} alt="Default timeline card image">
+            {% endif %}
+            <hr/>
+            <div class="card-block text-card-block">
+              <h4 class="card-title">{{ timeline.name }}</h4>
+              <p class="card-text">{{ timeline.description }}</p>
+            </div>
           </div>
-        </div>
-      {% endfor %}
+        </a>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
 
-      <div class="col-lg-4 center-block btn-block">
+{% if shared_timelines %}
+<div class="row">
+    <div class="row top-buffer bottom-buffer side-buffer">
+      <div>
         <h3>Timelines Shared with You</h3>
         {% for shared in shared_timelines %}
-        <div>
+        <div class="col-lg-4 center-block btn-block">
           <a href = "{% url 'view' shared.timeline.id %}">
             <div class="card top-buffer card-outline-info bottom-buffer" style="width: 100%;">
               {% if shared.timeline.image %}
-              <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ shared.timeline.image }}" alt="Timeline card image">
+              <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ shared.timeline.image }}" alt="{{ shared.timeline.name }}">
               {% else %}
-              <img class="card-img-top img-fluid" src= {% static "/timeline/media/default-profile.png" %} alt="Timeline card image">
+              <img class="card-img-top img-fluid" style="width: 900px" src= {% static "/timeline/media/default-profile.png" %} alt="Default timeline image">
               {% endif %}
               <hr/>
               <div class="card-block text-card-block">
@@ -94,9 +84,10 @@
         </div>
         {% endfor %}
       </div>
-  	</div>
-	</div>
+    </div>
+  </div>
 </div>
+{% endif %}
 
 
 <!--  Modal for adding Timeline -->
