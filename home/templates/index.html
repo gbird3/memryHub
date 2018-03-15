@@ -9,7 +9,7 @@
 {% block content %}
 <div>
 	<div class = "container-fluid">
-			<div class = "row green-row">
+			<div class = "row">
 	      <div class = "col-lg 12">
 	        <div class="timeline-divider text-center">
 	          <hr/>
@@ -65,7 +65,175 @@
 				</div>
 			</div>
 
-		<div class = "row blue-row">
+		<div class = "row">
+      <div class = "col-lg 12">
+        <div class="timeline-divider text-center">
+          <hr/>
+        	<h2>Show me an example...</h2>
+	         <hr/>
+				 </div>
+			 </div>
+		 </div>
+
+		 <div class = "row example-row">
+				<div class = "col-lg 12">
+					 <div class = "row" id = "">
+		         <div class = "col-lg-12">
+		           <div class="card center-block main-card" style = "width: 80%">
+		     				<div class="card-block header-block">
+		               <div class = "memory-name">
+		                 <h3 class="card-title">Return from War
+		                     (November 16, 1945)
+		                 </h3>
+		                 <a href=""><span class = "edit-memory-span"><i class="fa fa-edit"></i></span></a>
+		               </div>
+		               <div class = "location">
+		                 <h5>
+											 Vernal, UT (USA)
+		               </h5>
+		               </div>
+		               <p class="card-description">Sterling returned from the Europe in November of 1945 to his family in Vernal.</p>
+		             </div>
+		             <div class = "card-columns">
+		               <div class = "card file-card">
+		                 <!--<a href=""></a>-->
+		                 <div class = "info-of-card">
+		                     <h4>Return_Photo.jpg</h4>
+		                 </div>
+		                 <br>
+		                 <div class = "iframe-class center-block">
+											 <!--
+												 <i class="fa fa-file-audio-o fa-5x"></i>
+		                     <i class="fa fa-file-video-o fa-5x"></i>
+		                     <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
+											 -->
+												 <img class = "img-fluid" src="{% static "home/media/grandpa.jpg" %}" alt="Image">
+		                   	<!--<i class="fa fa-file-o "></i>-->
+		                 </div>
+		                 <div class = "file-description">
+		                   Photo of Aunt Susan hugging Sterling when he returned home.
+		                 </div>
+		                 </br>
+		               </div>
+
+									 <div class = "card file-card">
+		                 <!--<a href=""></a>-->
+		                 <div class = "info-of-card">
+		                     <h4>Grandpa_Interview.mp4</h4>
+		                 </div>
+		                 <br>
+		                 <div class = "iframe-class center-block">
+												 <i class="fa fa-file-audio-o fa-5x"></i>
+												 <!--
+											   <i class="fa fa-file-video-o fa-5x"></i>
+		                     <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
+												 <img class = "img-fluid" src="{% static "home/media/grandpa.jpg" %}" alt="Image">
+		                   	 <i class="fa fa-file-o "></i>-->
+		                 </div>
+		                 <div class = "file-description">
+		                   Interview with Grandpa from 2012.
+		                 </div>
+		                 </br>
+		               </div>
+
+									 <div class = "card file-card">
+		                 <a href=""></a>
+		                 <div class = "info-of-card">
+		                     <h4>V-Day Parade Film</h4>
+		                 </div>
+		                 <br>
+		                 <div class = "iframe-class center-block">
+											 <!--
+												 <i class="fa fa-file-audio-o fa-5x"></i>
+											 -->
+		                     <i class="fa fa-file-video-o fa-5x"></i>
+												 <!--
+												 <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
+												 <img class = "img-fluid" src="{% static "home/media/grandpa.jpg" %}" alt="Image">
+		                   	 <i class="fa fa-file-o "></i>
+											 -->
+		                 </div>
+		                 <div class = "file-description">
+		                   Short film of Grandpa riding in the Vernal V-Day parade.
+		                 </div>
+		                 </br>
+		               </div>
+
+									 <div class = "card file-card">
+		                 <!--<a href=""></a>-->
+		                 <div class = "info-of-card">
+		                     <h4>Victory_Parade.jpg</h4>
+		                 </div>
+		                 <br>
+		                 <div class = "iframe-class center-block">
+											 <!--
+												 <i class="fa fa-file-audio-o fa-5x"></i>
+		                     <i class="fa fa-file-video-o fa-5x"></i>
+		                     <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
+											 -->
+												 <img class = "img-fluid" src="{% static "home/media/victory.jpg" %}" alt="Image">
+		                   	<!--<i class="fa fa-file-o "></i>-->
+		                 </div>
+		                 <div class = "file-description">
+		                   Grandpa carrying the flag during the V-Day Parade.
+		                 </div>
+		                 </br>
+		               </div>
+
+									 <div class = "card file-card">
+		                 <!--<a href=""></a>-->
+		                 <div class = "info-of-card">
+		                     <h4>Vernal_House.jpg</h4>
+		                 </div>
+		                 <br>
+		                 <div class = "iframe-class center-block">
+											 <!--
+												 <i class="fa fa-file-audio-o fa-5x"></i>
+		                     <i class="fa fa-file-video-o fa-5x"></i>
+		                     <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
+											 -->
+												 <img class = "img-fluid" src="{% static "home/media/vernal_house.jpg" %}" alt="Image">
+		                   	<!--<i class="fa fa-file-o "></i>-->
+		                 </div>
+		                 <div class = "file-description">
+		                   Home where Sterling returned to.
+		                 </div>
+		                 </br>
+		               </div>
+
+									 <div class = "card file-card">
+		                 <!--<a href=""></a>-->
+		                 <div class = "info-of-card">
+		                     <h4>Letter_Home.pdf</h4>
+		                 </div>
+		                 <br>
+		                 <div class = "iframe-class center-block">
+											 <!--
+												 <i class="fa fa-file-audio-o fa-5x"></i>
+		                     <i class="fa fa-file-video-o fa-5x"></i>
+											 -->
+		                     <iframe class = "" frameborder="0" src="{% static "home/media/letter.pdf" %}"></iframe>
+												 <!--
+												 <img class = "img-fluid" src="{% static "home/media/grandpa.jpg" %}" alt="Image">
+		                   	<i class="fa fa-file-o "></i>-->
+		                 </div>
+		                 <div class = "file-description">
+		                   Letter from Sterling to his wife (GG-ma) during the war.
+		                 </div>
+		                 </br>
+		               </div>
+
+		           </div>
+		   				</div>
+		         </div>
+		       </div>
+        </div>
+      </div>
+    </div>
+
+
+
+		<div class = "row ">
       <div class = "col-lg 12">
         <div class="timeline-divider text-center">
           <hr/>

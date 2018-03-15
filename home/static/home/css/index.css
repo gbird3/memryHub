@@ -85,3 +85,76 @@
 .bottom-buffer{
   margin-bottom: 50px;
 }
+
+.example-row .card{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.example-row .main-card{
+  border: none;
+}
+
+.example-row .header-block{
+  margin-left: 1%;
+}
+
+.example-row .memory-name h3{
+  margin-top: .5%;
+  text-align: left;
+  display: inline;
+}
+
+.example-row h5{
+  font-size: small;
+  margin-bottom: -2px;
+}
+
+.example-row .card-description{
+  margin-bottom: 0%;
+  margin-left: 0%;
+}
+
+.example-row .file-card{
+  position: relative;
+  margin-right: 30px;
+  display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.example-row .file-card a{
+  position:absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.example-row .file-card .info-of-card{
+  margin-left: 3%;
+  margin-top: 3%  ;
+}
+
+.example-row .file-card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.example-row .file-card a{
+  color:black;
+}
+
+.example-row .iframe-class{
+  margin-left: 5%;
+  margin-right: 5%;
+  width: auto;
+}
+
+.example-row .file-description{
+  margin-left: 4%;
+  margin-top: 3%;
+  text-align: left;
+}
+
+.timeline-divider{
+  background-url: "../media/dust_scratches.png";
+  background: url("../media/dust_scratches.png") top center;
+}
