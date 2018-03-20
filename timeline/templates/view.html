@@ -21,14 +21,16 @@
           <a class ="back-button" href = "{% url 'timelines' %}"><i class="fa fa-arrow-left"></i>Back</a>
         </br>
           <h1>{{ timeline.name}}</h1>
-          <a href="{% url 'edit_timeline' timeline.id %}"><span class = "edit-time-span"><i class="fa fa-edit fa-2x"></i></span></a>
+          {% if can_edit %}<a href="{% url 'edit_timeline' timeline.id %}"><span class = "edit-time-span"><i class="fa fa-edit fa-2x"></i></span></a>{% endif %}
           <!--<p> {{ timeline.description }}</p>-->
         </br>
+        {% if can_edit %}
           <button type="button" class="btn bottom-buffer" id = "add-memory-button" data-toggle="modal" data-target="#addMemory"><i class="fa fa-plus-circle"></i>     Add Memory</button>
+        {% endif %}
         </div>
       </div>
       <div class="col-md-1 col-md-offset-1 col-sm-2">
-        <a href="{% url 'timeline_sharing' timeline.id %}"><i data-toggle="tooltip" data-placement="top" title="Share timeline" class="sharing fa fa-share-alt fa-2x"></i></a>
+          {% if can_edit %}<a href="{% url 'timeline_sharing' timeline.id %}"><i data-toggle="tooltip" data-placement="top" title="Share timeline" class="sharing fa fa-share-alt fa-2x"></i></a>{% endif %}
       </div>
     </div>
 
@@ -45,7 +47,7 @@
     </div>
     {% endif %}
 
-    {% if memory_count == 0 %}
+    {% if memory_count == 0 and can_edit %}
     <div class="container-fluid">
       <div class="row bottom-buffer side-buffer">
         <div class = "col-lg-12 center-block">
@@ -56,6 +58,19 @@
         </div>
       </div>
     </div>
+    {% elif memory_count == 0 and can_edit == False %}
+    <div class="container-fluid">
+        <div class="row bottom-buffer side-buffer">
+          <div class = "col-lg-12 center-block">
+            <div id = "memory-tutorial" class = "card card-outline-info center-block text-center">
+              {% comment %} <i class="fa fa-arrow-up fa-4x"></i> {% endcomment %}
+              <br>
+              <h4>Looks like there is nothing here. Ask the owner to add Memories or give you edit permission.</h4>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
     {% endif %}
 
     <!--Cards-->
