@@ -226,6 +226,8 @@ def delete(request, timeline_id):
     t.active = 0
     t.save()
 
+    SharedTimeline.objects.filter(timeline=t).update(active=0)
+
     return HttpResponseRedirect('/timeline')
 
 @login_required(login_url='/login')
