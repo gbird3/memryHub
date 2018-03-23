@@ -55,12 +55,6 @@
   padding: 0px;
 }
 
-#image-diagram{
-  width:100%;
-  padding-left: 5%;
-  padding-right: 5%;
-}
-
 .grey-row{
   background-color: #F6F6F6;
 }
@@ -69,23 +63,58 @@
   padding-left: 8%;
   padding-right: 8%;
   padding-top: 2%;
-  padding-bottom: 2%;
+  padding-bottom: .5%;
   width: auto;
 }
 
 .explanation p{
-  font-size: 110%;
+  font-size: 105%;
   margin-bottom: 0px;
 }
 
 .explanation h1{
   margin-bottom: 0px;
+  font-size: 2rem;
+}
+
+.diagram-section{
+  padding-left:1%;
+  padding-right: 2%;
+  box-shadow: 0 2px 10px 0px rgba(0, 0, 0, 0.09);
+}
+
+@media only screen and (max-width: 600px) {
+  .diagram-section{
+  margin-top: 5%;
+  }
+}
+
+.diagram-section p{
+  padding-top: 1%;
+  padding-left: 2%;
+  padding-right: 2%;
+  font-size: 110%;
+}
+
+.diagram-row {
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 0%;
+  padding-bottom: 2%;
+}
+
+.diagram-image{
+  height: auto;
+  width: 100%;
+  padding-left: auto;
+  padding-right: auto;
 }
 
 .header{
   padding-left: 8%;
   padding-right: 8%;
   padding-top: 3%;
+  padding-bottom: .5%;
 }
 
 .header h1{
@@ -112,7 +141,13 @@
 
 .memory-div h2{
   text-align: center;
-  padding-top: 3%;
+  padding-top: 2%;
+}
+
+@media only screen and (max-width: 600px) {
+  .memory-div{
+  margin-top: 5%;
+  }
 }
 
 .modal-header .close{
@@ -139,6 +174,54 @@
 .biteable-div{
   padding-left: 20%;
   padding-right: 20%;
+}
+
+.contact-row{
+  /*background-color: #49BFDC;*/
+}
+
+.contact-page{
+  margin-left: 8%;
+  margin-right: 5%;
+  margin-top: 4%;
+  margin-bottom: 4%
+}
+
+input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 0px; /* Add a top margin */
+    margin-bottom: 10px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+    background-color: #8DC63F;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+    background-color: #7aad35;
+}
+
+/* Add a background color and some padding around the form */
+.container-contact {
+    background-color: #f6f6f6;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-right:20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
 }
 
 /*

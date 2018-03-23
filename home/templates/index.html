@@ -27,7 +27,31 @@
 				<div class = "explanation">
 					<h1>How it works</h1>
 					<!--<p>MemryHub lets you store and manage your life memories. Photos, videos, audio files, and text stories are stored in your Google Drive, but managed & accessed through MemryHub.</p>-->
-					<img class = "" id = "image-diagram" src={% static "home/media/diagram.png" %}></img>
+					<!--<img class = "" id = "image-diagram" src={% static "home/media/diagram.png" %}></img>-->
+				</div>
+			</div>
+		</div>
+
+		<div class = "row diagram-row">
+			<div class = "col-md-4">
+				<div class = "diagram-section" id = "diagram-section-1">
+					<img class = "diagram-image" id = "image-diagram" src={% static "home/media/diagram-logo-1.png" %}></img>
+					<p>1. You create a timeline for a grandparent, a child, or anyone else you care about.</p>
+				</div>
+			</div>
+
+			<div class = "col-md-4">
+				<div class = "diagram-section" id = "diagram-section-1">
+					<img class = "diagram-image" id = "image-diagram" src={% static "home/media/diagram-logo-2.png" %}></img>
+					<p>2. You upload photos, videos, audio files, or anything else connected to that person.</p>
+				</div>
+			</div>
+
+
+			<div class = "col-md-4">
+				<div class = "diagram-section" id = "diagram-section-1">
+					<img class = "diagram-image" id = "image-diagram" src={% static "home/media/diagram-logo-3v2.png" %}></img>
+					<p>3. MemryHub stores your memories in your Google Drive, keeping them secure.</p>
 				</div>
 			</div>
 		</div>
@@ -80,6 +104,32 @@
 		    </div>
 
 		  </div>
+		</div>
+
+
+		<div class = "row contact-row">
+			<div class = "col-md-6">
+				<div class = "contact-page">
+					<div class="container container-contact">
+					  <form action="submit">
+					    <label for="fname">First Name</label>
+					    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+					    <label for="lname">Last Name</label>
+					    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+							<label for="lname">Your Email Address</label>
+					    <input type="text" id="email" name="email" placeholder="Your email address..">
+
+					    <label for="subject">What do you want to tell us?</label>
+					    <textarea id="subject" name="subject" placeholder="Write what you want to tell us.." style="height:100px"></textarea>
+
+					    <input type="submit" value="Submit">
+
+					  </form>
+					</div>
+				</div>
+			</div>
 		</div>
 
 
