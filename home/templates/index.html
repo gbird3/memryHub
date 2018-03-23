@@ -15,7 +15,7 @@
 					<div class = "">
 						<h1>Everyone has a story.</h1>
 						<p>Let's help share it.</p>
-						<span class = "btn-span"><button class = "btn btn-call-to-action">Create A Timelime</button></span>
+						<span class = "btn-span"><a href = "/timeline"><button class = "btn btn-call-to-action">Create A Timelime</button></a></span>
 					</div>
 				</div>
 			</div>
@@ -42,23 +42,44 @@
 
 		<div class = "row example-row grey-row">
 			<div class = "col-md-4">
-				<div class = "memory-div" >
-					<img class = "image-example" src={% static "home/media/grandmother2.jpg" %}></img>
-					<h2>Grandparent</h2>
+				<div class = "memory-div">
+						<a data-toggle="modal" data-target="#tempModal">
+							<img class = "image-example" src={% static "home/media/grandmother2.jpg" %}></img>
+							<h2>Grandparent</h2>
+						</a>
 				</div>
 			</div>
 			<div class = "col-md-4">
 				<div class = "memory-div">
-					<img class = "image-example" src={% static "home/media/baby.jpeg" %}></img>
-					<h2>Child</h2>
+					<a data-toggle="modal" data-target="#tempModal">
+						<img class = "image-example" src={% static "home/media/baby.jpeg" %}></img>
+						<h2>Child</h2>
+					</a>
 				</div>
 			</div>
 			<div class = "col-md-4">
 				<div class = "memory-div">
-					<img class = "image-example" src={% static "home/media/family_vacation.jpg" %}></img>
-					<h2>Vacation</h2>
+					<a data-toggle="modal" data-target="#tempModal">
+						<img class = "image-example" src={% static "home/media/family_vacation.jpg" %}></img>
+						<h2>Vacation</h2>
+					</a>
 				</div>
 			</div>
+		</div>
+
+		<div id="tempModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-body">
+		        <p>The example modals are currently being built. They should be here soon.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
 		</div>
 
 

@@ -115,6 +115,9 @@
   padding-top: 3%;
 }
 
+.modal-header .close{
+  margin: 0px;
+}
 
 .example-row{
   padding-left: 8%;
