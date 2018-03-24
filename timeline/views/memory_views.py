@@ -18,6 +18,8 @@ class UserAddsMemoryForm(forms.Form):
     city = forms.CharField(label='City', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'City'}))
     state = forms.CharField(label='State', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'State'}))
     country = forms.CharField(label='Country', required=False, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Country'}))
+    latitude = forms.DecimalField(label='Latitude', required=False, widget=forms.NumberInput(attrs={'class':'form-control','placeholder:':'Latitude'}))
+    longitude = forms.DecimalField(label='Longitude', required=False, widget=forms.NumberInput(attrs={'class':'form-control','placeholder:':'Longitude'}))
 
 @login_required(login_url='/login')
 def api_add_memory(request):
@@ -51,7 +53,13 @@ def attach_files(request, memory_id):
         'start_month': memory.month,
         'start_year': memory.year,
         'memory_description': memory.description,
-        'memory': memory
+        'memory': memory,
+        'city': memory.city,
+        'state': memory.state,
+        'country': memory.country,
+        'latitude': memory.latitude,
+        'longitude': memory.longitude,
+
     }
 
     form = UserAddsMemoryForm(initial=data)
@@ -69,6 +77,11 @@ def attach_files(request, memory_id):
                 m.year = form.cleaned_data.get('start_year')
                 m.name = form.cleaned_data.get('memory_name')
                 m.description = form.cleaned_data.get('memory_description')
+                m.city = form.cleaned_data.get('city')
+                m.state = form.cleaned_data.get('state')
+                m.country = form.cleaned_data.get('country')
+                m.latitude = form.cleaned_data.get('latitude')
+                m.longitude = form.cleaned_data.get('longitude')
                 m.save()
 
                 timeline = m.timeline_id

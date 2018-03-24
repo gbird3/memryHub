@@ -9,16 +9,141 @@
 {% block content %}
 <div>
 	<div class = "container-fluid">
-			<div class = "row">
-	      <div class = "col-lg 12">
-	        <div class="timeline-divider text-center">
-	          <hr/>
-	          <h2>MemryHub</h2>
-	          <hr/>
-	        </div>
-	      </div>
-	    </div>
+		<div class = "row background-row">
+			<div class = "col-md-6">
+				<div class = "text-banner">
+					<div class = "">
+						<h1>Everyone has a story.</h1>
+						<p>Let's help share it.</p>
+						<span class = "btn-span"><a href = "/timeline"><button class = "btn btn-call-to-action">Create A Timelime</button></a></span>
+					</div>
+				</div>
+			</div>
+		</div>
 
+
+		<div class = "row">
+			<div class = "col-md-12">
+				<div class = "explanation">
+					<h1>How it works</h1>
+					<!--<p>MemryHub lets you store and manage your life memories. Photos, videos, audio files, and text stories are stored in your Google Drive, but managed & accessed through MemryHub.</p>-->
+					<!--<img class = "" id = "image-diagram" src={% static "home/media/diagram.png" %}></img>-->
+				</div>
+			</div>
+		</div>
+
+		<div class = "row diagram-row">
+			<div class = "col-md-4">
+				<div class = "diagram-section" id = "diagram-section-1">
+					<img class = "diagram-image" id = "image-diagram" src={% static "home/media/diagram-logo-1.png" %}></img>
+					<p>1. You create a timeline for a grandparent, a child, or anyone else you care about.</p>
+				</div>
+			</div>
+
+			<div class = "col-md-4">
+				<div class = "diagram-section" id = "diagram-section-1">
+					<img class = "diagram-image" id = "image-diagram" src={% static "home/media/diagram-logo-2.png" %}></img>
+					<p>2. You upload photos, videos, audio files, or anything else connected to that person.</p>
+				</div>
+			</div>
+
+
+			<div class = "col-md-4">
+				<div class = "diagram-section" id = "diagram-section-1">
+					<img class = "diagram-image" id = "image-diagram" src={% static "home/media/diagram-logo-3v2.png" %}></img>
+					<p>3. MemryHub stores your memories in your Google Drive, keeping them secure.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class = "row grey-row">
+			<div class = "col-md-12">
+				<div class = "header">
+					<h1>Example Timelimes</h1>
+				</div>
+			</div>
+		</div>
+
+		<div class = "row example-row grey-row">
+			<div class = "col-md-4">
+				<div class = "memory-div">
+						<a data-toggle="modal" data-target="#tempModal">
+							<img class = "image-example" src={% static "home/media/grandmother2.jpg" %}></img>
+							<h2>Grandparent</h2>
+						</a>
+				</div>
+			</div>
+			<div class = "col-md-4">
+				<div class = "memory-div">
+					<a data-toggle="modal" data-target="#tempModal">
+						<img class = "image-example" src={% static "home/media/baby.jpeg" %}></img>
+						<h2>Child</h2>
+					</a>
+				</div>
+			</div>
+			<div class = "col-md-4">
+				<div class = "memory-div">
+					<a data-toggle="modal" data-target="#tempModal">
+						<img class = "image-example" src={% static "home/media/family_vacation.jpg" %}></img>
+						<h2>Vacation</h2>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="tempModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-body">
+		        <p>The example modals are currently being built. They should be here soon.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+
+<!--
+		<div class = "row contact-row">
+			<div class = "col-md-6">
+				<div class = "contact-page">
+					<div class="container container-contact">
+					  <form action="submit">
+					    <label for="fname">First Name</label>
+					    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+					    <label for="lname">Last Name</label>
+					    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+							<label for="lname">Your Email Address</label>
+					    <input type="text" id="email" name="email" placeholder="Your email address..">
+
+					    <label for="subject">What do you want to tell us?</label>
+					    <textarea id="subject" name="subject" placeholder="Write what you want to tell us.." style="height:100px"></textarea>
+
+					    <input type="submit" value="Submit">
+
+					  </form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+-->
+<!--Biteable Video
+		<div class = "row">
+			<div class = "col-md-12 biteable-div">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe src="https://biteable.com/watch/embed/memryhub-1675378" allowfullscreen="true"></iframe><p><a href="https://biteable.com/watch/memryhub-1675378"></a></p>
+				</div>
+			</div>
+		</div>
+-->
+
+		<!--explanation
 			<div class = "row">
 				<div class = "col-lg-12 center-block">
 					</br>
@@ -32,7 +157,9 @@
 					</div>
 				</div>
 			</div>
+-->
 
+<!--example1
 			<div class = "row">
 				<div class = "col-lg-10 center-block">
 					<div class = "card-deck">
@@ -65,6 +192,8 @@
 				</div>
 			</div>
 
+-->
+<!--Example2
 		<div class = "row">
       <div class = "col-lg 12">
         <div class="timeline-divider text-center">
@@ -96,19 +225,12 @@
 		             </div>
 		             <div class = "card-columns">
 		               <div class = "card file-card">
-		                 <!--<a href=""></a>-->
 		                 <div class = "info-of-card">
 		                     <h4>Return_Photo.jpg</h4>
 		                 </div>
 		                 <br>
 		                 <div class = "iframe-class center-block">
-											 <!--
-												 <i class="fa fa-file-audio-o fa-5x"></i>
-		                     <i class="fa fa-file-video-o fa-5x"></i>
-		                     <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
-											 -->
 												 <img class = "img-fluid" src="{% static "home/media/grandpa.jpg" %}" alt="Image">
-		                   	<!--<i class="fa fa-file-o "></i>-->
 		                 </div>
 		                 <div class = "file-description">
 		                   Photo of Aunt Susan hugging Sterling when he returned home.
@@ -117,18 +239,12 @@
 		               </div>
 
 									 <div class = "card file-card">
-		                 <!--<a href=""></a>-->
 		                 <div class = "info-of-card">
 		                     <h4>Grandpa_Interview.mp4</h4>
 		                 </div>
 		                 <br>
 		                 <div class = "iframe-class center-block">
 												 <i class="fa fa-file-audio-o fa-5x"></i>
-												 <!--
-											   <i class="fa fa-file-video-o fa-5x"></i>
-		                     <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
-												 <img class = "img-fluid" src="{% static "home/media/grandpa.jpg" %}" alt="Image">
-		                   	 <i class="fa fa-file-o "></i>-->
 		                 </div>
 		                 <div class = "file-description">
 		                   Interview with Grandpa from 2012.
@@ -143,15 +259,7 @@
 		                 </div>
 		                 <br>
 		                 <div class = "iframe-class center-block">
-											 <!--
-												 <i class="fa fa-file-audio-o fa-5x"></i>
-											 -->
 		                     <i class="fa fa-file-video-o fa-5x"></i>
-												 <!--
-												 <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
-												 <img class = "img-fluid" src="{% static "home/media/grandpa.jpg" %}" alt="Image">
-		                   	 <i class="fa fa-file-o "></i>
-											 -->
 		                 </div>
 		                 <div class = "file-description">
 		                   Short film of Grandpa riding in the Vernal V-Day parade.
@@ -160,19 +268,12 @@
 		               </div>
 
 									 <div class = "card file-card">
-		                 <!--<a href=""></a>-->
 		                 <div class = "info-of-card">
 		                     <h4>Victory_Parade.jpg</h4>
 		                 </div>
 		                 <br>
 		                 <div class = "iframe-class center-block">
-											 <!--
-												 <i class="fa fa-file-audio-o fa-5x"></i>
-		                     <i class="fa fa-file-video-o fa-5x"></i>
-		                     <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
-											 -->
 												 <img class = "img-fluid" src="{% static "home/media/victory.jpg" %}" alt="Image">
-		                   	<!--<i class="fa fa-file-o "></i>-->
 		                 </div>
 		                 <div class = "file-description">
 		                   Grandpa carrying the flag during the V-Day Parade.
@@ -181,19 +282,12 @@
 		               </div>
 
 									 <div class = "card file-card">
-		                 <!--<a href=""></a>-->
 		                 <div class = "info-of-card">
 		                     <h4>Vernal_House.jpg</h4>
 		                 </div>
 		                 <br>
 		                 <div class = "iframe-class center-block">
-											 <!--
-												 <i class="fa fa-file-audio-o fa-5x"></i>
-		                     <i class="fa fa-file-video-o fa-5x"></i>
-		                     <iframe class = "" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
-											 -->
 												 <img class = "img-fluid" src="{% static "home/media/vernal_house.jpg" %}" alt="Image">
-		                   	<!--<i class="fa fa-file-o "></i>-->
 		                 </div>
 		                 <div class = "file-description">
 		                   Home where Sterling returned to.
@@ -202,27 +296,18 @@
 		               </div>
 
 									 <div class = "card file-card">
-		                 <!--<a href=""></a>-->
 		                 <div class = "info-of-card">
 		                     <h4>Letter_Home.pdf</h4>
 		                 </div>
 		                 <br>
 		                 <div class = "iframe-class center-block">
-											 <!--
-												 <i class="fa fa-file-audio-o fa-5x"></i>
-		                     <i class="fa fa-file-video-o fa-5x"></i>
-											 -->
 		                     <iframe class = "" frameborder="0" src="{% static "home/media/letter.pdf" %}"></iframe>
-												 <!--
-												 <img class = "img-fluid" src="{% static "home/media/grandpa.jpg" %}" alt="Image">
-		                   	<i class="fa fa-file-o "></i>-->
 		                 </div>
 		                 <div class = "file-description">
 		                   Letter from Sterling to his wife (GG-ma) during the war.
 		                 </div>
 		                 </br>
 		               </div>
-
 		           </div>
 		   				</div>
 		         </div>
@@ -230,9 +315,9 @@
         </div>
       </div>
     </div>
+-->
 
-
-
+<!--
 		<div class = "row ">
       <div class = "col-lg 12">
         <div class="timeline-divider text-center">
@@ -253,7 +338,7 @@
 
 	</div>
 </div>
-
+-->
 <!--Old homepage jumbotron
 
 	<div class="jumbotron jumbotron-billboard p-o p-md-0 text-white rounded bg-dark">

@@ -43,6 +43,8 @@ class Memory(models.Model):
     city = models.CharField(null=True, blank=True, max_length=100)
     state = models.CharField(null=True, blank=True, max_length=100)
     country = models.CharField(null=True, blank=True, max_length=100)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, null = True)
     date_created = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
     active = models.SmallIntegerField(default=1)

@@ -66,7 +66,7 @@ def edit_timeline(request, timeline_id):
         if form.is_valid():
             t = Timeline.objects.get(pk=timeline_id)
 
-            response = changeFileData(request.user, t.timeline_folder_id, form.cleaned_data.get('name'), form.cleaned_data.get('description'))
+            changeFileData(request.user, t.timeline_folder_id, form.cleaned_data.get('name'), form.cleaned_data.get('description'))
 
             t.owner = request.user
             t.name = form.cleaned_data.get('name')
@@ -99,6 +99,13 @@ class CreateTimelineForm(forms.Form):
 def view(request, timeline_id):
     '''View an individual timeline'''
     timeline = get_object_or_404(Timeline, pk=timeline_id)
+    can_edit = False
+    if timeline.owner == request.user:
+        can_edit = True
+    else:
+        shared_timeline = SharedTimeline.objects.get(timeline=timeline, user=request.user)
+        if shared_timeline.permission == 'writer':
+            can_edit = True
 
     memories = Memory.objects.filter(timeline_id=timeline_id, active=1).order_by('year')
     files = File.objects.filter(memory__in = memories, active=1)
@@ -199,6 +206,7 @@ def view(request, timeline_id):
 
     template_vars = {
         'timeline': timeline,
+        'can_edit': can_edit,
         'memories': memories,
         'files': files,
         'first_year': first_year,
@@ -217,6 +225,8 @@ def delete(request, timeline_id):
     t = Timeline.objects.get(pk=timeline_id)
     t.active = 0
     t.save()
+
+    SharedTimeline.objects.filter(timeline=t).update(active=0)
 
     return HttpResponseRedirect('/timeline')
 
