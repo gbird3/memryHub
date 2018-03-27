@@ -22,14 +22,6 @@ class SharedTimeline(models.Model):
     permission_id = models.CharField(null=True, blank=True, max_length=300)
     active = models.SmallIntegerField(default=1)
 
-# class GroupHasTimeline(models.Model):
-#     '''Timelines shared with a group'''
-#     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-#     timeline = models.ForeignKey(Timeline, on_delete=models.CASCADE)
-#     permission = models.CharField(max_length=10, default='reader')
-#     permission_id = models.CharField(null=True, blank=True, max_length=300)
-#     active = models.SmallIntegerField(default=1)
-
 class Memory(models.Model):
     '''A specific aspect of the timeline that can hold memories'''
     name = models.CharField(max_length=100)
