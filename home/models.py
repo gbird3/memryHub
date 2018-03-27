@@ -15,6 +15,11 @@ class Group(models.Model):
     update_time = models.DateTimeField(auto_now=True)
     active = models.SmallIntegerField(default=1)
 
+    def sumUsers(self):
+        return UserHasGroup.objects.filter(group=self).count()
+    
+    users = property(sumUsers)
+
 class UserHasGroup(models.Model):
     '''Users that belong to a group'''
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
