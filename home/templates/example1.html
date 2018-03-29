@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}MemryHub{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href={% static "timeline/css/view.css" %}>
+
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <script type="text/javascript">
+    const oauthToken = '{{ access_token }}';
+  </script>
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+{% endblock %}
+
+{% block js %}
+  <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+  <script src = {% static "timeline/js/view.js" %}></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script>
+{% endblock %}
