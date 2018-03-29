@@ -12,10 +12,43 @@
 <br>
 <div class="container col-sm-10 col-sm-offset-10">
     <div class = "header-class">
-    <a href = "{% url 'view' timeline.id %}"><i class="fa fa-arrow-left"></i>Back</a>
-    <h1>{{ timeline.name }} Sharing Settings</h1>
+      <a href = "{% url 'view' timeline.id %}"><i class="fa fa-arrow-left"></i>Back</a>
+      <h1>{{ timeline.name }} Sharing Settings</h1>
+    </div>
   <br>
 </div>
+
+<div class="container col-sm-8">
+  <div class="row">
+    <h5>Groups</h5>
+  </div>
+  <div class="row">
+      <form method="POST">
+        <div class="form-row align-items-center">
+            <div class="col my-1">
+                {% csrf_token %}
+                {% comment %} <label for="user_group_id">Group</label> {% endcomment %}
+                <select class="form-control" name="user_group_id" required>
+                  {% for user_group in user_groups %}
+                      <option value="{{ user_group.id }}">{{ user_group.name }}</option>
+                  {% endfor %}
+                </select>
+            </div>
+            <div class="col">
+                {% comment %} <label for="group_permission">Permission</label> {% endcomment %}
+                <select name="permission" class="form-control" required>
+                  <option value="reader">Read Access</option>
+                  <option value="writer">Edit Access</option>
+                </select>
+            </div>
+            <div class="col-auto my-1">
+                <button type="submit" class="btn btn-primary" name="action">Share</button>
+            </div>
+        </div>
+      </form>
+  </div>
+</div>
+
 <div class="container col-sm-8">
     <div class="row">
       <h5>Timeline Users</h5>
@@ -80,7 +113,7 @@
                 <option value="writer">Edit Access</option>
               </select>
             </td>
-            <td><button id="share_1" class="btn btn-primary" onclick="share(1, {{ timeline.id }})" type="button">Share <i class="fas fa-share"></i></button></td>
+            <td><button id="share_1" class="btn btn-primary" onclick="share(1, {{ timeline.id }})" type="button">Share <i class="fa fa-share"></i></button></td>
           </tr>
 
           <tr>
@@ -92,7 +125,7 @@
                 <option value="writer">Edit Access</option>
               </select>
             </td>
-            <td><button id="share_2" class="btn btn-primary" onclick="share(2, {{ timeline.id }})" type="button">Share <i class="fas fa-share"></i></button></td>
+            <td><button id="share_2" class="btn btn-primary" onclick="share(2, {{ timeline.id }})" type="button">Share <i class="fa fa-share"></i></button></td>
           </tr>
 
           <tr>
@@ -104,7 +137,7 @@
                 <option value="writer">Edit Access</option>
               </select>
             </td>
-            <td><button id="share_3" class="btn btn-primary" onclick="share(3, {{ timeline.id }})" type="button">Share <i class="fas fa-share"></i></button></td>
+            <td><button id="share_3" class="btn btn-primary" onclick="share(3, {{ timeline.id }})" type="button">Share <i class="fa fa-share"></i></button></td>
           </tr>
         </tbody>
       </table>

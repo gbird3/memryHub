@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 from django.template import loader
 
 from ..models import Timeline, Memory, File, SharedTimeline
-from home.models import UserInfo
+from home.models import UserInfo, Group, UserHasGroup
 from ..gdrive import createFolder, changeFileData, getAccessToken, shareWithUser, updateSharing
 
 @login_required(login_url='/login')
@@ -234,10 +234,23 @@ def delete(request, timeline_id):
 def timeline_sharing(request, timeline_id):
     timeline = get_object_or_404(Timeline, pk=timeline_id)
     users = SharedTimeline.objects.filter(timeline=timeline)
+    user_groups = Group.objects.filter(owner=request.user)
 
+    if request.method == 'POST':
+        form = request.POST
+        group = get_object_or_404(Group, pk=form['user_group_id'])
+        users_in_group = UserHasGroup.objects.filter(group=group)
+
+        for user in users_in_group:
+            status = share_timeline(request.user, user.user.email, timeline, form['permission'])
+            print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', status)
+
+        return HttpResponseRedirect('/timeline/sharing/{}/'.format(timeline.timeline_id))
+        
     template_vars = {
         'timeline': timeline,
-        'users': users
+        'users': users,
+        'user_groups': user_groups
     }
 
     return render(request, 'sharing.html', template_vars)
@@ -256,30 +269,9 @@ def api_share_timeline(request):
         role = request.POST.__getitem__('access')
 
         if User.objects.filter(email=email).exists():
-            user = User.objects.get(email=email)
             timeline = Timeline.objects.get(pk=request.POST.__getitem__('timeline'))
 
-            # Share the folder with the user
-            response = shareWithUser(request.user, email, timeline.timeline_folder_id, role)
-            status = 400
-            data = response.json()
-
-            # If the sharing was a success, add the user to the shared DB or update that users permissions
-            if response.status_code == 200:
-                if SharedTimeline.objects.filter(user=user, timeline=timeline).exists():
-                    s = SharedTimeline.objects.get(user=user, timeline=timeline)
-                    s.permission = role
-                    s.permission_id = data['id']
-                    s.save()
-                else:
-                    s = SharedTimeline()
-                    s.user = user
-                    s.timeline = timeline
-                    s.permission = role
-                    s.permission_id = data['id']
-                    s.save()
-
-                status = response.status_code
+            status = share_timeline(request.user, email, timeline, role)
         else:
             html_message = loader.render_to_string(
                     '../templates/email.html',
@@ -294,6 +286,31 @@ def api_share_timeline(request):
 
     return HttpResponse(status)
 
+def share_timeline(owner, email, timeline, role):
+     # Share the folder with the user
+    response = shareWithUser(owner, email, timeline.timeline_folder_id, role)
+    status = 400
+    data = response.json()
+
+    user = User.objects.get(email=email)
+
+    # If the sharing was a success, add the user to the shared DB or update that users permissions
+    if response.status_code == 200:
+        if SharedTimeline.objects.filter(user=user, timeline=timeline).exists():
+            s = SharedTimeline.objects.get(user=user, timeline=timeline)
+            s.permission = role
+            s.permission_id = data['id']
+            s.save()
+        else:
+            s = SharedTimeline()
+            s.user = user
+            s.timeline = timeline
+            s.permission = role
+            s.permission_id = data['id']
+            s.save()
+
+        status = response.status_code
+    return status
 
 @login_required(login_url='/login')
 def api_update_share_timeline(request):
