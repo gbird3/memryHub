@@ -192,7 +192,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {
     'access_type': 'offline',
-    'approval_prompt': 'force'
+    # 'approval_prompt': 'force'
 }
 
 ## Un-comment when needing to debug on prod.
