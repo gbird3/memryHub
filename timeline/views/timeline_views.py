@@ -9,7 +9,7 @@ from datetime import datetime
 from django.core.mail import send_mail
 from django.template import loader
 
-from ..models import Timeline, Memory, File, SharedTimeline
+from ..models import Timeline, Memory, File, SharedTimeline, GroupHasTimeline
 from home.models import UserInfo, Group, UserHasGroup
 from ..gdrive import createFolder, changeFileData, getAccessToken, shareWithUser, updateSharing
 
@@ -235,6 +235,7 @@ def timeline_sharing(request, timeline_id):
     timeline = get_object_or_404(Timeline, pk=timeline_id)
     users = SharedTimeline.objects.filter(timeline=timeline)
     user_groups = Group.objects.filter(owner=request.user)
+    groups = GroupHasTimeline.objects.filter(timeline=timeline)
 
     if request.method == 'POST':
         form = request.POST
@@ -242,15 +243,25 @@ def timeline_sharing(request, timeline_id):
         users_in_group = UserHasGroup.objects.filter(group=group)
 
         for user in users_in_group:
-            status = share_timeline(request.user, user.user.email, timeline, form['permission'])
-            print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', status)
+            share_timeline(request.user, user.user.email, timeline, form['permission'])
+        
+        if GroupHasTimeline.objects.filter(group=group, timeline=timeline).exists():
+            gt = GroupHasTimeline.objects.get(group=group, timeline=timeline)
+        else: 
+            gt = GroupHasTimeline()
 
-        return HttpResponseRedirect('/timeline/sharing/{}/'.format(timeline.timeline_id))
+        gt.group = group
+        gt.timeline = timeline
+        gt.permission = form['permission']
+        gt.save()
+
+        return HttpResponseRedirect('/timeline/sharing/{}/'.format(timeline.id))
         
     template_vars = {
         'timeline': timeline,
         'users': users,
-        'user_groups': user_groups
+        'user_groups': user_groups,
+        'groups': groups
     }
 
     return render(request, 'sharing.html', template_vars)

@@ -20,12 +20,12 @@
 
 <div class="container col-sm-8">
   <div class="row">
-    <h5>Groups</h5>
+    <h5>Share with Group</h5>
   </div>
   <div class="row">
       <form method="POST">
         <div class="form-row align-items-center">
-            <div class="col my-1">
+            <div class="col">
                 {% csrf_token %}
                 {% comment %} <label for="user_group_id">Group</label> {% endcomment %}
                 <select class="form-control" name="user_group_id" required>
@@ -42,16 +42,69 @@
                 </select>
             </div>
             <div class="col-auto my-1">
-                <button type="submit" class="btn btn-primary" name="action">Share</button>
+                <button type="submit" class="btn btn-primary" name="action">Share <i class="fa fa-share"></i></button>
             </div>
         </div>
       </form>
   </div>
+  <br>
+  <div class="row">
+    {% csrf_token %}
+    <h5>Share With User</h5>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <!-- <th scope="col">Name</th> -->
+          <th scope="col">Email</th>
+          <th scope="col">Access</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <!-- <th><input type="text" id="new_user_name" class="form-control" placeholder="Name"></th> -->
+          <td><input type="text" id="new_user_email_1" type="email" class="form-control" placeholder="Email"></td>
+          <td>
+            <select id="new_user_access_1" class="custom-select" required>
+              <option value="reader">Read Access</option>
+              <option value="writer">Edit Access</option>
+            </select>
+          </td>
+          <td><button id="share_1" class="btn btn-primary" onclick="share(1, {{ timeline.id }})" type="button">Share <i class="fa fa-share"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <div class="row">
+    <h5>Groups with Access <i class="fa fa-info-circle" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="To update group sharing settings, re-share the timeline with the group"></i></h5>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Access</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for group in groups %}
+        <tr>
+          <td>{{ group.group.name }} </td>
+          <td>
+            {% if group.permission == 'reader' %}Read Access {% else %} Write Access {% endif %}
+          </td>
+          {% comment %} <td><button id="share_1" class="btn btn-primary" onclick="update({{ user.id}})" type="button">Update </button></td> {% endcomment %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
+
+<br>
 
 <div class="container col-sm-8">
     <div class="row">
-      <h5>Timeline Users</h5>
+      <h5>Users with Access <i class="fa fa-info-circle" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Users attached to groups will also show up here. You can give a user a different access level than a group, but if you change the group access level, it will also update the user's access."></i></h5>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -89,58 +142,6 @@
     <div id="share-email" class="alert alert-info" style="display: none;" role="alert">
       <h4>Email Sent</h4>
       <p>The invited user does not have a MemryHub account. An email has been sent to invite them. Once they have joined, you will need to share this timeline with them again!</p>
-    </div>
-
-    <div class="row">
-      {% csrf_token %}
-      <h5>Add New Users</h5>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <!-- <th scope="col">Name</th> -->
-            <th scope="col">Email</th>
-            <th scope="col">Access</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <!-- <th><input type="text" id="new_user_name" class="form-control" placeholder="Name"></th> -->
-            <td><input type="text" id="new_user_email_1" type="email" class="form-control" placeholder="Email"></td>
-            <td>
-              <select id="new_user_access_1" class="custom-select" required>
-                <option value="reader">Read Access</option>
-                <option value="writer">Edit Access</option>
-              </select>
-            </td>
-            <td><button id="share_1" class="btn btn-primary" onclick="share(1, {{ timeline.id }})" type="button">Share <i class="fa fa-share"></i></button></td>
-          </tr>
-
-          <tr>
-            <!-- <th><input type="text" class="form-control" placeholder="Name"></th> -->
-            <td><input id="new_user_email_2" type="text" type="email" class="form-control" placeholder="Email"></td>
-            <td>
-              <select id="new_user_access_2" class="custom-select" required>
-                <option value="reader">Read Access</option>
-                <option value="writer">Edit Access</option>
-              </select>
-            </td>
-            <td><button id="share_2" class="btn btn-primary" onclick="share(2, {{ timeline.id }})" type="button">Share <i class="fa fa-share"></i></button></td>
-          </tr>
-
-          <tr>
-            <!-- <th><input type="text" class="form-control" placeholder="Name"></th> -->
-            <td><input id="new_user_email_3" type="text" type="email" class="form-control" placeholder="Email"></td>
-            <td>
-              <select id="new_user_access_3" class="custom-select" required>
-                <option value="reader">Read Access</option>
-                <option value="writer">Edit Access</option>
-              </select>
-            </td>
-            <td><button id="share_3" class="btn btn-primary" onclick="share(3, {{ timeline.id }})" type="button">Share <i class="fa fa-share"></i></button></td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </div>
