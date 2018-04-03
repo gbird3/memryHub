@@ -22,7 +22,9 @@ def logout(request):
 def login(request):
     return render(request, 'login.html')
 
-
+def privacy(request):
+    return render(request, 'privacy.html')
+    
 class CreateGroupForm(forms.Form):
     name = forms.CharField(label='Group Name', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Group Name'}))
 
