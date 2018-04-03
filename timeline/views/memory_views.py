@@ -11,7 +11,7 @@ from ..gdrive import createFolder, changeFileData, getAccessToken
 
 class UserAddsMemoryForm(forms.Form):
     memory_name = forms.CharField(label='Memory Name', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Memory Name'}))
-    memory_description = forms.CharField(label='Description of your Memory', required=False, max_length=100, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Short description of your memory.'}))
+    memory_description = forms.CharField(label='Description of your Memory', required=False, max_length=500, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Short description of your memory.'}))
     start_day = forms.IntegerField(label='Day', required=False, widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Day'}))
     start_month = forms.IntegerField(label='Month', required=False, widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Month'}))
     start_year = forms.IntegerField(label='Year', widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Year'}))

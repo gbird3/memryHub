@@ -1,0 +1,176 @@
+.bottom-buffer{
+  margin-bottom: 20px;
+}
+
+.bottom-buffer-end{
+  margin-bottom: 100px;
+}
+
+.header-block{
+  margin-left: 1%;
+}
+
+.main-title {
+  margin-top: 2%;
+  text-align: left;
+}
+
+.main-title h1 {
+  text-align: left;
+  display: inline;
+}
+
+.edit-time-span{
+  margin-left: 1%;
+  color:black;
+}
+
+.card-subtitle{
+
+}
+
+.memory-name h3{
+  margin-top: .5%;
+  text-align: left;
+  display: inline;
+}
+
+.edit-memory-span{
+  margin-left: 1%;
+  color:black;
+}
+
+
+#memory-tutorial{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #49BFDC;
+}
+
+#add-memory-button{
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #8DC63F;
+  color: white;
+}
+
+.back-button{
+  color:#49BFDC;
+  text-align: left;
+}
+
+.card{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.main-card{
+  border: none;
+}
+
+h5{
+  font-size: small;
+  margin-bottom: -2px;
+}
+
+h4{
+  font-size: 100%;
+}
+
+.file-card{
+  position: relative;
+  margin-right: 30px;
+  display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.file-card a{
+  position:absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.file-card .info-of-card{
+  margin-left: 3%;
+  margin-top: 3%  ;
+}
+
+.file-card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.file-card a{
+  color:black;
+}
+
+.btn-add-file-card{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 25%;
+  margin-bottom: 25%;
+}
+
+.add-file-card a{
+  text-decoration: none;
+}
+.add-file-card a:hover{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card-description{
+  margin-bottom: 0%;
+}
+
+.file-description{
+  margin-left: 4%;
+  margin-top: 3%;
+}
+
+.center-block{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.sharing {
+  margin-top: 4rem;
+}
+
+.collapse-link{
+  color: text-muted;
+  font-size: small;
+}
+
+.delete-file-button{
+  color:red;
+  font-size: small;
+}
+
+.color-row{
+  /*background: #dcedc4;*/
+}
+
+.iframe-class{
+  margin-left: 5%;
+  margin-right: 5%;
+  width: auto;
+}
+
+.timeline-divider{
+  background-url: "../media/dust_scratches.png";
+  background: url("../media/dust_scratches.png") top center;
+}
+
+.modal-header{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.modal-body{
+  margin-left: 3%;
+  margin-right: 3%;
+}
