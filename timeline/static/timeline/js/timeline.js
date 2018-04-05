@@ -27,7 +27,8 @@ function createTimeline(next) {
 	      // contentType: "application/json; charset=utf-8",
 				success:function(response){
 					if (next === 'timeline') {
-						location.reload()
+						//location.reload()
+						location.replace(location.origin + '/timeline/view/' + response)
 					} else {
 						location.replace(location.origin + '/timeline/edit/' + response)
 					}
