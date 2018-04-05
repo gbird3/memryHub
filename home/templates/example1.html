@@ -5,7 +5,7 @@
 {% block title %}MemryHub{% endblock %}
 
 {% block css %}
-  <link rel="stylesheet" type="text/css" href={% static "timeline/css/view.css" %}>
+  <link rel="stylesheet" type="text/css" href={% static "home/css/example1.css" %}>
 
   <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   <script type="text/javascript">
@@ -15,61 +15,11 @@
 
 {% block content %}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class = "container-fluid">
     <div class = "row">
       <div class = "col-sm-10 center-block">
         <div class = "main-title">
-          <a class ="back-button" href = "/timeline/"><i class="fa fa-arrow-left"></i>Back</a>
+          <a class ="back-button" href = "/"><i class="fa fa-arrow-left"></i>Back</a>
         </br>
           <h1>Grandma Jones</h1>
           <!--<p> </p>-->
@@ -78,7 +28,7 @@
         </div>
       </div>
       <div class="col-md-1 col-md-offset-1 col-sm-2">
-          <a href="/timeline/sharing/48/"><i data-toggle="tooltip" data-placement="top" title="Share timeline" class="sharing fa fa-share-alt fa-2x"></i></a>
+
       </div>
     </div>
     <!--First Timeline Divider-->
@@ -204,7 +154,7 @@
 
 
 
-            <a class = "no-underline" href="/timeline/memory/attach/57/">
+            <a class = "no-underline" data-toggle="modal" data-target="#noInfoModal">
             <div class = "card add-file-card file-card center-block">
               <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
             </div>
@@ -244,7 +194,7 @@
                 <h3 class="card-title">Wedding
 <!--
 -->
-                    (None 29, 1954)
+                    (January 29, 1954)
                 </h3>
               </div>
               <div class = "location">
@@ -260,7 +210,7 @@
               <!--
             -->
               <div class = "card file-card">
-                <a href="/timeline/file/edit/88/"></a>
+                <a data-toggle="modal" data-target="#noInfoModal"></a>
                 <div class = "info-of-card">
                     <h4>
                       wedding photo.jpg
@@ -277,7 +227,7 @@
               </br>
               </div>
               <div class = "card file-card">
-                <a href="/timeline/file/edit/89/"></a>
+                <a data-toggle="modal" data-target="#noInfoModal"></a>
                 <div class = "info-of-card">
                     <h4>
                       family photo.jpg
@@ -294,7 +244,7 @@
               </br>
               </div>
               <div class = "card file-card">
-                <a href="/timeline/file/edit/90/"></a>
+                <a data-toggle="modal" data-target="#noInfoModal"></a>
                 <div class = "info-of-card">
                     <h4>
                       license.jpg
@@ -311,7 +261,7 @@
               </br>
               </div>
               <div class = "card file-card">
-                <a href="/timeline/file/edit/92/"></a>
+                <a data-toggle="modal" data-target="#noInfoModal"></a>
                 <div class = "info-of-card">
                     <h4>
                       <!--
@@ -332,7 +282,7 @@
                 <!--</div>-->
               </br>
               </div>
-            <a class = "no-underline" href="/timeline/memory/attach/61/">
+            <a class = "no-underline" data-toggle="modal" data-target="#noInfoModal">
             <div class = "card add-file-card file-card center-block">
               <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
             </div>
@@ -366,7 +316,7 @@
             </div>
             <div class = "card-columns ">
               <div class = "card file-card">
-                <a href="/timeline/file/edit/93/"></a>
+                <a data-toggle="modal" data-target="#noInfoModal"></a>
                 <div class = "info-of-card">
                     <h4>
                       elizabeth.jpg
@@ -382,7 +332,7 @@
               </br>
               </div>
               <div class = "card file-card">
-                <a href="/timeline/file/edit/94/"></a>
+                <a data-toggle="modal" data-target="#noInfoModal"></a>
                 <div class = "info-of-card">
                     <h4>
                       christmas.jpg
@@ -403,7 +353,7 @@
                 -->
               </div>
               <div class = "card file-card">
-                <a href="/timeline/file/edit/95/"></a>
+                <a data-toggle="modal" data-target="#noInfoModal"></a>
                 <div class = "info-of-card">
                     <h4>
                       <!--
@@ -424,7 +374,7 @@
                 <!--</div>-->
               </br>
               </div>
-            <a class = "no-underline" href="/timeline/memory/attach/60/">
+            <a class = "no-underline" data-toggle="modal" data-target="#noInfoModal">
             <div class = "card add-file-card file-card center-block">
               <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
             </div>
@@ -461,7 +411,7 @@
             </div>
             <div class = "card-columns ">
               <div class = "card file-card">
-                <a href="/timeline/file/edit/96/"></a>
+                <a data-toggle="modal" data-target="#noInfoModal"></a>
                 <div class = "info-of-card">
                     <h4>
                       <!--
@@ -485,7 +435,7 @@
                 <a class = "delete-file-button" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete File</a>
                 -->
               </div>
-            <a class = "no-underline" href="/timeline/memory/attach/62/">
+            <a class = "no-underline" data-toggle="modal" data-target="#noInfoModal">
             <div class = "card add-file-card file-card center-block">
               <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
             </div>
@@ -529,7 +479,7 @@
             </div>
             <div class = "card-columns ">
               <div class = "card file-card">
-                <a href="/timeline/file/edit/101/"></a>
+                <a data-toggle="modal" data-target="#noInfoModal"></a>
                 <div class = "info-of-card">
                     <h4>
                       <!--
@@ -553,7 +503,7 @@
                 <a class = "delete-file-button" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete File</a>
                 -->
               </div>
-            <a class = "no-underline" href="/timeline/memory/attach/67/">
+            <a class = "no-underline" data-toggle="modal" data-target="#noInfoModal">
             <div class = "card add-file-card file-card center-block">
               <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
             </div>
@@ -596,7 +546,7 @@
               <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = ".preview-memory-collapse-69" aria-expanded="false" aria-controls="collapseExample">Preview All</a>-->
             </div>
             <div class = "card-columns ">
-            <a class = "no-underline" href="/timeline/memory/attach/69/">
+            <a class = "no-underline" data-toggle="modal" data-target="#noInfoModal">
             <div class = "card add-file-card file-card center-block">
               <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
             </div>
@@ -640,7 +590,7 @@
             </div>
             <div class = "card-columns ">
               <div class = "card file-card">
-                <a href="/timeline/file/edit/97/"></a>
+                <a data-toggle="modal" data-target="#noInfoModal"></a>
                 <div class = "info-of-card">
                     <h4>
                       <!--
@@ -665,7 +615,7 @@
                 -->
               </div>
               <div class = "card file-card">
-                <a href="/timeline/file/edit/98/"></a>
+                <a data-toggle="modal" data-target="#noInfoModal"></a>
                 <div class = "info-of-card">
                     <h4>
                       <!--
@@ -690,7 +640,7 @@
                 -->
               </div>
               <div class = "card file-card">
-                <a href="/timeline/file/edit/99/"></a>
+                <a data-toggle="modal" data-target="#noInfoModal"></a>
                 <div class = "info-of-card">
                     <h4>
                       <!--
@@ -714,7 +664,7 @@
                 <a class = "delete-file-button" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete File</a>
                 -->
               </div>
-            <a class = "no-underline" href="/timeline/memory/attach/70/">
+            <a class = "no-underline" data-toggle="modal" data-target="#noInfoModal">
             <div class = "card add-file-card file-card center-block">
               <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
             </div>
@@ -772,7 +722,7 @@
             </div>
             <div class = "card-columns ">
               <div class = "card file-card">
-                <a href="/timeline/file/edit/100/"></a>
+                <a data-toggle="modal" data-target="#noInfoModal"></a>
                 <div class = "info-of-card">
                     <h4>
                       funeral1.jpg
@@ -786,7 +736,7 @@
                 </div>
               </br>
               </div>
-            <a class = "no-underline" href="/timeline/memory/attach/68/">
+            <a class = "no-underline" data-toggle="modal" data-target="#noInfoModal">
             <div class = "card add-file-card file-card center-block">
               <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
             </div>
@@ -806,6 +756,39 @@
         <h2>2010</h2>
         <hr/>
       </div>
+    </div>
+  </div>
+
+
+  <div id="noInfoModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>This example file does not have a details page.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div id="addMemory" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>You are unable to add a memory to this example page. You'll need to create your own timeline to do that.</p>
+          <span class = "btn-span"><a href = "/timeline"><button class = "btn btn-add-memory">Create A Timeline</button></a></span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
     </div>
   </div>
 
