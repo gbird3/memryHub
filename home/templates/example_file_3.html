@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}MemryHub{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href={% static "home/css/exampleFile.css" %}>
+{% endblock %}
+
+{% block content %}
+<br>
+  <div class="container-fluid col-sm-10 col-sm-offset-10">
+    <div class = "header-class ">
+      <a class = "back-button" href = "/example1"><i class="fa fa-arrow-left"></i>Back</a>
+    </br>
+      <h1>birth+certificate.jpg</h1>
+    </div>
+    </br>
+
+  <div class="row">
+    <div class="col-sm-6 center-block">
+        <!--{{ form }}-->
+        <form>
+         <div class="form-group">
+           <label for="">File Name:</label>
+           <input type="text" class="form-control" value="birth+certificate.jpg">
+         </div>
+         <div class="form-group">
+           <label>File Description:</label>
+           <textarea type="password" class="form-control" placeholder="Short description of your file." rows="8"></textarea>
+         </div>
+        </form>
+
+
+
+    </div>
+    <div class ="col-sm-6">
+      <div class = "file-preview">
+      File Preview:
+      </div>
+      <div class="center-block">
+        <iframe class = "preview-frame" frameborder="0" src="https://drive.google.com/file/d/1OYF3zIK8K-hpk-aKfzpKneCwV8acqdgf/preview?usp=sharing"></iframe>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+{% endblock %}

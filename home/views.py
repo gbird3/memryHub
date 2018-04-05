@@ -20,51 +20,20 @@ def login(request):
 
 
 def example1(request):
-    user = request.user
-
-    template_vars = {
-        'user': user,
-    }
-    return render(request, 'example1.html',template_vars)
+    return render(request, 'example1.html')
 
 
-def exampleFile(request, file_id):
-    user = request.user
+def example_file_1(request):
+    return render(request, 'example_file_1.html')
 
-    template_vars = {
-        'user': user,
-    }
-    return render(request, 'example1.html',template_vars)
+def example_file_2(request):
+    return render(request, 'example_file_2.html')
 
+def example_file_3(request):
+    return render(request, 'example_file_3.html')
 
-def edit_file(request, file_id):
-    data = {
-        'name': f.name,
-        'description': f.description,
-        'memory_id' : memory_id
-    }
+def example_file_4(request):
+    return render(request, 'example_file_4.html')
 
-    form = EditFileForm(initial=data)
-
-    if request.method == 'POST':
-        form = EditFileForm(request.POST)
-        if form.has_changed():
-            if form.is_valid():
-                f = File.objects.get(pk=file_id)
-
-                response = changeFileData(request.user, f.file_id, form.cleaned_data.get('name'), form.cleaned_data.get('description'))
-
-                f.name = form.cleaned_data.get('name')
-                f.description = form.cleaned_data.get('description')
-                f.save()
-
-        return HttpResponseRedirect('/timeline/memory/attach/{}'.format(f.memory.id))
-
-
-    template_vars = {
-        'form': form,
-        'file': f,
-        'memory_id' : memory_id
-    }
-
-    return render(request, 'edit_file.html', template_vars)
+def example_file_5(request):
+    return render(request, 'example_file_5.html')
