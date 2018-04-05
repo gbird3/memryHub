@@ -16,7 +16,6 @@
 			<div class = "col-md-12">
 				<h1>{{ user.first_name }}'s Timelines</h1>
 				<button type="button" class="btn" id = "btn-new-timeline" data-toggle="modal" data-target="#addTimeline"><i class="fa fa-plus-circle"></i>  Create New Timeline</button>
-
 			</div>
     </div>
   </div>
@@ -38,10 +37,12 @@
   <div class="row top-buffer bottom-buffer side-buffer">
     <div>
       <h3>Your Timelines</h3>
-      {% for timeline in timelines %}
-      <div class = "col-md-4 center-block btn-block">
-        <a href = "{% url 'view' timeline.id %}">
-          <div class="card top-buffer card-outline-info bottom-buffer" style="width: 100%;">
+
+			<div class="card-deck">
+				{% for timeline in timelines %}
+
+				<a href = "{% url 'view' timeline.id %}">
+          <div class="card top-buffer card-outline-info bottom-buffer">
             {% if timeline.image %}
             <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ timeline.image }}" alt="{{ timeline.name }}">
             {% else %}
@@ -54,8 +55,10 @@
             </div>
           </div>
         </a>
-      </div>
-    {% endfor %}
+
+				{% endfor %}
+			</div>
+
     </div>
   </div>
 </div>
@@ -66,24 +69,25 @@
     <div class="row top-buffer bottom-buffer side-buffer">
       <div>
         <h3>Timelines Shared with You</h3>
-        {% for shared in shared_timelines %}
-        <div class="col-lg-4 center-block btn-block">
-          <a href = "{% url 'view' shared.timeline.id %}">
-            <div class="card top-buffer card-outline-info bottom-buffer" style="width: 100%;">
-              {% if shared.timeline.image %}
-              <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ shared.timeline.image }}" alt="{{ shared.timeline.name }}">
-              {% else %}
-              <img class="card-img-top img-fluid" style="width: 900px" src= {% static "/timeline/media/default-profile.png" %} alt="Default timeline image">
-              {% endif %}
-              <hr/>
-              <div class="card-block text-card-block">
-                <h4 class="card-title">{{ shared.timeline.name }}</h4>
-                <p class="card-text">{{ shared.timeline.description }}</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        {% endfor %}
+
+				<div class="card-deck">
+	        {% for shared in shared_timelines %}
+	          <a href = "{% url 'view' shared.timeline.id %}">
+	            <div class="card top-buffer card-outline-info bottom-buffer" style="width: 100%;">
+	              {% if shared.timeline.image %}
+	              <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ shared.timeline.image }}" alt="{{ shared.timeline.name }}">
+	              {% else %}
+	              <img class="card-img-top img-fluid" style="width: 900px" src= {% static "/timeline/media/default-profile.png" %} alt="Default timeline image">
+	              {% endif %}
+	              <hr/>
+	              <div class="card-block text-card-block">
+	                <h4 class="card-title">{{ shared.timeline.name }}</h4>
+	                <p class="card-text">{{ shared.timeline.description }}</p>
+	              </div>
+	            </div>
+	          </a>
+	        {% endfor %}
+				</div>
       </div>
     </div>
   </div>
