@@ -4,7 +4,12 @@ from social_django.utils import load_strategy
 
 def getAccessToken(user):
     social = user.social_auth.get(provider='google-oauth2')
-    return social.get_access_token(load_strategy())
+    try:
+        access_token = social.get_access_token(load_strategy())
+    except:
+        access_token = 'invalid'
+    
+    return access_token
 
 def getHeaders(user):
     access_token = getAccessToken(user)

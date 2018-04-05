@@ -76,3 +76,6 @@ def group_users(request, group_id):
     }
 
     return render(request, 'group-users.html', template_vars)
+
+def auth_error(request):
+    return render(request, 'auth-error.html')
