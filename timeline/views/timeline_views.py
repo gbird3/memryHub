@@ -50,6 +50,9 @@ def api_create_timeline(request):
 def edit_timeline(request, timeline_id):
     access_token = getAccessToken(request.user)
 
+    if access_token == 'invalid':
+        return HttpResponseRedirect('/auth_error')
+
     t = get_object_or_404(Timeline, pk=timeline_id)
 
     data = {
@@ -111,6 +114,9 @@ def view(request, timeline_id):
     files = File.objects.filter(memory__in = memories, active=1)
 
     access_token = getAccessToken(request.user)
+
+    if access_token == 'invalid':
+        return HttpResponseRedirect('/auth_error')
 
     date_dict = {}
 
