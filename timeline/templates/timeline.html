@@ -46,7 +46,7 @@
             {% if timeline.image %}
             <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ timeline.image }}" alt="{{ timeline.name }}">
             {% else %}
-            <img class="card-img-top img-fluid" style="width: 900px" src= {% static "/timeline/media/default-profile.png" %} alt="Default timeline card image">
+            <img class="card-img-top img-fluid"  src= {% static "/timeline/media/default-profile.png" %} alt="Default timeline card image">
             {% endif %}
             <hr/>
             <div class="card-block text-card-block">
@@ -73,11 +73,11 @@
 				<div class="card-deck">
 	        {% for shared in shared_timelines %}
 	          <a href = "{% url 'view' shared.timeline.id %}">
-	            <div class="card top-buffer card-outline-info bottom-buffer" style="width: 100%;">
+	            <div class="card top-buffer card-outline-info bottom-buffer" >
 	              {% if shared.timeline.image %}
 	              <img class="card-img-top img-fluid" src="https://drive.google.com/uc?export=view&id={{ shared.timeline.image }}" alt="{{ shared.timeline.name }}">
 	              {% else %}
-	              <img class="card-img-top img-fluid" style="width: 900px" src= {% static "/timeline/media/default-profile.png" %} alt="Default timeline image">
+	              <img class="card-img-top img-fluid" src= {% static "/timeline/media/default-profile.png" %} alt="Default timeline image">
 	              {% endif %}
 	              <hr/>
 	              <div class="card-block text-card-block">
