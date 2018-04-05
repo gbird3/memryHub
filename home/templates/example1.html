@@ -16,376 +16,756 @@
 {% block content %}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class = "container-fluid">
-  <div class = "row">
-    <div class = "col-sm-10 center-block">
-      <div class = "main-title">
-        <a class ="back-button" href = "/"><i class="fa fa-arrow-left"></i>Back</a>
-      </br>
-        <h1>Grandma Jones</h1>
-      </br>
-      </div>
-    </div>
-    <div class="col-md-1 col-md-offset-1 col-sm-2">
-    </div>
-  </div>
-</div>
-
-
-<!--First Timeline Divider-->
-<div class = "row">
-  <div class = "col-lg 12">
-    <div class="timeline-divider text-center">
-      <hr/>
-      <h2>1930</h2>
-      <hr/>
-    </div>
-  </div>
-</div>
-
-<!--Birth Memory-->
-<div class = "row color-row" id = "">
-  <div class = "col-lg-12">
-    <div class="card center-block main-card" style = "width: 80%">
-      <div class="card-block header-block">
-        <div class = "memory-name">
-          <h3 class="card-title">Birth (March 2, 1933)</h3>
-        </div>
-        <div class = "location">
-          <h5>
-            Kansas City,
-            Missouri,
-            United States
-        </h5>
-        </div>
-        <p class="card-description">Grandma Jones was born in Kansas City, MI in 1933. She had three older brothers and one older sister. They lived in a small home and didn't have much.</p>
-      </div>
-      <div class = "card-columns ">
-        <div class = "card file-card">
-          <a href=""></a>
-          <div class = "info-of-card">
-              <h4>
-                BabyPhoto.jpg
-              </h4>
-          </div>
-          <br>
-          <div class = "iframe-class center-block">
-              <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=TEMPFILENAME" alt="Image">
-          </div>
-          <div class = "file-description">
-            Baby photo of Grandma Jones.
-          </div>
+    <div class = "row">
+      <div class = "col-sm-10 center-block">
+        <div class = "main-title">
+          <a class ="back-button" href = "/timeline/"><i class="fa fa-arrow-left"></i>Back</a>
         </br>
-        </div>
-      <a class = "no-underline" href="">
-      </a>
-    </div>
-      <div class = "card-block footer-block">
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class = "row">
-  <div class = "col-lg 12">
-    <div class="timeline-divider text-center">
-      <hr/>
-      <h2>1940</h2>
-      <hr/>
-    </div>
-  </div>
-</div>
-
-<div class = "row">
-  <div class = "col-lg 12">
-    <div class="timeline-divider text-center">
-      <hr/>
-      <h2>1950</h2>
-      <hr/>
-    </div>
-  </div>
-</div>
-
-<!--Wedding Memory-->
-<div class = "row color-row" id = "">
-  <div class = "col-lg-12">
-    <div class="card center-block main-card" style = "width: 80%">
-      <div class="card-block header-block">
-        <div class = "memory-name">
-          <h3 class="card-title">Wedding (June 30, 1954)</h3>
-        </div>
-        <div class = "location">
-          <h5>
-            Kansas City,
-            Missouri,
-            United States
-        </h5>
-        </div>
-        <p class="card-description">Grandma married Grandpa (Robert Jones) on June 30, 1954.</p>
-      </div>
-      <div class = "card-columns ">
-        <div class = "card file-card">
-          <a href=""></a>
-          <div class = "info-of-card">
-              <h4>
-                Wedding1.jpg
-              </h4>
-          </div>
-          <br>
-          <div class = "iframe-class center-block">
-              <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=TEMPFILENAME" alt="Image">
-          </div>
-          <div class = "file-description">
-            Wedding photos of Grandma Jones.
-          </div>
+          <h1>Grandma Jones</h1>
+          <!--<p> </p>-->
         </br>
+          <button type="button" class="btn bottom-buffer" id = "add-memory-button" data-toggle="modal" data-target="#addMemory"><i class="fa fa-plus-circle"></i>     Add Memory</button>
         </div>
-      <a class = "no-underline" href="">
-      </a>
+      </div>
+      <div class="col-md-1 col-md-offset-1 col-sm-2">
+          <a href="/timeline/sharing/48/"><i data-toggle="tooltip" data-placement="top" title="Share timeline" class="sharing fa fa-share-alt fa-2x"></i></a>
+      </div>
     </div>
-      <div class = "card-block footer-block">
-
+    <!--First Timeline Divider-->
+    <div class = "row">
+      <div class = "col-lg 12">
+        <div class="timeline-divider text-center">
+          <hr/>
+          <h2>1930</h2>
+          <hr/>
+        </div>
+      </div>
+    </div>
+    <!--Cards-->
+      <!--Dividers-->
+      <!--Dividers-->
+      <div class = "row color-row" id = "memory-57">
+        <div class = "col-lg-12">
+          <div class="card center-block main-card" style = "width: 80%">
+    				<div class="card-block header-block">
+              <div class = "memory-name">
+                <h3 class="card-title">Birth
+<!--
+-->
+                    (March 2, 1933)
+                </h3>
+              </div>
+              <div class = "location">
+                <h5>
+                  Kansas City,
+                  Missouri,
+                  United States
+              </h5>
+              </div>
+              <p class="card-description">Grandma Jones was born in Kansas City, MI in 1933. She had three older brothers and one older sister. They lived in a small home and didn&#39;t have much.</p>
+            </div>
+            <div class = "card-columns ">
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/85/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      grandma_baby_photo
+                    </h4>
+                </div>
+                <br>
+                <div class = "iframe-class center-block">
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=1-bbHZQB1CbPVO9KEZb7fxIWYLeGExRhG" alt="Image">
+                </div>
+                <div class = "file-description">
+                </div>
+                <!--</div>-->
+              </br>
+              </div>
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/86/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      birth+certificate.jpg
+                    </h4>
+                </div>
+                <br>
+                <div class = "iframe-class center-block">
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=1OYF3zIK8K-hpk-aKfzpKneCwV8acqdgf" alt="Image">
+                </div>
+                <div class = "file-description">
+                </div>
+              </br>
+              </div>
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/87/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      grandma_with_mom.jpg
+                    </h4>
+                </div>
+                <br>
+                <div class = "iframe-class center-block">
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=1TCZge9OD6ANOV4ebE9rF7foZDxGhFDs1" alt="Image">
+                </div>
+                <div class = "file-description">
+                </div>
+                <!--</div>-->
+              </br>
+              </div>
+            <a class = "no-underline" href="/timeline/memory/attach/57/">
+            <div class = "card add-file-card file-card center-block">
+              <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
+            </div>
+            </a>
+          </div>
+            <div class = "card-block footer-block">
+            </div>
+  				</div>
+        </div>
+      </div>
+      <!--Dividers-->
+        <div class = "row">
+          <div class = "col-lg 12">
+            <div class="timeline-divider text-center">
+              <hr/>
+              <h2>1940</h2>
+              <hr/>
+            </div>
+          </div>
+        </div>
+      <!--Dividers-->
+        <div class = "row">
+          <div class = "col-lg 12">
+            <div class="timeline-divider text-center">
+              <hr/>
+              <h2>1950</h2>
+              <hr/>
+            </div>
+          </div>
+        </div>
+      <!--Dividers-->
+      <div class = "row color-row" id = "memory-61">
+        <div class = "col-lg-12">
+          <div class="card center-block main-card" style = "width: 80%">
+    				<div class="card-block header-block">
+              <div class = "memory-name">
+                <h3 class="card-title">Wedding
+<!--
+-->
+                    (None 29, 1954)
+                </h3>
+              </div>
+              <div class = "location">
+                <h5>
+                  Kansas City,
+                  Missouri,
+                  United States
+              </h5>
+              </div>
+              <p class="card-description">Grandma married Grandpa (Robert Jones) on June 30, 1954.</p>
+            </div>
+            <div class = "card-columns ">
+              <!--
+            -->
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/88/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      wedding photo.jpg
+                    </h4>
+                </div>
+                <br>
+                <div class = "iframe-class center-block">
+                  <!--<iframe class = "" frameborder="0" src="https://drive.google.com/file/d/1kr8Kj1K6Pvpydn3NUx94gT6B3uGnE4Z2/preview?usp=sharing"></iframe>-->
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=1kr8Kj1K6Pvpydn3NUx94gT6B3uGnE4Z2" alt="Image">
+                </div>
+                <div class = "file-description">
+                </div>
+                <!--</div>-->
+              </br>
+              </div>
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/89/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      family photo.jpg
+                    </h4>
+                </div>
+                <br>
+                <div class = "iframe-class center-block">
+                  <!--<iframe class = "" frameborder="0" src="https://drive.google.com/file/d/1Pi4VQLOiqEinTld6H6m03c4oL6DihfqX/preview?usp=sharing"></iframe>-->
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=1Pi4VQLOiqEinTld6H6m03c4oL6DihfqX" alt="Image">
+                </div>
+                <div class = "file-description">
+                </div>
+                <!--</div>-->
+              </br>
+              </div>
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/90/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      license.jpg
+                    </h4>
+                </div>
+                <br>
+                <div class = "iframe-class center-block">
+                  <!--<iframe class = "" frameborder="0" src="https://drive.google.com/file/d/1knP1gOkkTA12_CZK0Ct26KGQm29GgPSG/preview?usp=sharing"></iframe>-->
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=1knP1gOkkTA12_CZK0Ct26KGQm29GgPSG" alt="Image">
+                </div>
+                <div class = "file-description">
+                </div>
+                <!--</div>-->
+              </br>
+              </div>
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/92/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      <!--
+                      <i class="fa fa-file-audio-o "></i>
+                    -->
+                      Grandma_Interview_Wedding
+                    </h4>
+                </div>
+                <br>
+                <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-1Qsht_UkKlcA_PWyupauTpMCuYgP5LnMX" aria-expanded="false" aria-controls="collapseExample">Preview</a>-->
+                <!--<div class="collapse preview-memory-collapse-61" id ="preview-file-collapse-1Qsht_UkKlcA_PWyupauTpMCuYgP5LnMX" >-->
+                <div class = "iframe-class center-block">
+                  <!--<iframe class = "" frameborder="0" src="https://drive.google.com/file/d/1Qsht_UkKlcA_PWyupauTpMCuYgP5LnMX/preview?usp=sharing"></iframe>-->
+                    <i class="fa fa-file-audio-o fa-5x"></i>
+                </div>
+                <div class = "file-description">
+                </div>
+                <!--</div>-->
+              </br>
+              </div>
+            <a class = "no-underline" href="/timeline/memory/attach/61/">
+            <div class = "card add-file-card file-card center-block">
+              <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
+            </div>
+            </a>
+          </div>
+            <div class = "card-block footer-block">
+            </div>
+  				</div>
+        </div>
+      </div>
+      <!--Dividers-->
+      <div class = "row color-row" id = "memory-60">
+        <div class = "col-lg-12">
+          <div class="card center-block main-card" style = "width: 80%">
+    				<div class="card-block header-block">
+              <div class = "memory-name">
+                <h3 class="card-title">Elizabeth&#39;s Birth
+<!--
+-->
+                    (October 23, 1956)
+                </h3>
+              </div>
+              <div class = "location">
+                <h5>
+                  Kansas City,
+                  Missouri,
+                  United States
+              </h5>
+              </div>
+              <p class="card-description">Elizabeth was born in Kansas City and went home to their first house.</p>
+            </div>
+            <div class = "card-columns ">
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/93/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      elizabeth.jpg
+                    </h4>
+                </div>
+                <br>
+                <div class = "iframe-class center-block">
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=1_dba4_dEJvmC1UuhlJfKpjB3FyHAl0Jb" alt="Image">
+                </div>
+                <div class = "file-description">
+                </div>
+                <!--</div>-->
+              </br>
+              </div>
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/94/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      christmas.jpg
+                    </h4>
+                </div>
+                <br>
+                <div class = "iframe-class center-block">
+                  <!--<iframe class = "" frameborder="0" src="https://drive.google.com/file/d/1GE_64MTIKGfretCpIZnF69GhUlnEyUUy/preview?usp=sharing"></iframe>-->
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=1GE_64MTIKGfretCpIZnF69GhUlnEyUUy" alt="Image">
+                </div>
+                <div class = "file-description">
+                  Fashion, 1960&#39;s, First Christmas, A young couple and baby girl sit around a tinsel tree with their pet dog  (Photo by Popperfoto/Getty Images)
+                </div>
+                <!--</div>-->
+              </br>
+              <!--Delete button
+                <a class = "delete-file-button" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete File</a>
+                -->
+              </div>
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/95/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      <!--
+                      <i class="fa fa-file-image-o "></i>
+                    -->
+                      elizabeth_certificate.jpg
+                    </h4>
+                </div>
+                <br>
+                <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-18N8FBKbeHrqbfqnu9-m2ORQ9h_h4iqFr" aria-expanded="false" aria-controls="collapseExample">Preview</a>-->
+                <!--<div class="collapse preview-memory-collapse-60" id ="preview-file-collapse-18N8FBKbeHrqbfqnu9-m2ORQ9h_h4iqFr" >-->
+                <div class = "iframe-class center-block">
+                  <!--<iframe class = "" frameborder="0" src="https://drive.google.com/file/d/18N8FBKbeHrqbfqnu9-m2ORQ9h_h4iqFr/preview?usp=sharing"></iframe>-->
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=18N8FBKbeHrqbfqnu9-m2ORQ9h_h4iqFr" alt="Image">
+                </div>
+                <div class = "file-description">
+                </div>
+                <!--</div>-->
+              </br>
+              </div>
+            <a class = "no-underline" href="/timeline/memory/attach/60/">
+            <div class = "card add-file-card file-card center-block">
+              <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
+            </div>
+            </a>
+          </div>
+            <div class = "card-block footer-block">
+            </div>
+  				</div>
+        </div>
+      </div>
+      <!--Dividers-->
+      <div class = "row color-row" id = "memory-62">
+        <div class = "col-lg-12">
+          <div class="card center-block main-card" style = "width: 80%">
+    				<div class="card-block header-block">
+              <div class = "memory-name">
+                <h3 class="card-title">Johnny&#39;s Birth
+<!--
+-->
+                    (June 12, 1958)
+                </h3>
+              </div>
+              <div class = "location">
+                <h5>
+                  Tulsa,
+                  Oklahoma,
+                  United States
+              </h5>
+              </div>
+              <p class="card-description">Johnny was born in Tulsa a few months after Grandma and Grandpa moved to Tulsa.</p>
+              <!--<h6>Memry owns this memory.</h6>-->
+              <!--<a href="/timeline/memory/attach/62/" class="btn btn-secondary btn-sm add-file-button">Manage Memory/Files</a>-->
+              <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = ".preview-memory-collapse-62" aria-expanded="false" aria-controls="collapseExample">Preview All</a>-->
+            </div>
+            <div class = "card-columns ">
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/96/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      <!--
+                      <i class="fa fa-file-image-o "></i>
+                    -->
+                      johnny.jpg
+                    </h4>
+                </div>
+                <br>
+                <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-1-0DQIcf8rSgyhJXFGR9g97KkPkYsdxw0" aria-expanded="false" aria-controls="collapseExample">Preview</a>-->
+                <!--<div class="collapse preview-memory-collapse-62" id ="preview-file-collapse-1-0DQIcf8rSgyhJXFGR9g97KkPkYsdxw0" >-->
+                <div class = "iframe-class center-block">
+                  <!--<iframe class = "" frameborder="0" src="https://drive.google.com/file/d/1-0DQIcf8rSgyhJXFGR9g97KkPkYsdxw0/preview?usp=sharing"></iframe>-->
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=1-0DQIcf8rSgyhJXFGR9g97KkPkYsdxw0" alt="Image">
+                </div>
+                <div class = "file-description">
+                </div>
+                <!--</div>-->
+              </br>
+              <!--Delete button
+                <a class = "delete-file-button" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete File</a>
+                -->
+              </div>
+            <a class = "no-underline" href="/timeline/memory/attach/62/">
+            <div class = "card add-file-card file-card center-block">
+              <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
+            </div>
+            </a>
+          </div>
+            <div class = "card-block footer-block">
+            </div>
+  				</div>
+        </div>
+      </div>
+      <!--Dividers-->
+        <div class = "row">
+          <div class = "col-lg 12">
+            <div class="timeline-divider text-center">
+              <hr/>
+              <h2>1960</h2>
+              <hr/>
+            </div>
+          </div>
+        </div>
+      <!--Dividers-->
+      <div class = "row color-row" id = "memory-67">
+        <div class = "col-lg-12">
+          <div class="card center-block main-card" style = "width: 80%">
+    				<div class="card-block header-block">
+              <div class = "memory-name">
+                <h3 class="card-title">Sarah&#39;s Birth
+<!--
+-->
+                    (None 15, 1962)
+                </h3>
+              </div>
+              <div class = "location">
+                <h5>
+                  Tulsa,
+                  Oklahoma,
+                  United States
+              </h5>
+              </div>
+              <p class="card-description">Sarah was also born in Tulsa.</p>
+            </div>
+            <div class = "card-columns ">
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/101/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      <!--
+                      <i class="fa fa-file-audio-o "></i>
+                    -->
+                      Grandma_interview_Sarah&#39;s birth
+                    </h4>
+                </div>
+                <br>
+                <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-1KwwLLPE9yXxSwHpT_i8dtsL9nKmPcRdU" aria-expanded="false" aria-controls="collapseExample">Preview</a>-->
+                <!--<div class="collapse preview-memory-collapse-67" id ="preview-file-collapse-1KwwLLPE9yXxSwHpT_i8dtsL9nKmPcRdU" >-->
+                <div class = "iframe-class center-block">
+                  <!--<iframe class = "" frameborder="0" src="https://drive.google.com/file/d/1KwwLLPE9yXxSwHpT_i8dtsL9nKmPcRdU/preview?usp=sharing"></iframe>-->
+                    <i class="fa fa-file-audio-o fa-5x"></i>
+                </div>
+                <div class = "file-description">
+                </div>
+                <!--</div>-->
+              </br>
+              <!--Delete button
+                <a class = "delete-file-button" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete File</a>
+                -->
+              </div>
+            <a class = "no-underline" href="/timeline/memory/attach/67/">
+            <div class = "card add-file-card file-card center-block">
+              <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
+            </div>
+            </a>
+          </div>
+            <div class = "card-block footer-block">
+            </div>
+  				</div>
+        </div>
+      </div>
+      <!--Dividers-->
+        <div class = "row">
+          <div class = "col-lg 12">
+            <div class="timeline-divider text-center">
+              <hr/>
+              <h2>1970</h2>
+              <hr/>
+            </div>
+          </div>
+        </div>
+      <!--Dividers-->
+      <div class = "row color-row" id = "memory-69">
+        <div class = "col-lg-12">
+          <div class="card center-block main-card" style = "width: 80%">
+    				<div class="card-block header-block">
+              <div class = "memory-name">
+                <h3 class="card-title">First grandchild (Jared) born
+<!--
+-->
+                    (1979)
+                </h3>
+              </div>
+              <div class = "location">
+                <h5>
+              </h5>
+              </div>
+              <p class="card-description">Elizabeth&#39;s son Jared was born.</p>
+              <!--<h6>Memry owns this memory.</h6>-->
+              <!--<a href="/timeline/memory/attach/69/" class="btn btn-secondary btn-sm add-file-button">Manage Memory/Files</a>-->
+              <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = ".preview-memory-collapse-69" aria-expanded="false" aria-controls="collapseExample">Preview All</a>-->
+            </div>
+            <div class = "card-columns ">
+            <a class = "no-underline" href="/timeline/memory/attach/69/">
+            <div class = "card add-file-card file-card center-block">
+              <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
+            </div>
+            </a>
+          </div>
+            <div class = "card-block footer-block">
+            </div>
+  				</div>
+        </div>
+      </div>
+      <!--Dividers-->
+        <div class = "row">
+          <div class = "col-lg 12">
+            <div class="timeline-divider text-center">
+              <hr/>
+              <h2>1980</h2>
+              <hr/>
+            </div>
+          </div>
+        </div>
+      <!--Dividers-->
+      <div class = "row color-row" id = "memory-70">
+        <div class = "col-lg-12">
+          <div class="card center-block main-card" style = "width: 80%">
+    				<div class="card-block header-block">
+              <div class = "memory-name">
+                <h3 class="card-title">Europe Adventure
+<!--
+-->
+                    (1986)
+                </h3>
+              </div>
+              <div class = "location">
+                <h5>
+              </h5>
+              </div>
+              <p class="card-description"></p>
+              <!--<h6>Memry owns this memory.</h6>-->
+              <!--<a href="/timeline/memory/attach/70/" class="btn btn-secondary btn-sm add-file-button">Manage Memory/Files</a>-->
+              <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = ".preview-memory-collapse-70" aria-expanded="false" aria-controls="collapseExample">Preview All</a>-->
+            </div>
+            <div class = "card-columns ">
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/97/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      <!--
+                      <i class="fa fa-file-image-o "></i>
+                    -->
+                      europe2.jpg
+                    </h4>
+                </div>
+                <br>
+                <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-1hPKSiz_QDDhLX4_LWtrbH0e6QhqaxLyB" aria-expanded="false" aria-controls="collapseExample">Preview</a>-->
+                <!--<div class="collapse preview-memory-collapse-70" id ="preview-file-collapse-1hPKSiz_QDDhLX4_LWtrbH0e6QhqaxLyB" >-->
+                <div class = "iframe-class center-block">
+                  <!--<iframe class = "" frameborder="0" src="https://drive.google.com/file/d/1hPKSiz_QDDhLX4_LWtrbH0e6QhqaxLyB/preview?usp=sharing"></iframe>-->
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=1hPKSiz_QDDhLX4_LWtrbH0e6QhqaxLyB" alt="Image">
+                </div>
+                <div class = "file-description">
+                </div>
+                <!--</div>-->
+              </br>
+              <!--Delete button
+                <a class = "delete-file-button" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete File</a>
+                -->
+              </div>
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/98/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      <!--
+                      <i class="fa fa-file-image-o "></i>
+                    -->
+                      paris.jpg
+                    </h4>
+                </div>
+                <br>
+                <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-1zJk5Px07-Xps95z4E6xu_A1_NVfnTWz2" aria-expanded="false" aria-controls="collapseExample">Preview</a>-->
+                <!--<div class="collapse preview-memory-collapse-70" id ="preview-file-collapse-1zJk5Px07-Xps95z4E6xu_A1_NVfnTWz2" >-->
+                <div class = "iframe-class center-block">
+                  <!--<iframe class = "" frameborder="0" src="https://drive.google.com/file/d/1zJk5Px07-Xps95z4E6xu_A1_NVfnTWz2/preview?usp=sharing"></iframe>-->
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=1zJk5Px07-Xps95z4E6xu_A1_NVfnTWz2" alt="Image">
+                </div>
+                <div class = "file-description">
+                </div>
+                <!--</div>-->
+              </br>
+              <!--Delete button
+                <a class = "delete-file-button" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete File</a>
+                -->
+              </div>
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/99/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      <!--
+                      <i class="fa fa-file-image-o "></i>
+                    -->
+                      europe1.jpg
+                    </h4>
+                </div>
+                <br>
+                <!--<a href="" class = "collapse-link" data-toggle = "collapse" data-target = "#preview-file-collapse-1MRTmCt4DCuMdJwhfDXlfx_d7M5tnsuwD" aria-expanded="false" aria-controls="collapseExample">Preview</a>-->
+                <!--<div class="collapse preview-memory-collapse-70" id ="preview-file-collapse-1MRTmCt4DCuMdJwhfDXlfx_d7M5tnsuwD" >-->
+                <div class = "iframe-class center-block">
+                  <!--<iframe class = "" frameborder="0" src="https://drive.google.com/file/d/1MRTmCt4DCuMdJwhfDXlfx_d7M5tnsuwD/preview?usp=sharing"></iframe>-->
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=1MRTmCt4DCuMdJwhfDXlfx_d7M5tnsuwD" alt="Image">
+                </div>
+                <div class = "file-description">
+                </div>
+                <!--</div>-->
+              </br>
+              <!--Delete button
+                <a class = "delete-file-button" href="" data-toggle="modal" data-target="#confirm-delete-file" >Delete File</a>
+                -->
+              </div>
+            <a class = "no-underline" href="/timeline/memory/attach/70/">
+            <div class = "card add-file-card file-card center-block">
+              <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
+            </div>
+            </a>
+          </div>
+            <div class = "card-block footer-block">
+              <!--eidtmemory button
+              <a href="/timeline/memory/attach/70/">Edit Memory</a>
+              <br>
+              -->
+              <!--Delete memory button
+              <a href="" style = "color:red" data-toggle="modal" data-target="#confirm-delete-memory">Delete Memory</a>
+            -->
+            </div>
+  				</div>
+        </div>
+      </div>
+      <!--Dividers-->
+        <div class = "row">
+          <div class = "col-lg 12">
+            <div class="timeline-divider text-center">
+              <hr/>
+              <h2>1990</h2>
+              <hr/>
+            </div>
+          </div>
+        </div>
+      <!--Dividers-->
+        <div class = "row">
+          <div class = "col-lg 12">
+            <div class="timeline-divider text-center">
+              <hr/>
+              <h2>2000</h2>
+              <hr/>
+            </div>
+          </div>
+        </div>
+      <div class = "row color-row" id = "memory-68">
+        <div class = "col-lg-12">
+          <div class="card center-block main-card" style = "width: 80%">
+    				<div class="card-block header-block">
+              <div class = "memory-name">
+                <h3 class="card-title">Funeral
+                    (None 22, 2004)
+                </h3>
+              </div>
+              <div class = "location">
+                <h5>
+                  Plano,
+                  Texas,
+                  United States
+              </h5>
+              </div>
+              <p class="card-description"></p>
+            </div>
+            <div class = "card-columns ">
+              <div class = "card file-card">
+                <a href="/timeline/file/edit/100/"></a>
+                <div class = "info-of-card">
+                    <h4>
+                      funeral1.jpg
+                    </h4>
+                </div>
+                <br>
+                <div class = "iframe-class center-block">
+                    <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=167H5Rz2TFUkHVdIirifnI9IxyCd9e7QI" alt="Image">
+                </div>
+                <div class = "file-description">
+                </div>
+              </br>
+              </div>
+            <a class = "no-underline" href="/timeline/memory/attach/68/">
+            <div class = "card add-file-card file-card center-block">
+              <button class="btn btn-primary btn-add-file-card" id="googleDrive" onClick="onGDriveButton(); return false;" value="G_driver">Add Files</button>
+            </div>
+            </a>
+          </div>
+            <div class = "card-block footer-block">
+            </div>
+  				</div>
+        </div>
+      </div>
+  </div>
+  <!--Last Timeline Divider-->
+  <div class = "row bottom-buffer-end">
+    <div class = "col-lg 12">
+      <div class="timeline-divider text-center">
+        <hr/>
+        <h2>2010</h2>
+        <hr/>
       </div>
     </div>
   </div>
-</div>
-
-<!--Elizabeth's Memory-->
-<div class = "row color-row" id = "">
-  <div class = "col-lg-12">
-    <div class="card center-block main-card" style = "width: 80%">
-      <div class="card-block header-block">
-        <div class = "memory-name">
-          <h3 class="card-title">Elizabeth's Birth (October 23, 1956)</h3>
-        </div>
-        <div class = "location">
-          <h5>
-            Kansas City,
-            Missouri,
-            United States
-        </h5>
-        </div>
-        <p class="card-description">Elizabeth was born in Kansas City and went home to their first house.</p>
-      </div>
-      <div class = "card-columns ">
-        <div class = "card file-card">
-          <a href=""></a>
-          <div class = "info-of-card">
-              <h4>
-                Elizabeth1.jpg
-              </h4>
-          </div>
-          <br>
-          <div class = "iframe-class center-block">
-              <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=TEMPFILENAME" alt="Image">
-          </div>
-          <div class = "file-description">
-            Elizabeth's only baby photo.
-          </div>
-        </br>
-        </div>
-      <a class = "no-underline" href="">
-      </a>
-    </div>
-      <div class = "card-block footer-block">
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--Johnny's Memory-->
-<div class = "row color-row" id = "">
-  <div class = "col-lg-12">
-    <div class="card center-block main-card" style = "width: 80%">
-      <div class="card-block header-block">
-        <div class = "memory-name">
-          <h3 class="card-title">Johnny's Birth (June 12, 1958)</h3>
-        </div>
-        <div class = "location">
-          <h5>
-            Tulsa,
-            Oklahoma,
-            United States
-        </h5>
-        </div>
-        <p class="card-description">Johnny was born in Tulsa a few months after Grandma and Grandpa moved to Tulsa.</p>
-      </div>
-      <div class = "card-columns ">
-        <div class = "card file-card">
-          <a href=""></a>
-          <div class = "info-of-card">
-              <h4>
-                Johnny.jpg
-              </h4>
-          </div>
-          <br>
-          <div class = "iframe-class center-block">
-              <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=TEMPFILENAME" alt="Image">
-          </div>
-          <div class = "file-description">
-            Johnny's First Photo.
-          </div>
-        </br>
-        </div>
-      <a class = "no-underline" href="">
-      </a>
-    </div>
-      <div class = "card-block footer-block">
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class = "row">
-  <div class = "col-lg 12">
-    <div class="timeline-divider text-center">
-      <hr/>
-      <h2>1960</h2>
-      <hr/>
-    </div>
-  </div>
-</div>
-
-<!--Sarah's Memory-->
-<div class = "row color-row" id = "">
-  <div class = "col-lg-12">
-    <div class="card center-block main-card" style = "width: 80%">
-      <div class="card-block header-block">
-        <div class = "memory-name">
-          <h3 class="card-title">Sarah's Birth (November 15, 1962)</h3>
-        </div>
-        <div class = "location">
-          <h5>
-            Tulsa,
-            Oklahoma,
-            United States
-        </h5>
-        </div>
-        <p class="card-description">Sarah was also born in Tulsa.</p>
-      </div>
-      <div class = "card-columns ">
-        <div class = "card file-card">
-          <a href=""></a>
-          <div class = "info-of-card">
-              <h4>
-                Sarah1.jpg
-              </h4>
-          </div>
-          <br>
-          <div class = "iframe-class center-block">
-              <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=TEMPFILENAME" alt="Image">
-          </div>
-          <div class = "file-description">
-            Sarah's First Photo.
-          </div>
-        </br>
-        </div>
-      <a class = "no-underline" href="">
-      </a>
-    </div>
-      <div class = "card-block footer-block">
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class = "row">
-  <div class = "col-lg 12">
-    <div class="timeline-divider text-center">
-      <hr/>
-      <h2>1970</h2>
-      <hr/>
-    </div>
-  </div>
-</div>
-
-<div class = "row">
-  <div class = "col-lg 12">
-    <div class="timeline-divider text-center">
-      <hr/>
-      <h2>1980</h2>
-      <hr/>
-    </div>
-  </div>
-</div>
-
-<div class = "row">
-  <div class = "col-lg 12">
-    <div class="timeline-divider text-center">
-      <hr/>
-      <h2>1990</h2>
-      <hr/>
-    </div>
-  </div>
-</div>
-
-<div class = "row">
-  <div class = "col-lg 12">
-    <div class="timeline-divider text-center">
-      <hr/>
-      <h2>2000</h2>
-      <hr/>
-    </div>
-  </div>
-</div>
-
-<!--Passing Memory-->
-<div class = "row color-row" id = "">
-  <div class = "col-lg-12">
-    <div class="card center-block main-card" style = "width: 80%">
-      <div class="card-block header-block">
-        <div class = "memory-name">
-          <h3 class="card-title">Funeral (November 22, 2004)</h3>
-        </div>
-        <div class = "location">
-          <h5>
-            Plano,
-            Texas,
-            United States
-        </h5>
-        </div>
-        <p class="card-description">Grandma passed away on November 22, 2004 in her home in Texas.</p>
-      </div>
-      <div class = "card-columns ">
-        <div class = "card file-card">
-          <a href=""></a>
-          <div class = "info-of-card">
-              <h4>
-                FamilyPhoto.jpg
-              </h4>
-          </div>
-          <br>
-          <div class = "iframe-class center-block">
-              <img  class = "img-fluid" src="https://drive.google.com/uc?export=view&id=TEMPFILENAME" alt="Image">
-          </div>
-          <div class = "file-description">
-            Family Photo taken at Grandma's Funeral.
-          </div>
-        </br>
-        </div>
-      <a class = "no-underline" href="">
-      </a>
-    </div>
-      <div class = "card-block footer-block">
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class = "row">
-  <div class = "col-lg 12">
-    <div class="timeline-divider text-center">
-      <hr/>
-      <h2>2010</h2>
-      <hr/>
-    </div>
-  </div>
-</div>
 
 {% endblock %}
 
