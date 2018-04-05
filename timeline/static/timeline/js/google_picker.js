@@ -19,11 +19,11 @@ function onPickerApiLoad() {
 
 function createPicker() {
   if (pickerApiLoaded && oauthToken) {
-    let view = new google.picker.View(google.picker.ViewId.DOCS);
+    // let view = new google.picker.View(google.picker.ViewId.DOCS);
     var picker = new google.picker.PickerBuilder().
         enableFeature(google.picker.Feature.MULTISELECT_ENABLED).
         addView(new google.picker.DocsUploadView().setParent(window.parent_id)).
-        addView(view).
+        // addView(view).
         setOAuthToken(oauthToken).
         setDeveloperKey(developerKey).
         setCallback(pickerCallback).
