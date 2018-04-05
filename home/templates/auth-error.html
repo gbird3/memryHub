@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}MemryHub{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href={% static "/home/css/auth_error.css" %}>
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>Authentication Error</h2>
+      <p>It seems we have lost access to your Google Drive. This is to be expected every once in awhile for security reasons.</p>
+      <p>To give us access to your Google Drive again, you simply need to logout, and then log back in!</p>
+      <a href="/logout" class="btn btn-primary btn-lrg">Logout</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

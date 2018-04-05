@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}MemryHub{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href={% static "/home/css/groups.css" %}/>
+{% endblock %}
+
+{% block content %}
+<div class="row pad-left">
+    <div class="container col-sm-10 col-sm-offset-2">
+        <br>
+        <h1>Your Groups</h1>
+    </div>
+</div>
+
+<div class="row pad-left">
+    <div class="groups container col-sm-10 col-sm-offset-2">
+        <button class="btn btn-primary create-group" data-toggle="modal" data-target="#addGroup">Create Group</button>
+
+        {% if groups %}
+        <div class="list-group">
+            {% for group in groups %}
+            <a href="{% url 'group_users' group.id %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                {{ group.name }}
+                <span class="badge badge-primary badge-pill">{{ group.users }} <i class="fa fa-user"></i></span>
+            </a>
+            {% endfor %}
+        </div>
+
+        {% else %}
+        <div class = "center-block">
+            <div id = "timeline-tutorial" class = " card-outline-info center-block text-center">
+                <h4>You don't have any groups yet. Use the "Create Group" button to create your first group.</h4>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+<!--  Modal for adding Groups -->
+
+<div class="modal fade" id="addGroup" tabindex="-1" role="dialog" aria-labelledby="Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">New Group</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div hidden id="required-alert" class="alert alert-danger" role="alert">
+                Name is a required input.
+              </div>
+            <form method="POST">
+                    {% csrf_token %}
+                    {{ form }}
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit" name="action">Create Group</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+{% endblock %}

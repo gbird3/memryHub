@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from home.models import Group
 # Create your models here.
 
 class Timeline(models.Model):
@@ -35,6 +36,8 @@ class Memory(models.Model):
     city = models.CharField(null=True, blank=True, max_length=100)
     state = models.CharField(null=True, blank=True, max_length=100)
     country = models.CharField(null=True, blank=True, max_length=100)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, null = True)
     date_created = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
     active = models.SmallIntegerField(default=1)
@@ -47,4 +50,11 @@ class File(models.Model):
     file_id = models.CharField(null=True, blank=True, max_length=300)
     description = models.TextField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
+    active = models.SmallIntegerField(default=1)
+
+class GroupHasTimeline(models.Model):
+    '''Give a group access to a timeline'''
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    timeline = models.ForeignKey(Timeline, on_delete=models.CASCADE)
+    permission = models.CharField(max_length=10, default='reader')
     active = models.SmallIntegerField(default=1)
