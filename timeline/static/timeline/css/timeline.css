@@ -28,6 +28,11 @@
   color: white;
 }
 
+#btn-confirm-timeline{
+  background-color: #8DC63F;
+  color: white;
+}
+
 #timeline-tutorial{
   width: 50%;
   margin-left: auto;
