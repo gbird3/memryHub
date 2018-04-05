@@ -11,10 +11,10 @@ function onPickerApiLoad() {
 
 function createPicker() {
   if (pickerApiLoaded && oauthToken) {
-    let view = new google.picker.View(google.picker.ViewId.DOCS);
+    // let view = new google.picker.View(google.picker.ViewId.DOCS);
 
     var picker = new google.picker.PickerBuilder().
-        addView(view).
+        // addView(view).
         addView(new google.picker.DocsUploadView().setParent(parent_id)).
         setOAuthToken(oauthToken).
         setDeveloperKey(developerKey).
