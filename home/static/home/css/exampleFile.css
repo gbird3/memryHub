@@ -1,0 +1,42 @@
+.center-block{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.back-button{
+  color:#49BFDC;
+}
+
+
+.center-block{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+
+.save-button{
+  background-color: #4285F4;
+}
+
+.preview-frame{
+  width:100%;
+  height: 300px;
+}
+
+.file-preview{
+  margin-bottom: 2%;
+}
+
+.modal-header{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.modal-body{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.row{margin-bottom: 20px;}

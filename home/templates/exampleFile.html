@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}MemryHub{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href={% static "timeline/css/edit_file.css" %}>
+{% endblock %}
+
+{% block content %}
+<br>
+  <div class="container-fluid col-sm-10 col-sm-offset-10">
+    <div class = "header-class ">
+      <a class = "back-button" href = "{% url 'attach_file' memory_id %}#files"><i class="fa fa-arrow-left"></i>Back</a>
+    </br>
+      <h1>{{file.name}}</h1>
+    </div>
+    </br>
+
+  <div class="row">
+    <div class="col-sm-6 center-block">
+      <form method="POST">
+        {% csrf_token %}
+        <!--{{ form }}-->
+
+        {{ form.name.label_tag }}
+        {{ form.name }}
+      </br>
+        {{ form.description.label_tag}}
+        {{ form.description }}
+
+
+
+        <br>
+        <div class="row center-block">
+          <div class="create-timeline">
+            <button class="btn btn-primary save-button" type="submit" name="action">Save File</button>
+            <button class="btn btn-danger delete-button" type="button" href="" data-toggle="modal" data-target="#confirm-delete-file-{{file.id}}">Delete File</button>
+          </div>
+
+          <!-- Modal for delete-->
+            <div class="modal fade" id="confirm-delete-file-{{file.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h2>Confirm delete?</h2>
+                      </div>
+                      <div class="modal-body">
+                          <p>Are you sure you wish to delete this file?</p>
+                          <p style = "font-style: italic">Note: This will not delete the file in your Google Drive folder. This will only make the file inactive on this website. You will still have access to the file through your Google Drive.</p>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                          <a href ="{% url 'delete_file' file.id %}" class="btn btn-danger btn-ok">Confirm Delete</a>
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+
+
+        </div>
+    </form>
+    </div>
+    <div class ="col-sm-6">
+      <div class = "file-preview">
+      File Preview:
+      </div>
+      <div class="center-block">
+        <iframe class = "preview-frame" frameborder="0" src="https://drive.google.com/file/d/{{ file.file_id }}/preview?usp=sharing"></iframe>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -24,7 +24,7 @@ def login(request):
 
 def privacy(request):
     return render(request, 'privacy.html')
-    
+
 class CreateGroupForm(forms.Form):
     name = forms.CharField(label='Group Name', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Group Name'}))
 
@@ -79,3 +79,23 @@ def group_users(request, group_id):
 
 def auth_error(request):
     return render(request, 'auth-error.html')
+
+
+def example1(request):
+    return render(request, 'example1.html')
+
+
+def example_file_1(request):
+    return render(request, 'example_file_1.html')
+
+def example_file_2(request):
+    return render(request, 'example_file_2.html')
+
+def example_file_3(request):
+    return render(request, 'example_file_3.html')
+
+def example_file_4(request):
+    return render(request, 'example_file_4.html')
+
+def example_file_5(request):
+    return render(request, 'example_file_5.html')
