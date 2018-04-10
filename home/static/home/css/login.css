@@ -6,20 +6,17 @@ body {
 }
 
 .google-login {
-  margin: 14em;
-  background-color: #dc3545;
-  color:white;
+  margin-top: 50%;
+  margin-bottom: auto;
 }
 
-.google-login:hover{
-  background-color: transparent;
-  color: #dc3545;
+.google-img {
+  width: 15em;
 }
 
 .explanation{
   margin-top: 20%;
   margin-bottom: auto;
-
 }
 
 h1{

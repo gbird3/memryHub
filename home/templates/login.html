@@ -15,14 +15,13 @@
   </div>
 </div> -->
 
-<div class="flex-container">
+<div class="container">
     <div class="row">
-      <div class = "col-sm-5">
-        <a class="btn btn-outline-danger btn-large google-login" role="button" href="{% url "social:begin" "google-oauth2" %}?next=/timeline">Login with Google</a>
+      <div class = "col-sm-1 col-md-6">
+        <a class="btn google-login" role="button" href="{% url "social:begin" "google-oauth2" %}?next=/timeline"><img class="google-img" src={% static "/home/media/btn_google_signin_dark_focus_web@2x.png" %}></a>
       </div>
 
-
-      <div class = "col-sm-5">
+      <div class = "col-sm-10 col-md-6">
         <div class = "explanation">
           <h1>Welcome to MemryHub.</h1>
           <p>You'll need to log in with your Google Account, as Google Drive is where all of your memories will be stored.</p>
