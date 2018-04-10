@@ -48,6 +48,7 @@
 
 <br>
 
+{% if users %}
 <div class="container">
     <div class="row pad-left">
         <div class="col-sm-8">
@@ -70,4 +71,13 @@
         </div>
     </div>
 </div>
+{% else %}
+<div class="container">
+    <div class="row pad-left">
+        <div class="col-sm-8">
+            <h5>No users in this group. Add users above.</h5>
+        </div>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
